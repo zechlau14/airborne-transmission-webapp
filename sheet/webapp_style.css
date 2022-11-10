@@ -1,56 +1,105 @@
-.room-visual{
-    width: 300px;
-    height: 300px;
-    border: solid;
-    border-width: 1px;
+.room-visual {
+  width: 300px;
+  height: 300px;
+  border: solid;
+  border-width: 1px;
 
-    position: relative;
-    touch-action:none;
+  position: relative;
+  touch-action: none;
 
-    resize:both;
-    overflow:hidden;
-    min-width: 120px;
-    max-width: 600px;
-    min-height: 120px;
-    max-height: 600px; 
+  resize: both;
+  overflow: hidden;
+  min-width: 120px;
+  max-width: 600px;
+  min-height: 120px;
+  max-height: 600px;
 }
 
-.drag_dot{
-    height: 7px;
-    width: 7px;
-    background-color:black;
-    border-radius: 50%;
+.drag_dot {
+  height: 7px;
+  width: 7px;
+  background-color: black;
+  border-radius: 50%;
 
-    touch-action:none;
-    position: absolute;
-    cursor:move;
+  touch-action: none;
+  position: absolute;
+  cursor: move;
 }
 
-#source_dot{
-    left:50%;
-    bottom: 50%;
+#source_dot {
+  left: 50%;
+  bottom: 50%;
 }
 
-.boxed{
-    border-style:solid;
-    padding:10px;
-    flex-grow:1;
-    flex-basis:30%;
+.boxed {
+  border-style: solid;
+  padding: 10px;
+  flex-grow: 1;
+  flex-basis: 30%;
 }
 
-#progress-bar{
-    width: 50%;
-    background-color: grey;
-    color: white;
-    text-align: center;
+#progress-bar {
+  width: 50%;
+  background-color: grey;
+  color: white;
+  text-align: center;
 }
 
-#the-bar{
-    width: 1%;
-    background-color:blue;
-    height: 30px;
+#the-bar {
+  width: 1%;
+  background-color: blue;
+  height: 30px;
 }
 
-.chart{
-    width:50%;
+.chart {
+  width: 50%;
+}
+
+.container {
+  margin: 0px auto;
+}
+
+.banner {
+  height: 406px;
+  background-image: linear-gradient(#ffffff, #f1aead);
+  position: relative;
+}
+
+.banner-top {
+  display: flex;
+  margin-top: 10px;
+}
+
+.title-logos {
+  display: flex;
+  margin: 22px 0 0 10%;
+}
+
+.description {
+  width: 795px;
+  height: 127px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  margin-left: 15px;
+  margin-top: 25px;
+}
+
+.disclaimer {
+  width: 798px;
+  height: 86px;
+  font-size: 13px;
+  font-family: "Roboto", sans-serif;
+  margin-left: 15px;
+  margin-top: 45px;
+}
+
+.virus-illustration {
+  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+body {
+  margin: 0 auto;
 }
