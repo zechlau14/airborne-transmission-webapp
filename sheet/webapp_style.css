@@ -1,0 +1,56 @@
+.room-visual{
+    width: 300px;
+    height: 300px;
+    border: solid;
+    border-width: 1px;
+
+    position: relative;
+    touch-action:none;
+
+    resize:both;
+    overflow:hidden;
+    min-width: 120px;
+    max-width: 600px;
+    min-height: 120px;
+    max-height: 600px; 
+}
+
+.drag_dot{
+    height: 7px;
+    width: 7px;
+    background-color:black;
+    border-radius: 50%;
+
+    touch-action:none;
+    position: absolute;
+    cursor:move;
+}
+
+#source_dot{
+    left:50%;
+    bottom: 50%;
+}
+
+.boxed{
+    border-style:solid;
+    padding:10px;
+    flex-grow:1;
+    flex-basis:30%;
+}
+
+#progress-bar{
+    width: 50%;
+    background-color: grey;
+    color: white;
+    text-align: center;
+}
+
+#the-bar{
+    width: 1%;
+    background-color:blue;
+    height: 30px;
+}
+
+.chart{
+    width:50%;
+}
