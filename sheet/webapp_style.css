@@ -105,18 +105,31 @@ body {
   margin: 0 auto;
 }
 
-.room-dimensions-card {
+.controls-card {
   width: 344px;
-  height: 243px;
+  height: fit-content;
   background-color: #f9d4d4;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border: 1px solid;
 }
 
-.room-dimensions-card:hover {
+.controls-card:hover {
   transform: scale(1.01);
 }
+
+/* .person-dimensions-card {
+  width: 344px;
+  height: fit-content;
+  background-color: #f9d4d4;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border: 1px solid;
+}
+
+.person-dimensions-card:hover {
+  transform: scale(1.01);
+} */
 
 .h2 {
   font-family: "Roboto";

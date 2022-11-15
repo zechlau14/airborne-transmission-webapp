@@ -48,13 +48,13 @@
       <h3> Location Parameters </h3>
       <!-- model inputs -->
 
-      <div class="room-dimensions-card">
+      <div class="controls-card">
         <div style="display: flex;">
           <p class="h2">Room dimensions</p>
           <span class="hovertext" text-hover="This is the placholder text for the card description">
             <img src="images/info_mark.png" alt="card information" class="question-mark">
           </span>
-      </div>
+        </div>
         <div class="controls-alignment">
           <div class="control-padding">
             <label for="room-length"> Length (m) </label>
@@ -72,7 +72,7 @@
             <output> 5 </output>
           </div>
 
-          <div class="control-padding">
+          <div class="control-padding" style="padding-bottom: 10px;">
             <label for='roomd-height'> Height (m)</label>
             <input type="range" id="room-height" name="room-height" min="2" max="4" value="2.5" step="0.1"
             oninput="this.nextElementSibling.value = this.value">
@@ -81,11 +81,110 @@
         </div>
       </div>
 
+      <div class="controls-card">
+        <div style="display: flex;">
+          <p class="h2">Infectious person</p>
+          <span class="hovertext" text-hover="This is the placholder text for the card description">
+            <img src="images/info_mark.png" alt="card information" class="question-mark">
+          </span>
+        </div>
+
+        <div class="controls-alignment">
+          <div class="control-padding">
+            <label for='x0'>x</label>
+            <input type='range' id="x0" name="x0" min="0" value="2.5" max="5" step="0.01"
+            oninput="passX0();">
+            <!-- oninput, passX0 updates the infectious person dot-->
+            <output> 2.5 </output>
+          </div>
+
+          <div class="control-padding">
+            <label for='y0'>y</label>
+            <input type='range' id="y0" name="y0" min="0" value="2.5" max="5" step="0.01"
+            oninput="passY0();">
+            <!-- oninput, passY0 updates the infectious person dot-->
+            <output> 2.5 </output>
+          </div>
+
+          <div class="control-padding">
+            <label for="talk">Activity</label>
+            <!--<select id="talk" name="talk" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
+            }"> -->
+            <select id="talk" name="talk" onchange="show_hide_custom_percent(this)">
+              <option value="0" selected> Just breathing</option>
+              <option value="100"> Just talking </option>
+              <option value="customOption">Choose the % of time talking</option>
+            </select>
+            <input type="range" id="talk-custom" name="talk-custom" style="display:none;" min="0" max="100" step="1" value="50"
+            oninput="this.nextElementSibling.value = this.value + '%'; this.nextElementSibling.style='display:inline';"></input>
+            <output style="display:none">50%</output>
+          </div>
+
+          <div class="control-padding" style="padding-bottom: 10px">
+            <label for="inf-mask">Mask worn</label>
+              <!--<select id="inf-mask" name="inf-mask" onchange="inf_mask_visual();if(this.options[this.selectedIndex].value=='customOption'){
+                  this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
+                  }"> -->
+            <select id="inf-mask" name="inf-mask" onchange="inf_mask_visual(); show_hide_custom_percent(this)">
+              <option value="0" selected> No mask</option>
+              <option value="0.35"> 1-ply Cloth mask (35%)</option>
+              <option value="0.5"> 3-ply Cloth mask (50%)</option>
+              <option value="0.59"> Surgical mask (59%)</option>
+              <option value="0.9"> N95/FFP2 mask (95%) </option>
+              <option value="customOption">Choose your own mask efficiency (%)</option>
+              </select>
+            <input type="range" id="inf-mask-custom" name="inf-mask-custom" style="display:none;" min="0" max="100" step="1" value="0"
+                onblur="if(this.value==''){toggleField(this,this.previousSibling);}" oninput="this.nextElementSibling.value = this.value + '%'; this.nextElementSibling.style='display:inline';"> </input>
+            <output style="display:none">0%</output>
+            <span class="mask_pic" id="inf_mask_pic"> </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls-card">
+        <div style="display: flex;">
+          <p class="h2">Ventilation</p>
+          <span class="hovertext" text-hover="This is the placholder text for the card description">
+            <img src="images/info_mark.png" alt="card information" class="question-mark">
+          </span>
+        </div>
+        <div class="controls-alignment">
+          <div class="control-padding">
+            <label for="vent">Ventilation rate (ACH) </label>
+            <!--<select id="vent" name="vent" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                this.style.display='none'; this.nextElementSibling.style.display='inline';
+            }"> -->
+            <select id="vent" name="vent" onchange="show_hide_custom(this)">
+              <option value="0.2"> Very poor (0.2 ACH)</option>
+              <option value="0.7" selected> Poor (0.7 ACH)</option>
+              <option value="3"> Good (3.0 ACH)</option>
+              <option value="6"> Very good (6.0 ACH)</option>
+              <option value="customOption">Choose your own ACH value</option>
+            </select><input type="number" id="vent-custom" name="vent-custom" style="display:none;" min="0.1" step="0.01"></input>
+          </div>
+
+          <div class="control-padding" style="padding-bottom: 10px;">
+            <label for="airflow">Airflow speed (m/s)</label>
+            <!--<select id="airflow" name="airflow" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                this.style.display='none'; this.nextElementSibling.style.display='inline';
+            }"> -->
+            <select id="airflow" name="airflow" onchange="show_hide_custom(this)">
+              <option value="0"> Off (0  m/s)</option>
+              <option value="0.15" selected> Medium (0.15 m/s)</option>
+              <option value="0.8"> High (0.8 m/s)</option>
+              <option value="customOption">Choose your own airflow speed</option>
+            </select><input type="number" id="airflow-custom" name="airflow-custom" style="display:none;" min="0" step="0.01"> </input>
+          </div>
+        </div>
+      </div>
+
 
 
       <div class="boxed">
 
-      <p><b> Coordinates of the Infectious Person</b> <label for='x0'>x</label>
+      <p><b> Coordinates of the Infectious Person</b>
+          <label for='x0'>x</label>
           <input type='range' id="x0" name="x0" min="0" value="2.5" max="5" step="0.01"
           oninput="passX0();">
           <!-- oninput, passX0 updates the infectious person dot-->
@@ -159,7 +258,8 @@
           </span>
       </p>
 
-      <p><b>Infectious person:</b> <label for="talk">Activity</label>
+      <p><b>Infectious person:</b>
+        <label for="talk">Activity</label>
           <!--<select id="talk" name="talk" onchange="if(this.options[this.selectedIndex].value=='customOption'){
               this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
           }"> -->
