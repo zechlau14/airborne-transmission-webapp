@@ -64,6 +64,7 @@
   height: 406px;
   background-image: linear-gradient(#ffffff, #f1aead);
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .banner-top {
@@ -112,9 +113,26 @@ body {
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border: 1px solid;
+  margin: 10px 10px 0px 0px;
+  transition-duration: 0.2s;
 }
 
 .controls-card:hover {
+  transform: scale(1.01);
+}
+
+.advanced-card {
+  /* width: 344px; */
+  width: fit-content;
+  height: fit-content;
+  background-color: #f9d4d4;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border: 1px solid;
+  transition-duration: 0.2s;
+}
+
+.advanced-card:hover {
   transform: scale(1.01);
 }
 
