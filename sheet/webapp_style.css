@@ -157,6 +157,12 @@ body {
   margin-bottom: 10px;
 }
 
+.h3 {
+  font-family: "Roboto";
+  font-size: 19px;
+  font-weight: bold;
+}
+
 .controls-alignment {
   display: flex;
   flex-direction: column;
@@ -173,4 +179,62 @@ body {
 
 .controls-plots-area {
   margin: 0px 15px 0px 15px;
+}
+
+.secondary-button {
+  height: 35px;
+  width: fit-content;
+  border: solid 1px black;
+  background-color: rgba(11, 139, 153, 0.1);
+  border-radius: 12px;
+  font: 16px Roboto;
+  padding: 0px 10px 0 10px;
+  transition: 0.2s;
+}
+
+.secondary-button:hover {
+  background-color: rgba(11, 139, 153, 0.2);
+}
+
+.primary-button {
+  height: 47px;
+  width: 157px;
+  border: solid 1px #087e8b;
+  background-color: #087e8b;
+  border-radius: 12px;
+  font: 16px Roboto;
+  color: white;
+  padding: 0px 10px 0 10px;
+  transition: 0.2s;
+}
+
+.primary-button:hover {
+  border: solid 1px #f1aead;
+  background-color: #f1aead;
+}
+
+a {
+  color: #18272f;
+  position: relative;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #18272f;
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
 }

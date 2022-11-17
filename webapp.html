@@ -235,7 +235,7 @@
 
       <!-- continuation of model inputs -->
       <!-- button to show Advanced inputs to the model -->
-      <button type="button" onclick="advanced_options()"> Advanced options </button> <br>
+      <button type="button" onclick="advanced_options()" class="secondary-button">Advanced Options</button> <br>
 
       <div name="advanced-options" id="advanced-options" class="advanced-card" style="display:none;">
         <div style="display: flex;">
@@ -332,7 +332,7 @@
       </div>
 
       <h2>Results</h2>
-      <button type="button" onclick="Run_no_modes()"> Run </button>
+      <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
       <!-- <button type="button" onclick="Run_moded()"> Run </button>  -->
       <!--<button type='button' onclick="stop_model()"> Stop  </button> -->
 
@@ -347,18 +347,20 @@
       </div>
       <p><span id="risk_avg" style="display:none"> </span> <span id="infected" style="display:none">  </span> </p>
 
-      <p><a href="explore_more.html"> Explore more </a> </p>
+      <a href="explore_more.html">Explore more</a>
 
       <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
       <script src='script/webapp_form.js'></script>
       <script src="script/webapp_room.js"></script>
       <script src="script/webapp_run.js"></script>
       <script src="script/explore_more.js"></script>
+      <br>
+      <br>
+      <footer> Credits</footer>
     </div>
   </div>
 </body>
 
-<footer> Credits</footer>
 
 <!-- KEEPING THE BELOW FOR REFERENCE -->
 
