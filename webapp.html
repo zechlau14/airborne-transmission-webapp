@@ -222,17 +222,6 @@
         </div>
       </div>
 
-
-
-      <h3>Visuals</h3>
-      <!-- Room rectangle can be dragged to resize.
-          and the Infectious person dot can be dragged to be repositioned.-->
-      <div class="room-visual" id="room-visual"
-          onmouseleave="getRoomDim();" onmouseup="getRoomDim()"
-          ondragover="allowDrop(event);">
-          <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>
-      </div> <br>
-
       <!-- continuation of model inputs -->
       <!-- button to show Advanced inputs to the model -->
       <button type="button" onclick="advanced_options()" class="secondary-button">Advanced Options</button> <br>
@@ -331,33 +320,55 @@
 
       </div>
 
-      <h2>Results</h2>
-      <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
-      <!-- <button type="button" onclick="Run_moded()"> Run </button>  -->
-      <!--<button type='button' onclick="stop_model()"> Stop  </button> -->
-
-      <!-- loading bar to show progress of model-->
-      <div id="progress-bar">
-          <div id="the-bar" style="display:none;">   </div>
+      <div style="display: flex;">
+        <div style="display: flex; flex-direction: column;">
+          <div>
+            <h2>Visuals</h2>
+          </div>
+        <!-- Room rectangle can be dragged to resize.
+            and the Infectious person dot can be dragged to be repositioned.-->
+          <div class="room-visual" id="room-visual"
+              onmouseleave="getRoomDim();" onmouseup="getRoomDim()"
+              ondragover="allowDrop(event);">
+              <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>
+          </div>
+          <br>
       </div>
 
-      <div class="chart">
+      <div style="display: flex; flex-direction: column; margin-left: 10px;">
+        <div>
+          <h2>Results</h2>
+        </div>
+        <div>
+          <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
+          <!-- <button type="button" onclick="Run_moded()"> Run </button>  -->
+          <!-- <button type='button' onclick="stop_model()">Stop</button> -->
+        </div>
+
+        <!-- loading bar to show progress of model-->
+        <div id="progress-bar" style="margin-top: 10px;">
+            <div id="the-bar" style="display:none;"></div>
+        </div>
+
+      </div>
+        <div class="chart">
           <p id="chart_time"></p>
           <div id='inf-contour' style="display:none"> </div>
+        </div>
+        <div>
+          <p class="output-message"><span id="risk_avg" style="display:none"></span><span id="infected" style="display:none"></span></p>
+        </div>
+    </div>
+      <div style="margin-top: 10px;">
+        <a href="explore_more.html">Explore more</a>
       </div>
-      <p><span id="risk_avg" style="display:none"> </span> <span id="infected" style="display:none">  </span> </p>
-
-      <a href="explore_more.html">Explore more</a>
-
       <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
       <script src='script/webapp_form.js'></script>
       <script src="script/webapp_room.js"></script>
       <script src="script/webapp_run.js"></script>
       <script src="script/explore_more.js"></script>
       <br>
-      <br>
-      <footer> Credits</footer>
-    </div>
+      <footer>Credits</footer>
   </div>
 </body>
 

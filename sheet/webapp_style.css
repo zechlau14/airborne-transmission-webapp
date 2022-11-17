@@ -53,6 +53,7 @@
 
 .chart {
   width: 50%;
+  margin: 0 10px 0 10px;
 }
 
 .container {
@@ -125,6 +126,7 @@ body {
   /* width: 344px; */
   width: fit-content;
   height: fit-content;
+  margin: 10px 0 10px 0;
   background-color: #f9d4d4;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -184,10 +186,11 @@ body {
 .secondary-button {
   height: 35px;
   width: fit-content;
-  border: solid 1px black;
-  background-color: rgba(11, 139, 153, 0.1);
+  border: solid 2px #087e8b;
+  background-color: white;
   border-radius: 12px;
   font: 16px Roboto;
+  color: #087e8b;
   padding: 0px 10px 0 10px;
   transition: 0.2s;
 }
@@ -237,4 +240,16 @@ a::before {
 a:hover::before {
   transform-origin: left;
   transform: scaleX(1);
+}
+
+.output-message {
+  /* border: solid 6px #087e8b; */
+  width: 400px;
+  padding: 5px 5px 5px 5px;
+  font-size: 23px;
+  font-weight: bold;
+  border-radius: 12px;
+  margin-top: 50px;
+  /* background-color: #087e8b; */
+  /* color: white; */
 }
