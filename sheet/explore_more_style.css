@@ -1,49 +1,53 @@
-#susceptible_dot{
-    bottom:25%;
-    left: 25%;
-    background-color: rgb(162, 4, 133);
+#susceptible_dot {
+  bottom: 25%;
+  left: 25%;
+  background-color: rgb(162, 4, 133);
 }
 
 /*** loading image to be shown if the graph takes a long time to load***/
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
   }
-  /** loading image end**/
+}
+/** loading image end**/
 
-.chart_container{
-    width:100%;
-    content:"";
-    display:flex;
-    flex-direction:row;
-    flex-wrap: wrap;
-    clear:both;
+.chart_container {
+  width: 100%;
+  content: "";
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  clear: both;
 }
 
-.chart{
-  width:50%;
-  flex-grow:1;
-  flex-basis:50%;
+.chart {
+  width: 50%;
+  flex-grow: 1;
+  flex-basis: 50%;
   /*float:left;*/
 }
 
-#progress-bar2{
-  width: 50%;
+#progress-bar2 {
+  width: 157px;
   background-color: grey;
   color: white;
   text-align: center;
 }
 
-#the-bar2{
+#the-bar2 {
   width: 1%;
-  background-color:blue;
+  background-color: #f1aead;
   height: 30px;
 }
