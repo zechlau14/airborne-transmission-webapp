@@ -17,6 +17,8 @@ const loading_bar = document.getElementById("progress-bar");
 const P_contour_chart = document.getElementById("inf-contour");
 const risk_avg_print = document.getElementById("risk_avg");
 const inf_print = document.getElementById("infected");
+const output_msg = document.getElementById("output-msg");
+const infection_risk_contour = document.getElementById("chart_area");
 
 function update_parameters() {
   //reads all the inputs from the page.
@@ -597,6 +599,8 @@ function Run_no_modes() {
   reset_results();
   update_parameters();
   loading_bar.style.display = "block";
+  output_msg.style.display = "block";
+  infection_risk_contour.style.display = "block";
 
   let t = t_array(time + time_break, delta_t);
   for (let i = 0; i < t.length; i++) {
@@ -632,8 +636,8 @@ function Run_no_modes() {
       let P_avg = avg_free(P_room, l, w, delta_x, delta_y);
       loading(n_points / n_total);
 
-      document.getElementById("chart_time").innerHTML =
-        "Infection risk at the end of the event";
+      // document.getElementById("chart_time").innerHTML =
+      //   "Infection risk at the end of the event";
 
       var datapt = [
         {

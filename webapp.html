@@ -19,8 +19,8 @@
         <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 177px; margin-left: 15px;">
         <div class="title-logos">
           <h1 style="margin: 0;">Airborne Virus Risk Calculator</h1>
-          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="margin-left: 20px; width: 139px; height: 41px; box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
-          <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: 88px; height: 41px; margin-left: 10px; box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="margin-left: 20px; width: 139px; height: 41px; box-shadow: var(--box-shadow)">
+          <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: 88px; height: 41px; margin-left: 10px; box-shadow: var(--box-shadow)">
         </div>
       </div>
       <!-- Intro text -->
@@ -48,7 +48,7 @@
       <h3> Location Parameters </h3>
       <!-- model inputs -->
 
-      <div style="display: flex">
+      <div style="display: flex; justify-content: space-between;">
         <div class="controls-card">
           <div style="display: flex;">
             <p class="h2">Room dimensions</p>
@@ -221,7 +221,8 @@
           </div>
         </div>
       </div>
-
+      <br>
+      <br>
       <!-- continuation of model inputs -->
       <!-- button to show Advanced inputs to the model -->
       <button type="button" onclick="advanced_options()" class="secondary-button">Advanced Options</button> <br>
@@ -320,55 +321,96 @@
 
       </div>
 
-      <div style="display: flex;">
+      <div style="display: flex; justify-content: space-between;">
         <div style="display: flex; flex-direction: column;">
-          <div>
-            <h2>Visuals</h2>
+          <div style="display: flex;">
+            <div>
+              <h2>Visuals</h2>
+            </div>
+            <div>
+              <span class="hovertext" text-hover="This is the placholder text for the card description">
+                <img src="images/info_mark.png" alt="card information" class="question-mark">
+              </span>
+            </div>
           </div>
         <!-- Room rectangle can be dragged to resize.
             and the Infectious person dot can be dragged to be repositioned.-->
           <div class="room-visual" id="room-visual"
-              onmouseleave="getRoomDim();" onmouseup="getRoomDim()"
-              ondragover="allowDrop(event);">
-              <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>
+            onmouseleave="getRoomDim();" onmouseup="getRoomDim()"
+            ondragover="allowDrop(event);">
+            <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>
           </div>
           <br>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div style="display: flex">
+            <div>
+              <h2>Room and Air circulation illustration</h2>
+            </div>
+            <div>
+              <span class="hovertext" text-hover="This is the placholder text for the card description">
+                <img src="images/info_mark.png" alt="card information" class="question-mark">
+              </span>
+            </div>
+          </div>
+          <div class="room-air-illustration">
+            <img src="images/air_circulation.png" alt="air_circulation_schematic" style="width: 1000px; border-radius: 12px;">
+          </div>
+        </div>
       </div>
 
-      <div style="display: flex; flex-direction: column; margin-left: 10px;">
-        <div>
-          <h2>Results</h2>
-        </div>
-        <div>
-          <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
-          <!-- <button type="button" onclick="Run_moded()"> Run </button>  -->
-          <!-- <button type='button' onclick="stop_model()">Stop</button> -->
-        </div>
+      <div style="display: flex; margin-top: 20px; justify-content: space-between;">
+        <div style="display: flex; flex-direction: column;">
+          <div>
+            <h2>Results</h2>
+          </div>
+          <div>
+            <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
+            <!-- <button type="button" onclick="Run_moded()"> Run </button>  -->
+            <!-- <button type='button' onclick="stop_model()">Stop</button> -->
+          </div>
 
-        <!-- loading bar to show progress of model-->
-        <div id="progress-bar" style="margin-top: 10px;">
+          <!-- loading bar to show progress of model-->
+          <div id="progress-bar" style="margin-top: 10px;">
             <div id="the-bar" style="display:none;"></div>
+          </div>
         </div>
-
-      </div>
-        <div class="chart">
-          <p id="chart_time"></p>
-          <div id='inf-contour' style="display:none"> </div>
+        <div id="output-msg" style="display: none">
+          <div style="display: flex; flex-direction: column;">
+            <div>
+              <h2>Output Message</h2>
+            </div>
+            <div style="box-shadow: var(--box-shadow);">
+              <p class="output-message"><span id="risk_avg" style="display:none"></span><span id="infected" style="display:none"></span></p>
+            </div>
+          </div>
         </div>
         <div>
-          <p class="output-message"><span id="risk_avg" style="display:none"></span><span id="infected" style="display:none"></span></p>
+          <div id="chart_area" style="display: none">
+            <div style="display: flex; flex-direction: column;">
+              <div>
+                <h2>Infection risk at the end of the event</h2>
+              </div>
+                <div class="chart">
+                  <!-- <p id="chart_time"></p> -->
+                  <div id='inf-contour' style="display:none"> </div>
+                </div>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
       <div style="margin-top: 10px;">
         <a href="explore_more.html">Explore more</a>
       </div>
+      <footer>Credits</footer>
+    </div>
       <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
       <script src='script/webapp_form.js'></script>
       <script src="script/webapp_room.js"></script>
       <script src="script/webapp_run.js"></script>
       <script src="script/explore_more.js"></script>
       <br>
-      <footer>Credits</footer>
   </div>
 </body>
 
