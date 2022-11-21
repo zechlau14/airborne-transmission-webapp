@@ -31,6 +31,15 @@
   bottom: 50%;
 }
 
+.infectious-avatar {
+  width: 60px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  cursor: move;
+  background-image: url("../images/infected_person.png");
+  background-size: 100%;
+}
+
 .boxed {
   border-style: solid;
   padding: 10px;
@@ -109,14 +118,15 @@ body {
 }
 
 .controls-card {
-  width: 344px;
+  width: 455px;
   height: fit-content;
-  background-color: #f9d4d4;
+  background-image: linear-gradient(#ffffff, #f1aead);
   border-radius: 12px;
   box-shadow: var(--box-shadow);
-  border: 1px solid;
+  border: 1px solid #087e8b;
   margin: 10px 10px 0px 0px;
   transition-duration: 0.2s;
+  padding: 25px;
 }
 
 .controls-card:hover {
@@ -127,16 +137,20 @@ body {
   /* width: 344px; */
   width: fit-content;
   height: fit-content;
-  margin: 10px 0 10px 0;
-  background-color: #f9d4d4;
   border-radius: 12px;
   box-shadow: var(--box-shadow);
-  border: 1px solid;
   transition-duration: 0.2s;
+  background-image: linear-gradient(#ffffff, #f1aead);
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+  border: 1px solid #087e8b;
+  margin: 10px 10px 0px 0px;
+  transition-duration: 0.2s;
+  padding: 25px;
 }
 
 .advanced-card:hover {
-  transform: scale(1.01);
+  transform: scale(1.005);
 }
 
 /* .person-dimensions-card {
@@ -156,8 +170,9 @@ body {
   font-family: "Roboto";
   font-size: 24px;
   font-weight: bold;
-  padding: 0px 0px 0px 15px;
+  padding: 0px 0px 0px 0px;
   margin-bottom: 10px;
+  margin-top: 0px;
 }
 
 .h3 {
@@ -172,12 +187,12 @@ body {
 }
 
 .control-padding {
-  padding: 15px 0px 0px 15px;
+  padding: 15px 0px 0px 0px;
 }
 
 .question-mark {
   width: 25px;
-  margin: 25px 0px 0px 30px;
+  margin: 0px 0px 0px 30px;
 }
 
 .controls-plots-area {
@@ -254,7 +269,7 @@ a:hover::before {
 }
 
 .room-air-illustration {
-  border: 1px solid black;
+  border: 1px solid #087e8b;
   border-radius: 12px;
   box-shadow: var(--box-shadow);
 }
@@ -262,4 +277,9 @@ a:hover::before {
 :root {
   --box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
     rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.card-headings {
+  display: flex;
+  justify-content: space-between;
 }
