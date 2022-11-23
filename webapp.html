@@ -50,7 +50,7 @@
 
       <div style="display: flex; justify-content: space-between;">
         <div class="controls-card">
-          <div style="display: flex;">
+          <div class="card-headings">
             <p class="h2">Room dimensions</p>
             <span class="hovertext" text-hover="This is the placholder text for the card description">
               <img src="images/info_mark.png" alt="card information" class="question-mark">
@@ -83,7 +83,7 @@
         </div>
 
         <div class="controls-card">
-          <div style="display: flex;">
+          <div class="card-headings">
             <p class="h2">Infectious person</p>
             <span class="hovertext" text-hover="This is the placholder text for the card description">
               <img src="images/info_mark.png" alt="card information" class="question-mark">
@@ -144,7 +144,7 @@
         </div>
 
         <div class="controls-card">
-          <div style="display: flex;">
+          <div class="card-headings">
             <p class="h2">Ventilation</p>
             <span class="hovertext" text-hover="This is the placholder text for the card description">
               <img src="images/info_mark.png" alt="card information" class="question-mark">
@@ -181,7 +181,7 @@
         </div>
 
         <div class="controls-card">
-          <div style="display: flex;">
+          <div class="card-headings">
             <p class="h2">Event</p>
             <span class="hovertext" text-hover="This is the placholder text for the card description">
               <img src="images/info_mark.png" alt="card information" class="question-mark">
@@ -228,7 +228,7 @@
       <button type="button" onclick="advanced_options()" class="secondary-button">Advanced Options</button> <br>
 
       <div name="advanced-options" id="advanced-options" class="advanced-card" style="display:none;">
-        <div style="display: flex;">
+        <div class="card-headings">
           <p class="h2">Advanced Options</p>
           <span class="hovertext" text-hover="This is the placholder text for the card description">
             <img src="images/info_mark.png" alt="card information" class="question-mark">
@@ -273,7 +273,7 @@
               <label for="delta-t"> Delta t (s) </label>
               <input type="number" name="delta-t" id="delta-t" value="3" min="0" max="20">
           </div>
-          <div class="control-padding" style="padding-bottom: 10px;">
+          <div class="control-padding" style="padding-bottom: 0px;">
             <p><em>Warning: making these too small will cause the calculation of the infection risk in the room to be extremely slow.</em></p>
           </div>
         </div>
@@ -338,7 +338,8 @@
           <div class="room-visual" id="room-visual"
             onmouseleave="getRoomDim();" onmouseup="getRoomDim()"
             ondragover="allowDrop(event);">
-            <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>
+            <!-- <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div> -->
+            <div class="infectious-avatar" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>
           </div>
           <br>
         </div>
