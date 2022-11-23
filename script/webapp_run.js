@@ -169,8 +169,6 @@ function Run_no_modes() {
 
   let n_total = xx.length * yy.length;
   let n_points = 0;
-  console.log(P_room)
-  console.log(n_total)
 
   loopy_fn = setInterval(add_point, 10);
   function add_point() {
@@ -239,7 +237,6 @@ function Run_no_modes() {
         I_o
       );
 
-      console.log(n_points, i,j)
       P_room[i][j] = Risk_here[Risk_here.length - 1];
 
       n_points += 1;

@@ -1,8 +1,10 @@
 function show_hide_custom(elem){
     if(elem.options[elem.selectedIndex].value=='customOption'){
         elem.nextElementSibling.style.display='inline'
+        elem.nextElementSibling.nextElementSibling.style.display='inline';
     } else{
         elem.nextElementSibling.style.display='none'
+        elem.nextElementSibling.nextElementSibling.style.display='none';
     }
 }
 
