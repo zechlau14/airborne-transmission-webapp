@@ -398,7 +398,9 @@
       </div>
 
       <!-- <div class="loader" id="loading" style="display:none"></div> -->
-      <div class="loader" id="loading" style="display:none"></div>
+      <div class="progress-bar">
+        <div class="the-bar" id="position-loading" style="display:none;">   </div>
+      </div>
 
       <div class="chart_container">
       <div class="chart">
@@ -416,7 +418,11 @@
       <h3>Calculate the concentration throughout the room at the end of the event:</h3>
       <button type="button" onclick="Run_C_contour()" class="primary-button">Run</button>
     </div>
-    <div class="loader" id="loading2" style="display:none"></div>
+    <!-- <div class="loader" id="loading2" style="display:none"></div> -->
+    <div class="progress-bar">
+      <div class="the-bar" id="C-contour-loading" style="display:none;">   </div>
+    </div>
+
     <div class="chart" id="conc_contour" style="display:none"> </div> <br>
 
     <div>
@@ -425,8 +431,8 @@
     </div><br>
 
       <!-- loading bar to show progress of model-->
-      <div id="progress-bar">
-          <div id="the-bar" style="display:none;">   </div>
+      <div class="progress-bar">
+          <div class="the-bar" id="C-avg-loading" style="display:none;">   </div>
       </div>
 
       <div class="chart">
@@ -440,8 +446,8 @@
         <button type="button" onclick="Run_avg_P()" class="primary-button">Run</button>
       </div><br>
       <!-- loading bar to show progress of model-->
-      <div id="progress-bar2">
-        <div id="the-bar2" style="display:none;">   </div>
+      <div class="progress-bar">
+        <div class="the-bar" id="P-avg-loading" style="display:none;">   </div>
       </div>
 
       <div class="chart">

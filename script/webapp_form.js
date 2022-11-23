@@ -55,7 +55,7 @@ function loading(bar_width){
     //takes the fraction of progress, and update the progress bar
     var elem = document.getElementById('the-bar');  
     elem.style.display='block'; 
-    if (bar_width < 1){
+    if (bar_width <= 1){
         elem.style.width = round(bar_width*100, 2) + '%';
         elem.innerHTML = round(bar_width*100, 2) + '%';
     }   

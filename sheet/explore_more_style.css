@@ -39,14 +39,14 @@
   /*float:left;*/
 }
 
-#progress-bar2 {
+.progress-bar {
   width: 157px;
   background-color: grey;
   color: white;
   text-align: center;
 }
 
-#the-bar2 {
+.the-bar {
   width: 1%;
   background-color: #f1aead;
   height: 30px;

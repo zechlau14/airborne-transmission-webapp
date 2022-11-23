@@ -129,12 +129,175 @@ function update_parameters() {
 }
 
 function reset_results() {
-  loading_bar.style.display = "block";
+  clearInterval(loopy_fn);
+  loading(0)
+
   risk_avg_print.style.display = "none";
   inf_print.style.display = "none";
   P_contour_chart.style.display = "none";
 }
 
+function Run_no_modes() {
+  reset_results();
+  update_parameters();
+  loading_bar.style.display = "block";
+  output_msg.style.display = "block";
+  infection_risk_contour.style.display = "block";
+
+  let t = t_array(time + time_break, delta_t);
+  for (let i = 0; i < t.length; i++) {
+    t[i] = t[i] / 60;
+  }
+
+  let xx = x_array(l, delta_x);
+  let yy = x_array(w, delta_y);
+
+  let P_room = new Array(yy.length);
+  for (let j = 0; j < yy.length; j++) {
+    P_room[j] = new Array(xx.length);
+  }
+
+  let S = Source(
+    time,
+    mask_ex,
+    q,
+    frac_speak,
+    delta_t,
+    break_start,
+    time_break
+  );
+
+  let n_total = xx.length * yy.length;
+  let n_points = 0;
+
+  loopy_fn = setInterval(add_point, 10);
+  function add_point() {
+    if (n_points >= n_total) {
+      clearInterval(loopy_fn);
+
+      let P_avg = avg_free(P_room, l, w, delta_x, delta_y);
+      loading(1);
+
+      // document.getElementById("chart_time").innerHTML =
+      //   "Infection risk at the end of the event";
+
+      var datapt = [
+        {
+          x: xx,
+          y: yy,
+          z: P_room,
+          type: "contour",
+        },
+      ];
+      Plotly.newPlot(P_contour_chart, datapt, { margin: { t: 0 } });
+
+      risk_avg_print.innerHTML =
+        "Average infection risk from airborne transmission in the room is " +
+        round(P_avg * 100, 1) +
+        "%. ";
+      inf_print.innerHTML =
+        "ie. <output>" +
+        round(P_avg * 100, 0) +
+        "</output> out of <input type='number' value='100' min='0' step='1' style='width:45px' oninput='this.previousElementSibling.value = round(this.value*" +
+        P_avg +
+        ",0)'> </input> people in the room will likely be infected.";
+
+      loading_bar.style.display = "none";
+      P_contour_chart.style.display = "block";
+      risk_avg_print.style.display = "inline";
+      inf_print.style.display = "inline";
+    } else {
+      let i = Math.floor(n_points / yy.length);
+      let j = n_points - i * yy.length;
+      let I = Impulse(
+        time,
+        time_break,
+        delta_t,
+        xx[j],
+        yy[i],
+        x_o,
+        y_o,
+        l,
+        w,
+        K,
+        v,
+        Q,
+        s,
+        d
+      );
+      let C_here = Concentration(S, I, h);
+      let Risk_here = Risk(
+        S,
+        C_here,
+        time,
+        time_break,
+        delta_t,
+        p,
+        mask_in,
+        I_o
+      );
+
+      P_room[i][j] = Risk_here[Risk_here.length - 1];
+
+      n_points += 1;
+      loading(n_points / (n_total+1));
+    }
+  }
+}
+
+// abstract functions: called by the model, but not by the webapp directly
+// abstract functions to calculate average in room, round numbers,
+// and set up the time array and the x,y-array.
+function avg_free(result, l, w, delta_x, delta_y) {
+  let xx_array = x_array(l, delta_x);
+  let yy_array = x_array(w, delta_y);
+  let n_x = xx_array.length;
+  let n_y = yy_array.length;
+
+  let sum = 0;
+  for (let i = 0; i < n_x; i++) {
+    for (let j = 0; j < n_y; j++) {
+      sum = sum + result[j][i];
+    }
+  }
+
+  let average = sum / (n_x * n_y);
+  return average;
+}
+
+function round(num, dp) {
+  // round num to #dp decimal places
+  var m = Number((Math.abs(num) * 10 ** dp).toPrecision(15));
+  return (Math.round(m) / 10 ** dp) * Math.sign(num);
+}
+
+function t_array(time, delta_t) {
+  //set up time axis (in s) -- returns an array of len(int(time*3600/delta_t))
+  //its output is required in almost all following functions
+  //inputs are time and delta_t from user input form
+  let t_end = time * 60 * 60;
+  let n_t = parseInt(t_end / delta_t);
+  let t = new Array();
+  for (let i = 0; i < n_t; i++) {
+    t[i] = (i + 1) * delta_t;
+  }
+  return t;
+}
+
+function x_array(l, delta_x) {
+  // returns x-steps for plotting of contour graphs, ie. the x-data of the contour graphs
+  // returns an array of len(l / delta_x + 1)
+  // Required inputs from user form: l and delta_x
+  let x = new Array();
+  n_x = parseInt(l / delta_x + 1);
+  for (let i = 0; i < n_x; i++) {
+    x[i] = i * delta_x;
+  }
+  return x;
+}
+
+
+// From a previous edition; currently unused as it's slower.
 function Run_moded() {
   reset_results();
   loading(0);
@@ -588,168 +751,4 @@ function Run_moded() {
       modes++;
     }
   }
-}
-
-function stop_model() {
-  //a function to stop the model when it is running the long form, ie. for the whole room
-  clearInterval(loopy_fn);
-}
-
-function Run_no_modes() {
-  reset_results();
-  update_parameters();
-  loading_bar.style.display = "block";
-  output_msg.style.display = "block";
-  infection_risk_contour.style.display = "block";
-
-  let t = t_array(time + time_break, delta_t);
-  for (let i = 0; i < t.length; i++) {
-    t[i] = t[i] / 60;
-  }
-
-  let xx = x_array(l, delta_x);
-  let yy = x_array(w, delta_y);
-
-  let P_room = new Array(yy.length);
-  for (let j = 0; j < yy.length; j++) {
-    P_room[j] = new Array(xx.length);
-  }
-
-  let S = Source(
-    time,
-    mask_ex,
-    q,
-    frac_speak,
-    delta_t,
-    break_start,
-    time_break
-  );
-
-  let n_total = xx.length * yy.length;
-  n_points = 0;
-
-  let loading_fn = setInterval(add_point, 10);
-  function add_point() {
-    if (n_points >= n_total) {
-      clearInterval(loading_fn);
-
-      let P_avg = avg_free(P_room, l, w, delta_x, delta_y);
-      loading(n_points / n_total);
-
-      // document.getElementById("chart_time").innerHTML =
-      //   "Infection risk at the end of the event";
-
-      var datapt = [
-        {
-          x: xx,
-          y: yy,
-          z: P_room,
-          type: "contour",
-        },
-      ];
-      Plotly.newPlot(P_contour_chart, datapt, { margin: { t: 0 } });
-
-      risk_avg_print.innerHTML =
-        "Average infection risk from airborne transmission in the room is " +
-        round(P_avg * 100, 1) +
-        "%.";
-      inf_print.innerHTML =
-        "ie. <output>" +
-        round(P_avg * 100, 0) +
-        "</output> out of <input type='number' value='100' min='0' step='1' style='width:45px' oninput='this.previousElementSibling.value = round(this.value*" +
-        P_avg +
-        ",0)'> </input> people in the room will likely be infected.";
-
-      loading_bar.style.display = "none";
-      P_contour_chart.style.display = "block";
-      risk_avg_print.style.display = "inline";
-      inf_print.style.display = "inline";
-    } else {
-      let i = Math.floor(n_points / yy.length);
-      let j = n_points - i * yy.length;
-      let I = Impulse(
-        time,
-        time_break,
-        delta_t,
-        xx[j],
-        yy[i],
-        x_o,
-        y_o,
-        l,
-        w,
-        K,
-        v,
-        Q,
-        s,
-        d
-      );
-      let C_here = Concentration(S, I, h);
-      let Risk_here = Risk(
-        S,
-        C_here,
-        time,
-        time_break,
-        delta_t,
-        p,
-        mask_in,
-        I_o
-      );
-
-      P_room[i][j] = Risk_here[Risk_here.length - 1];
-
-      n_points += 1;
-      loading(n_points / n_total);
-    }
-  }
-}
-
-// abstract functions: called by the model, but not by the webapp directly
-// abstract functions to calculate average in room, round numbers,
-// and set up the time array and the x,y-array.
-function avg_free(result, l, w, delta_x, delta_y) {
-  let xx_array = x_array(l, delta_x);
-  let yy_array = x_array(w, delta_y);
-  let n_x = xx_array.length;
-  let n_y = yy_array.length;
-
-  let sum = 0;
-  for (let i = 0; i < n_x; i++) {
-    for (let j = 0; j < n_y; j++) {
-      sum = sum + result[j][i];
-    }
-  }
-
-  let average = sum / (n_x * n_y);
-  return average;
-}
-
-function round(num, dp) {
-  // round num to #dp decimal places
-  var m = Number((Math.abs(num) * 10 ** dp).toPrecision(15));
-  return (Math.round(m) / 10 ** dp) * Math.sign(num);
-}
-
-function t_array(time, delta_t) {
-  //set up time axis (in s) -- returns an array of len(int(time*3600/delta_t))
-  //its output is required in almost all following functions
-  //inputs are time and delta_t from user input form
-  let t_end = time * 60 * 60;
-  let n_t = parseInt(t_end / delta_t);
-  let t = new Array();
-  for (let i = 0; i < n_t; i++) {
-    t[i] = (i + 1) * delta_t;
-  }
-  return t;
-}
-
-function x_array(l, delta_x) {
-  // returns x-steps for plotting of contour graphs, ie. the x-data of the contour graphs
-  // returns an array of len(l / delta_x + 1)
-  // Required inputs from user form: l and delta_x
-  let x = new Array();
-  n_x = parseInt(l / delta_x + 1);
-  for (let i = 0; i < n_x; i++) {
-    x[i] = i * delta_x;
-  }
-  return x;
 }
