@@ -1,8 +1,8 @@
 .room-visual {
   width: 300px;
   height: 300px;
-  border: solid;
-  border-width: 1px;
+  border: 3px solid #087e8b;
+  /* border-width: 1px; */
 
   position: relative;
   touch-action: none;
@@ -13,6 +13,7 @@
   max-width: 600px;
   min-height: 120px;
   max-height: 600px;
+  border-radius: var(--border-radius);
 }
 
 .drag_dot {
@@ -262,10 +263,11 @@ a:hover::before {
   border: 7px solid #087e8b;
   width: 700px;
   height: 100px;
-  padding: 5px 5px 5px 5px;
+  padding: 10px;
   font-size: 23px;
   font-weight: bold;
   margin: 0 0 0 0;
+  border-radius: 12px;
 }
 
 .room-air-illustration {
@@ -277,6 +279,7 @@ a:hover::before {
 :root {
   --box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
     rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  --border-radius: 12px;
 }
 
 .card-headings {
