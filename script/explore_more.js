@@ -282,8 +282,8 @@ function Run_avg_C(){
             C_avg_loader.style.display='none';
             C_avg_chart.style.display='block';
         } else {
-            let i = Math.floor(n_points / yy.length);
-            let j = n_points - i * yy.length;
+            let i = Math.floor(n_points / xx.length);
+            let j = n_points - i * xx.length;
             let I = Impulse(time, time_break, delta_t, xx[j], yy[i], x_o, y_o, l, w, K, v, Q, s, d);
             let C_here = Concentration(S, I, h);
 
@@ -339,8 +339,8 @@ function Run_avg_P(){
             P_avg_loader.style.display='none';
             P_avg_chart.style.display='block';
         } else {
-            let i = Math.floor(n_points / yy.length);
-            let j = n_points - i * yy.length;
+            let i = Math.floor(n_points / xx.length);
+            let j = n_points - i * xx.length;
             let I = Impulse(time, time_break, delta_t, xx[j], yy[i], x_o, y_o, l, w, K, v, Q, s, d);
             let C_here = Concentration(S, I, h);
             let Risk_here = Risk(S, C_here, time, time_break, delta_t, p, mask_in, I_o);
