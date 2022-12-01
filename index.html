@@ -76,6 +76,14 @@ D-i-m-i work done on mask icons
           </div>
           <div class="controls-alignment">
             <div class="control-padding">
+              <label for="room-presets">Presets</label><br>
+              <input type="radio" name="room-presets" id="classroom" value="classroom">Classroom</input>
+              <input type="radio" name="room-presets" id="office" value="office">Office</input>
+              <input type="radio" name="room-presets" id="reception" value="reception">Reception</input>
+              <input type="radio" name="room-presets" id="custom" value="custom">Custom</input>
+            </div>
+
+            <div class="control-padding">
               <label for="room-length"> Length (m) </label>
               <input type="range" id="room-length" name="room-length" min="2" max="10" value="5" step="0.1"
               oninput="passRoomLength();">
@@ -214,6 +222,12 @@ D-i-m-i work done on mask icons
                 <input type="checkbox" id="break" name="break" onclick="add_break()"> Yes
               </div>
 
+              <div id="break-inputs">
+                0 <input type="range" id="break-part1" name="break-part1" min="0" max="4" step="0.05" value="0"> 
+                <input type="range" id="break-part2" name="break-part2" min="0" max="4" step="0.05" value="4">  
+                4 <br><span id="break-output"></span>
+              </div>
+              <!--
               <div style="padding-top: 10px;">
                 <span id="break-time" style="display:none;">
                   <label for="break-duration">Break Duration (hours)</label>
@@ -230,6 +244,7 @@ D-i-m-i work done on mask icons
                   <output>0.25</output>
                 </span>
               </div>
+              -->
             </div>
           </div>
         </div>
@@ -278,13 +293,13 @@ D-i-m-i work done on mask icons
 
           <div class="control-padding">
             <b>Step size</b>
-              <label for="delta-x"> Delta x (m) </label>
+              <label for="delta-x"> &Delta; x (m) </label>
               <input type="number" name="delta-x" id="delta-x" value="0.16" min="0" max="1">
 
-              <label for="delta-y"> Delta y (m) </label>
+              <label for="delta-y"> &Delta; y (m) </label>
               <input type="number" name="delta-y" id="delta-y" value="0.16" min="0" max="1">
 
-              <label for="delta-t"> Delta t (s) </label>
+              <label for="delta-t"> &Delta; t (s) </label>
               <input type="number" name="delta-t" id="delta-t" value="3" min="0" max="20">
           </div>
           <div class="control-padding" style="padding-bottom: 0px;">
@@ -438,7 +453,72 @@ D-i-m-i work done on mask icons
         </div>
       </div>
       <div style="margin-top: 10px;">
-        <a href="explore_more.html">Explore more</a>
+        <button type="button" class="secondary-button">Explore more</button>
+      </div>
+      <div id="Explore_more_container">
+        <div>
+          <h3>Calculate the concentration and risk at a specific position:</h3>
+          <button type="button" onclick="Run_position()" class="primary-button">Run</button>
+    
+          </div>
+    
+          <!-- <div class="loader" id="loading" style="display:none"></div> -->
+          <div class="progress-bar">
+            <div class="the-bar" id="position-loading" style="display:none;">   </div>
+          </div>
+    
+          <div class="chart_container">
+          <div class="chart">
+          <div id="conc-output" style="display:none"> </div>
+          </div>
+    
+          <div class="chart">
+          <div id="risk-output" style="display:none"> </div>
+          </div>
+    
+          </div>
+          <br>
+    
+          <div>
+          <h3>Calculate the concentration throughout the room at the end of the event:</h3>
+          <button type="button" onclick="Run_C_contour()" class="primary-button">Run</button>
+        </div>
+        <!-- <div class="loader" id="loading2" style="display:none"></div> -->
+        <div class="progress-bar">
+          <div class="the-bar" id="C-contour-loading" style="display:none;">   </div>
+        </div>
+    
+        <div class="chart" id="conc_contour" style="display:none"> </div> <br>
+    
+        <div>
+          <h3>Calculate the average concentration in the room:</h3>
+          <button type="button" onclick="Run_avg_C()" class="primary-button">Run</button>
+        </div><br>
+    
+          <!-- loading bar to show progress of model-->
+          <div class="progress-bar">
+              <div class="the-bar" id="C-avg-loading" style="display:none;">   </div>
+          </div>
+    
+          <div class="chart">
+          <div id='C_avg-time'> </div>
+          <span id="avg" style="display:none"> </span>
+          </div>
+    
+    
+          <div>
+            <h3>Calculate the average infection risk in the room:</h3>
+            <button type="button" onclick="Run_avg_P()" class="primary-button">Run</button>
+          </div><br>
+          <!-- loading bar to show progress of model-->
+          <div class="progress-bar">
+            <div class="the-bar" id="P-avg-loading" style="display:none;">   </div>
+          </div>
+    
+          <div class="chart">
+            <div id='P_avg-time'> </div>
+            <span id="purifier" style="display:none"> </span>
+          </div>
       </div>
       <footer>Credits</footer>
     </div>

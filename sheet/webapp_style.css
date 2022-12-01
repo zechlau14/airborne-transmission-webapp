@@ -286,3 +286,34 @@ a:hover::before {
   display: flex;
   justify-content: space-between;
 }
+
+/*double slider for break*/
+#break-inputs {
+  position: relative;
+}
+
+#break-inputs input {
+  position: absolute;
+  pointer-events: none;
+}
+
+#break-inputs input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+}
+
+#break-inputs input::-moz-range-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+}
+
+#break-inputs input::-webkit-slider-thumb:active {
+  box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+  -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+}
+
+#break-part1 {
+  z-index: 1;
+}
+
+/*double slider*/
