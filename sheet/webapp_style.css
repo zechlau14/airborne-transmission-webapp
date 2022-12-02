@@ -30,6 +30,7 @@
 #source_dot {
   left: 50%;
   bottom: 50%;
+  transform: translate(-50%, 50%);
 }
 
 .infectious-avatar {
@@ -341,5 +342,6 @@ a:hover::before {
 #susceptible_dot {
   bottom: 25%;
   left: 25%;
-  background-color: rgb(162, 4, 133);
+  transform: translate(-50%, 50%);
+  background-color: blue;
 }

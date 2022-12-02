@@ -120,7 +120,7 @@ D-i-m-i work done on mask icons
             <div class="control-padding">
               <label for='x0'>x</label>
               <input type='range' id="x0" name="x0" min="0" value="2.5" max="5" step="0.01"
-              oninput="passX0();">
+              oninput="pass_source_coord();">
               <!-- oninput, passX0 updates the infectious person dot-->
               <output> 2.5 </output>
             </div>
@@ -128,7 +128,7 @@ D-i-m-i work done on mask icons
             <div class="control-padding">
               <label for='y0'>y</label>
               <input type='range' id="y0" name="y0" min="0" value="2.5" max="5" step="0.01"
-              oninput="passY0();">
+              oninput="pass_source_coord();">
               <!-- oninput, passY0 updates the infectious person dot-->
               <output> 2.5 </output>
             </div>
@@ -175,14 +175,14 @@ D-i-m-i work done on mask icons
             <div class="control-padding">
               <label for="x_e">x</label>
                 <input type="range" id="x_e" name="x_e" min="0" max="5" value="1.25" step="0.01"
-                oninput="passXe();">
+                oninput="pass_sus_coord();">
                 <output>1.25</output>
             </div>
   
             <div class="control-padding">
               <label for="y_e">y</label>
                 <input type="range" id="y_e" name="y_e" min="0" max="5" value="1.25" step="0.01"
-                oninput="passYe();">
+                oninput="pass_sus_coord();">
                 <output>1.25</output>
             </div>
   
@@ -409,18 +409,19 @@ D-i-m-i work done on mask icons
           <!-- Room rectangle can be dragged to resize.
             and the Infectious person dot can be dragged to be repositioned.-->
           <div style="display: flex;">
-            <div class="room-visual" id="room-visual"
-            onmouseleave="getRoomDim();" onmouseup="getRoomDim()"
-            ondragover="allowDrop(event);">
+              <div class="room-visual" id="room-visual" ondragover="allowDrop(event);">
             <!-- <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div> -->
             <div style="display: flex;">
-              <div class="infectious-avatar" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>
-              <div class="drag_dot" id="susceptible_dot" draggable="true" ondrag="dragSus(event);" ondragend="dragSusend(event);"></div>
+              <!--<div class="infectious-avatar" id="source_dot" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', this.id);" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>-->
+              <!--<div class="infectious-avatar" id="susceptible_dot" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', this.id);" ondrag="dragSus(event);" ondragend="dragSusend(event);"></div>-->
+              <div class="infectious-avatar" id="source_dot"></div>
+              <div class="infectious-avatar" id="susceptible_dot"></div>
               <div>
                 <span class="mask_pic" id="inf_mask_pic"> </span>
               </div>
             </div>
           </div>
+          <!--
           <div>
             <p style="margin: 0px 0px 5px 5px;"><strong>Mask worn:</strong></p>
             <div style="display: flex">
@@ -429,15 +430,25 @@ D-i-m-i work done on mask icons
             </div>
             <div>
             </div>
+            </div>
           </div>
-          </div>
-
+          -->
           <div>
           </div>
         </div>
           <br>
         </div>
 
+        <div>
+          <p style="margin: 0px 0px 5px 5px;"><strong>Mask worn:</strong></p>
+          <div style="display: flex">
+          <div>
+            <img src="images/infected_person.png" alt="infectious_person_illustration" style="aspect-ratio: 1/1; width: 40px;">
+          </div>
+          <div>
+          </div>
+          </div>
+        </div>
 
         <div style="display: flex; flex-direction: column;">
           <div style="display: flex">
