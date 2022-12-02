@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="sheet/webapp_style.css">
+    <link rel="stylesheet" href="sheet/hovertext_style.css">
+    <!-- <link rel="stylesheet" href="sheet/range_style.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Airborne Virus Risk Calculator</title>
+</head>
+
+<body class="body">
+  <div class="container">
+    <div class="banner">
+      <div class="banner-top">
+        <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 177px; margin-left: 15px;">
+        <div class="title-logos">
+          <h1 style="margin: 0;">Airborne Virus Risk Calculator</h1>
+          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="margin-left: 20px; width: 139px; height: 41px; box-shadow: var(--box-shadow)">
+          <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: 88px; height: 41px; margin-left: 10px; box-shadow: var(--box-shadow)">
+        </div>
+      </div>
+      <!-- Intro text -->
+
+      <div class="description">
+        <p>This webapp helps you estimate the spatially varying infection risk from airborne transmission of the SARS-CoV-2 virus in a rectangular indoor space. The model assumes that the infectious particles carrying the virus are carried around the room by a recirculating airflow, diffused due to turbulence in the air and removed by the room’s ventilation system, the natural inactivation of the virus and gravitational settling. For simplicity’s sake, the model only considers a single stationary, asymptomatic, infectious person in the room. <br>
+            For a full write-up of the scientific basis of the model, please refer to <a href="https://doi.org/10.1098/rspa.2021.0383">our paper</a>.
+        </p>
+      </div>
+
+      <div class="disclaimer">
+        <p> <b>Disclaimer</b>:
+          The results from this model, including the estimated infection risk, should be used with caution. Many of the inputs are uncertain due to a lack of data and the evolving nature of the virus. Furthermore, this model only calculates the risk of airborne transmission; it does not include the risk of short-range droplet transmission which can be minimized by social distancing. By using this webapp, you acknowledge its limitations and use it at the user’s own risk. To the fullest extent permitted by law, the authors of the website and app shall have no liability for any loss or damage suffered as a result of users’ use of or reliance on it.
+        </p>
+      </div>
+      <div class="virus-illustration">
+        <img src="images/virus.jpg" alt="virus_illustration" style="height: 406px;">
+      </div>
+    </div>
+
+
+    <div class=controls-plots-area>
+      <h2> Parameters</h2>
+
+      <h3> Location Parameters </h3>
+      <!-- model inputs -->
+
+      <div style="display: flex; justify-content: space-between;">
+        <div class="controls-card">
+          <div class="card-headings">
+            <p class="h2">Room dimensions</p>
+            <span class="hovertext" text-hover="This is the placholder text for the card description">
+              <img src="images/info_mark.png" alt="card information" class="question-mark">
+            </span>
+          </div>
+          <div class="controls-alignment">
+            <div class="control-padding">
+              <label for="room-length"> Length (m) </label>
+              <input type="range" id="room-length" name="room-length" min="2" max="10" value="5" step="0.1"
+              oninput="passRoomLength();">
+              <!-- oninput, passRoomLength changes the length of the room visualisation-->
+              <output> 5 </output>
+            </div>
+
+            <div class="control-padding">
+              <label for="room-length"> Width (m) </label>
+              <input type="range" id="room-width" name="room-width" min="2" max="10" value="5" step="0.1"
+              oninput="passRoomWidth();">
+              <!-- oninput, passRoomWidth changes the length of the room visualisation-->
+              <output> 5 </output>
+            </div>
+
+            <div class="control-padding" style="padding-bottom: 10px;">
+              <label for='roomd-height'> Height (m)</label>
+              <input type="range" id="room-height" name="room-height" min="2" max="4" value="2.5" step="0.1"
+              oninput="this.nextElementSibling.value = this.value">
+              <output>2.5</output>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-card">
+          <div class="card-headings">
+            <p class="h2">Infectious person</p>
+            <span class="hovertext" text-hover="This is the placholder text for the card description">
+              <img src="images/info_mark.png" alt="card information" class="question-mark">
+            </span>
+          </div>
+
+          <div class="controls-alignment">
+            <div class="control-padding">
+              <label for='x0'>x</label>
+              <input type='range' id="x0" name="x0" min="0" value="2.5" max="5" step="0.01"
+              oninput="passX0();">
+              <!-- oninput, passX0 updates the infectious person dot-->
+              <output> 2.5 </output>
+            </div>
+
+            <div class="control-padding">
+              <label for='y0'>y</label>
+              <input type='range' id="y0" name="y0" min="0" value="2.5" max="5" step="0.01"
+              oninput="passY0();">
+              <!-- oninput, passY0 updates the infectious person dot-->
+              <output> 2.5 </output>
+            </div>
+
+            <div class="control-padding">
+              <label for="talk">Activity</label>
+              <select id="talk" name="talk" onchange="show_hide_custom_percent(this)">
+                <option value="0" selected> Just breathing</option>
+                <option value="100"> Just talking </option>
+                <option value="customOption">Choose the % of time talking</option>
+              </select>
+              <input type="range" id="talk-custom" name="talk-custom" style="display:none;" min="0" max="100" step="1" value="50"
+              oninput="this.nextElementSibling.value = this.value + '%'; this.nextElementSibling.style='display:inline';"></input>
+              <output style="display:none">50%</output>
+            </div>
+
+            <div class="control-padding" style="padding-bottom: 10px">
+              <label for="inf-mask">Mask worn</label>
+              <select id="inf-mask" name="inf-mask" onchange="inf_mask_visual(); show_hide_custom_percent(this)">
+                <option value="0" selected> No mask</option>
+                <option value="0.35"> 1-ply Cloth mask (35%)</option>
+                <option value="0.5"> 3-ply Cloth mask (50%)</option>
+                <option value="0.59"> Surgical mask (59%)</option>
+                <option value="0.9"> N95/FFP2 mask (95%) </option>
+                <option value="customOption">Choose your own mask efficiency (%)</option>
+                </select>
+              <input type="range" id="inf-mask-custom" name="inf-mask-custom" style="display:none;" min="0" max="100" step="1" value="0"
+                  onblur="if(this.value==''){toggleField(this,this.previousSibling);}" oninput="this.nextElementSibling.value = this.value + '%'; this.nextElementSibling.style='display:inline';"> </input>
+              <output style="display:none">0%</output>
+              <!-- <span class="mask_pic" id="inf_mask_pic"> </span> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-card">
+          <div class="card-headings">
+            <p class="h2">Ventilation</p>
+            <span class="hovertext" text-hover="This is the placholder text for the card description">
+              <img src="images/info_mark.png" alt="card information" class="question-mark">
+            </span>
+          </div>
+          <div class="controls-alignment">
+            <div class="control-padding">
+              <label for="vent">Ventilation rate (ACH) </label>
+              <select id="vent" name="vent" onchange="show_hide_custom(this)">
+                <option value="0.2"> Very poor (0.2 ACH)</option>
+                <option value="0.7" selected> Poor (0.7 ACH)</option>
+                <option value="3"> Good (3.0 ACH)</option>
+                <option value="6"> Very good (6.0 ACH)</option>
+                <option value="customOption">Choose your own ACH value</option>
+              </select><input type="range" id="vent-custom" name="vent-custom" style="display:none;" min="0.1" step="0.01"
+              value="3" max="40" oninput="this.nextElementSibling.value = this.value;"> </input>
+              <output style="display:none;">3</output>
+            </div>
+
+            <div class="control-padding" style="padding-bottom: 10px;">
+              <label for="airflow">Airflow speed (m/s)</label>
+              <!--<select id="airflow" name="airflow" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                  this.style.display='none'; this.nextElementSibling.style.display='inline';
+              }"> -->
+              <select id="airflow" name="airflow" onchange="show_hide_custom(this)">
+                <option value="0"> Off (0  m/s)</option>
+                <option value="0.15" selected> Medium (0.15 m/s)</option>
+                <option value="0.8"> High (0.8 m/s)</option>
+                <option value="customOption">Choose your own airflow speed</option>
+              </select><input type="range" id="airflow-custom" name="airflow-custom" style="display:none;" min="0" step="0.01"
+              value="0.5" max="3" oninput="this.nextElementSibling.value = this.value;"> </input>
+              <output style="display:none;">0.5</output>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-card">
+          <div class="card-headings">
+            <p class="h2">Event</p>
+            <span class="hovertext" text-hover="This is the placholder text for the card description">
+              <img src="images/info_mark.png" alt="card information" class="question-mark">
+            </span>
+          </div>
+          <div class="controls-alignment">
+            <div class="control-padding">
+              <label for="duration"> Event duration (hours)</label>
+              <input type="range" id="duration" name="duration" min="0.25" max="3" value="0.5" step="0.05"
+              oninput="this.nextElementSibling.value = this.value;pass_break();">
+              <output>0.5</output>
+            </div>
+
+            <div class="control-padding" style="padding-bottom: 10px;">
+              <div>
+                <label for="break"> Add a break?</label>
+                <input type="checkbox" id="break" name="break" onclick="add_break()"> Yes
+              </div>
+
+              <div style="padding-top: 10px;">
+                <span id="break-time" style="display:none;">
+                  <label for="break-duration">Break Duration (hours)</label>
+                  <input type="range" id="break-duration" name="break-duration" min="0" value="0.25" step="0.05" max="1"
+                  oninput="this.nextElementSibling.value = this.value">
+                  <output>0.25</output>
+                </span>
+              </div>
+              <div style="padding-top: 10px;">
+                <span id="break-when" style="display:none">
+                  <label for="break-start">Time when break starts (hours)</label>
+                  <input type="range" id="break-start" name="break-start" min="0" value="0.25" max="0.5" step="0.05"
+                  oninput="this.nextElementSibling.value = this.value">
+                  <output>0.25</output>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <!-- continuation of model inputs -->
+      <!-- button to show Advanced inputs to the model -->
+      <button type="button" onclick="advanced_options()" class="secondary-button">Advanced Options</button> <br>
+
+      <div name="advanced-options" id="advanced-options" class="advanced-card" style="display:none;">
+        <div class="card-headings">
+          <p class="h2">Advanced Options</p>
+          <span class="hovertext" text-hover="This is the placholder text for the card description">
+            <img src="images/info_mark.png" alt="card information" class="question-mark">
+          </span>
+        </div>
+        <div class="controls-alignment">
+          <div class="control-padding">
+            <label for="emission"> Respiratory droplet emission rate for breathing (particles/min)</label>
+              <input type="number" name="emission" id="emission" value="480" min="0">
+
+              <label for="viral-load">Viral load of infectious person (virus/mL)</label>
+              <!--<select id="viral-load" name="viral-load" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                  this.style.display='none'; this.nextElementSibling.style.display='inline';
+              }"> -->
+              <select id="viral-load" name="viral-load" onchange="show_hide_custom(this)">
+                  <option value="4"> Low (10^4)</option>
+                  <option value="7"> Average (10^7))</option>
+                  <option value="9" selected> High (10^9))</option>
+                  <option value="12"> Very high (10^12))</option>
+                  <option value="customOption">Choose your own</option>
+                  </select><input type="number" id="viral-load-custom" name="viral-load-custom" style="display:none;" min="0"> </input>
+          </div>
+
+          <div class="control-padding" style="padding-bottom: 10px; padding-right: 10px;">
+            <label for="deact">Virus deactivation rate (1/h)</label>
+              <input type="number" name="deact" id="deact" value="0.636" min="0">
+
+              <label for="settle">Gravitational settling rate (1/h)</label>
+              <input type="number" name="settle" id="settle" value="0.122" min="0">
+
+              <label for="Inf-Const"> Median Infectious Dose </label>
+              <input type="number" name="Inf-Const" id="Inf-Const" value="200" min="1">
+          </div>
+
+          <div class="control-padding">
+            <b>Step size</b>
+              <label for="delta-x"> Delta x (m) </label>
+              <input type="number" name="delta-x" id="delta-x" value="0.16" min="0" max="1">
+
+              <label for="delta-y"> Delta y (m) </label>
+              <input type="number" name="delta-y" id="delta-y" value="0.16" min="0" max="1">
+
+              <label for="delta-t"> Delta t (s) </label>
+              <input type="number" name="delta-t" id="delta-t" value="3" min="0" max="20">
+          </div>
+          <div class="control-padding" style="padding-bottom: 0px;">
+            <p><em>Warning: making these too small will cause the calculation of the infection risk in the room to be extremely slow.</em></p>
+          </div>
+        </div>
+      </div>
+
+      <div name="advanced-options" id="advanced-options" class="boxed" style="display:none;">
+          <h3>Advanced options</h3>
+          <p> <label for="emission"> Respiratory droplet emission rate for breathing (particles/min)</label>
+              <input type="number" name="emission" id="emission" value="480" min="0">
+
+              <label for="viral-load">Viral load of infectious person (virus/mL)</label>
+              <select id="viral-load" name="viral-load" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                  this.style.display='none'; this.nextElementSibling.style.display='inline';
+              }">
+                  <option value="4"> Low (10^4)</option>
+                  <option value="7"> Average (10^7))</option>
+                  <option value="9" selected> High (10^9))</option>
+                  <option value="12"> Very high (10^12))</option>
+                  <option value="customOption">Choose your own</option>
+                  </select><input type="number" id="viral-load-custom" name="viral-load-custom" style="display:none;" min="0"> </input>
+          </p>
+
+          <p>
+              <label for="deact">Virus deactivation rate (1/h)</label>
+              <input type="number" name="deact" id="deact" value="0.636" min="0">
+
+              <label for="settle">Gravitational settling rate (1/h)</label>
+              <input type="number" name="settle" id="settle" value="0.122" min="0">
+
+              <label for="Inf-Const"> Median Infectious Dose </label>
+              <input type="number" name="Inf-Const" id="Inf-Const" value="200" min="1">
+          </p>
+
+          <p> <b>Step size</b>
+              <label for="delta-x"> Delta x (m) </label>
+              <input type="number" name="delta-x" id="delta-x" value="0.16" min="0" max="1">
+
+              <label for="delta-y"> Delta y (m) </label>
+              <input type="number" name="delta-y" id="delta-y" value="0.16" min="0" max="1">
+
+              <label for="delta-t"> Delta t (s) </label>
+              <input type="number" name="delta-t" id="delta-t" value="3" min="0" max="20">
+          </p>
+          <p>  Warning: making these too small will cause the calculation of the infection risk in the room to be extremely slow. </p>
+
+      </div>
+
+      <br>
+      <div style="display: flex; justify-content: space-between;">
+        <div style="display: flex; flex-direction: column;">
+          <div style="display: flex;">
+            <div>
+              <p class="h2">Dynamic 2D-room representation</p>
+            </div>
+            <div>
+              <span class="hovertext" text-hover="This is the placholder text for the card description">
+                <img src="images/info_mark.png" alt="card information" class="question-mark">
+              </span>
+            </div>
+          </div>
+          <!-- Room rectangle can be dragged to resize.
+            and the Infectious person dot can be dragged to be repositioned.-->
+          <div style="display: flex;">
+            <div class="room-visual" id="room-visual"
+            onmouseleave="getRoomDim();" onmouseup="getRoomDim()"
+            ondragover="allowDrop(event);">
+            <!-- <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div> -->
+            <div style="display: flex;">
+              <div class="infectious-avatar" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>
+              <div>
+                <span class="mask_pic" id="inf_mask_pic"> </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p style="margin: 0px 0px 5px 5px;"><strong>Mask worn:</strong></p>
+            <div style="display: flex">
+            <div>
+              <img src="images/infected_person.png" alt="infectious_person_illustration" style="aspect-ratio: 1/1; width: 40px;">
+            </div>
+            <div>
+            </div>
+          </div>
+          </div>
+
+          <div>
+          </div>
+        </div>
+          <br>
+        </div>
+
+
+        <div style="display: flex; flex-direction: column;">
+          <div style="display: flex">
+            <div>
+              <p class="h2">3D-room and air circulation illustration</p>
+            </div>
+            <div>
+              <span class="hovertext" text-hover="This is the placholder text for the card description">
+                <img src="images/info_mark.png" alt="card information" class="question-mark">
+              </span>
+            </div>
+          </div>
+          <div class="room-air-illustration">
+            <img src="images/air_circulation.png" alt="air_circulation_schematic" style="width: 1000px; border-radius: 12px;">
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; margin-top: 20px; justify-content: space-between;">
+        <div style="display: flex; flex-direction: column;">
+          <div>
+            <h2>Results</h2>
+          </div>
+          <div>
+            <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
+            <!-- <button type="button" onclick="Run_moded()"> Run </button>  -->
+            <!-- <button type='button' onclick="stop_model()">Stop</button> -->
+          </div>
+
+          <!-- loading bar to show progress of model-->
+          <div id="progress-bar" style="margin-top: 10px;">
+            <div id="the-bar" style="display:none;"></div>
+          </div>
+        </div>
+        <div id="output-msg" style="display: none">
+          <div style="display: flex; flex-direction: column;">
+            <div>
+              <h2>Output Message</h2>
+            </div>
+            <div style="box-shadow:  var(--box-shadow); border-radius: var(--border-radius); ">
+              <p class="output-message"><span id="risk_avg" style="display:none"></span><span id="infected" style="display:none"></span></p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div id="chart_area" style="display: none">
+            <div style="display: flex; flex-direction: column;">
+              <div>
+                <h2>Infection risk at the end of the event</h2>
+              </div>
+                <div class="chart">
+                  <!-- <p id="chart_time"></p> -->
+                  <div id='inf-contour' style="display:none"> </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 10px;">
+        <a href="explore_more.html">Explore more</a>
+      </div>
+      <footer>Credits</footer>
+    </div>
+      <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+      <script src='script/webapp_form.js'></script>
+      <script src="script/webapp_room.js"></script>
+      <script src="script/webapp_run.js"></script>
+      <script src="script/explore_more.js"></script>
+      <br>
+  </div>
+</body>
+
+
+<!-- KEEPING THE BELOW FOR REFERENCE -->
+
+<br>
+<br>
+<br>
+
+<div class="boxed">
+
+  <p><b> Coordinates of the Infectious Person</b>
+      <label for='x0'>x</label>
+      <input type='range' id="x0" name="x0" min="0" value="2.5" max="5" step="0.01"
+      oninput="passX0();">
+      <!-- oninput, passX0 updates the infectious person dot-->
+      <output> 2.5 </output>
+
+  <label for='y0'>y</label>
+      <input type='range' id="y0" name="y0" min="0" value="2.5" max="5" step="0.01"
+      oninput="passY0();">
+      <!-- oninput, passY0 updates the infectious person dot-->
+      <output> 2.5 </output>
+  </p>
+
+  <p><b>Mechanical Ventilation</b>
+      <label for="vent">Ventilation rate (ACH) </label>
+      <!--<select id="vent" name="vent" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+          this.style.display='none'; this.nextElementSibling.style.display='inline';
+      }"> -->
+      <select id="vent" name="vent" onchange="show_hide_custom(this)">
+          <option value="0.2"> Very poor (0.2 ACH)</option>
+          <option value="0.7" selected> Poor (0.7 ACH)</option>
+          <option value="3"> Good (3.0 ACH)</option>
+          <option value="6"> Very good (6.0 ACH)</option>
+          <option value="customOption">Choose your own ACH value</option>
+      </select><input type="number" id="vent-custom" name="vent-custom" style="display:none;" min="0.1" step="0.01"> </input>
+
+      <label for="airflow">Airflow speed (m/s)</label>
+      <!--<select id="airflow" name="airflow" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+          this.style.display='none'; this.nextElementSibling.style.display='inline';
+      }"> -->
+      <select id="airflow" name="airflow" onchange="show_hide_custom(this)">
+          <option value="0"> Off (0  m/s)</option>
+          <option value="0.15" selected> Medium (0.15 m/s)</option>
+          <option value="0.8"> High (0.8 m/s)</option>
+          <option value="customOption">Choose your own airflow speed</option>
+      </select><input type="number" id="airflow-custom" name="airflow-custom" style="display:none;" min="0" step="0.01"> </input>
+
+  </p>
+  </div>
+
+  <div class="boxed">
+    <h3> Behavioural Parameters</h3>
+    <p> <label for="duration"> <b>Event</b> Duration (hours)</label>
+        <input type="range" id="duration" name="duration" min="0.25" max="3" value="0.5" step="0.05"
+        oninput="this.nextElementSibling.value = this.value;pass_break();">
+        <output>0.5</output>
+
+        <label for="break"> Add a break?</label>
+        <input type="checkbox" id="break" name="break" onclick="add_break()"> Yes
+
+        <span id="break-time" style="display:none">
+            <label for="break-duration">Break Duration (hours)</label>
+            <input type="range" id="break-duration" name="break-duration" min="0" value="0.25" step="0.05" max="1"
+            oninput="this.nextElementSibling.value = this.value">
+            <output>0.25</output>
+        </span>
+        <span id="break-when" style="display:none">
+            <label for="break-start">Time when break starts (hours)</label>
+            <input type="range" id="break-start" name="break-start" min="0" value="0.25" max="0.5" step="0.05"
+            oninput="this.nextElementSibling.value = this.value">
+            <output>0.25</output>
+        </span>
+    </p>
+
+    <p><b>Infectious person:</b>
+      <label for="talk">Activity</label>
+        <!--<select id="talk" name="talk" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+            this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
+        }"> -->
+        <select id="talk" name="talk" onchange="show_hide_custom_percent(this)">
+            <option value="0" selected> Just breathing</option>
+            <option value="100"> Just talking </option>
+            <option value="customOption">Choose the % of time talking</option>
+        </select><input type="range" id="talk-custom" name="talk-custom" style="display:none;" min="0" max="100" step="1" value="50"
+        oninput="this.nextElementSibling.value = this.value + '% of time talking'; this.nextElementSibling.style='display:inline';"> </input>
+        <output style="display:none">50% of time talking</output>
+
+        <label for="inf-mask">Mask worn</label>
+            <!--<select id="inf-mask" name="inf-mask" onchange="inf_mask_visual();if(this.options[this.selectedIndex].value=='customOption'){
+                this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
+                }"> -->
+        <select id="inf-mask" name="inf-mask" onchange="inf_mask_visual(); show_hide_custom_percent(this)">
+            <option value="0" selected> No mask</option>
+            <option value="0.35"> 1-ply Cloth mask (35%)</option>
+            <option value="0.5"> 3-ply Cloth mask (50%)</option>
+            <option value="0.59"> Surgical mask (59%)</option>
+            <option value="0.9"> N95/FFP2 mask (95%) </option>
+            <option value="customOption">Choose your own mask efficiency (%)</option>
+            </select>
+        <input type="range" id="inf-mask-custom" name="inf-mask-custom" style="display:none;" min="0" max="100" step="1" value="0"
+            onblur="if(this.value==''){toggleField(this,this.previousSibling);}" oninput="this.nextElementSibling.value = this.value + '% efficiency'; this.nextElementSibling.style='display:inline';"> </input>
+        <output style="display:none">0 % efficiency</output>
+        <span class="mask_pic" id="inf_mask_pic"></span>
+    </p>
+
+    <p> <b>Susceptible person:</b> <label for="occ-act">Activity (breathing rate)</label>
+        <!--<select id="occ-act" name="occ-act" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+            this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
+        }"> -->
+        <select id="occ-act" name="occ-act" onchange="show_hide_custom(this)">
+            <option value="6" selected> Sedentary (6 l/min)</option>
+            <option value="18"> Active (18 l/min)</option>
+            <option value="54"> Moderate exercise (54 l/min)</option>
+            <option value="customOption">Choose your own breathing rate</option>
+        </select><input type="range" id="occ-act-custom" name="occ-act-custom" style="display:none;" min="3" step="0.1"
+        value="6" max="120" oninput="this.nextElementSibling.value = this.value+'l/min';"> </input>
+        <output style="display:none;">6 l/min</output>
+
+        <label for="occ-mask">Mask worn</label>
+        <!--<select id="occ-mask" name="occ-mask" onchange="sus_mask_visual();if(this.options[this.selectedIndex].value=='customOption'){
+            this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
+        }"> -->
+        <select id="occ-mask" name="occ-mask" onchange="sus_mask_visual(); show_hide_custom_percent(this)">
+            <option value="0" selected> No mask</option>
+            <option value="0.2"> 3-ply Cloth mask (20%)</option>
+            <option value="0.5"> Surgical mask (50%)</option>
+            <option value="0.9"> N95/FFP2 mask (90%) </option>
+            <option value="customOption">Choose your own mask efficiency (%)</option>
+        </select><input type="range" id="occ-mask-custom" name="occ-mask-custom" style="display:none;" min="0" max="100" step="1" value="0"
+        oninput="this.nextElementSibling.value = this.value + '% efficency'; this.nextElementSibling.style='display:inline';"> </input>
+        <output style="display:none">0% efficiency</output>
+        <span class="mask_pic" id="occ_mask_pic"> </span>
+    </p>
+    </div>
+
+</html>
