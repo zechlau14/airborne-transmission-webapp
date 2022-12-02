@@ -192,12 +192,17 @@ D-i-m-i work done on mask icons
                     this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
                 }"> -->
                 <select id="occ-act" name="occ-act" onchange="show_hide_custom(this)">
-                    <option value="8" selected> Sedentary (8l/min)</option>
-                    <option value="25"> Active (25l/min)</option>
+                  <option value="6" selected> Sedentary (6 l/min)</option>
+                  <option value="18"> Active (18 l/min)</option>
+                  <option value="54"> Moderate exercise (54 l/min)</option>
                     <option value="customOption">Choose your own breathing rate</option>
-                </select><input type="number" id="occ-act-custom" name="occ-act-custom" style="display:none;" min="0" step="0.5"> </input>
+                  </select><input type="range" id="occ-act-custom" name="occ-act-custom" style="display:none;" min="3" step="0.1"
+                  value="6" max="120" oninput="this.nextElementSibling.value = this.value+' l/min';"> </input>
+                  <output style="display:none;">6 l/min</output>
             </div>
-  
+
+          
+          
             <div class="control-padding" style="padding-bottom: 10px">
               <label for="occ-mask">Mask worn</label>
                 <!--<select id="occ-mask" name="occ-mask" onchange="sus_mask_visual();if(this.options[this.selectedIndex].value=='customOption'){
