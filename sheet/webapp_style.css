@@ -48,14 +48,14 @@
   flex-basis: 30%;
 }
 
-#progress-bar {
+.progress-bar {
   width: 157px;
   background-color: grey;
   color: white;
   text-align: center;
 }
 
-#the-bar {
+.the-bar {
   width: 1%;
   background-color: #f1aead;
   height: 30px;
@@ -288,13 +288,18 @@ a:hover::before {
 }
 
 /*double slider for break*/
+/* Note: hard width coded for slider width for now,
+         so that display numbers align. */
 #break-inputs {
   position: relative;
+  display: none;
+  padding-top: 10px;
 }
 
 #break-inputs input {
   position: absolute;
   pointer-events: none;
+  width: 129px;
 }
 
 #break-inputs input::-webkit-slider-thumb {
@@ -316,4 +321,25 @@ a:hover::before {
   z-index: 1;
 }
 
+#break-numbers{
+  width: 129px;
+  display: flex;
+  justify-content: space-around;
+}
+
 /*double slider*/
+
+.chart_container {
+  width: 100%;
+  content: "";
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  clear: both;
+}
+
+#susceptible_dot {
+  bottom: 25%;
+  left: 25%;
+  background-color: rgb(162, 4, 133);
+}

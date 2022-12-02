@@ -23,6 +23,8 @@ function resetDots() {
   var l = document.getElementById("room-length").value;
   var w = document.getElementById("room-width").value;
   var y0 = document.getElementById("y0");
+  var xe = document.getElementById('x_e');
+  var ye = document.getElementById('y_e');
 
   //reset source dot
   x0.max = l;
@@ -36,10 +38,23 @@ function resetDots() {
   y0.nextElementSibling.value = round(w / 2, 2);
   document.getElementById("source_dot").style.bottom =
     round((y0.value / w) * 100, 2) + "%";
+
+  //reset receiver dot
+  xe.max = l;
+  xe.value = round(l/4, 2);
+  xe.nextElementSibling.value = round(l/4, 2);
+  document.getElementById('susceptible_dot').style.left = 
+    round(xe.value/l*100, 2) + "%";
+
+  ye.max = w;
+  ye.value = round(w/4, 2);
+  ye.nextElementSibling.value = round(w/4, 2);
+  document.getElementById('susceptible_dot').style.bottom = 
+    round(ye.value/w*100, 2) + "%";
 }
 
 function getRoomDim() {
-  //passes dragged rectangle's new dimensions to the inputs for room lenght and width
+  //passes dragged rectangle's new dimensions to the inputs for room length and width
   var room = document.getElementById("room-visual");
   var l = room.offsetWidth;
   var w = room.offsetHeight;
@@ -82,6 +97,26 @@ function passY0() {
 
   y0.nextElementSibling.value = y0.value;
   dot_y0.style.bottom = round((y0.value / w) * 100, 2) + "%";
+}
+
+function passXe(){
+  //takes receiver's x-coordinate and repositions their dot
+  var xe = document.getElementById('x_e');
+  var dot_xe = document.getElementById('susceptible_dot');
+  var l = document.getElementById('room-length').value;
+
+  xe.nextElementSibling.value=xe.value;
+  dot_xe.style.left = round(xe.value/l*100, 2) + "%";
+}
+
+function passYe(){
+  //takes receiver's y-coordinate and repositions dot
+  var ye = document.getElementById('y_e');
+  var dot_ye = document.getElementById('susceptible_dot');
+  var w = document.getElementById('room-width').value;
+
+  ye.nextElementSibling.value=ye.value;
+  dot_ye.style.bottom = round(ye.value/w*100, 2) + "%";
 }
 
 function allowDrop(ev) {
@@ -192,4 +227,60 @@ function sus_mask_visual() {
   } else if (choice == "customOption") {
     frame.innerHTML = " ";
   }
+}
+
+let x_sus_temp = 0;
+let y_sus_temp = 0;
+function dragSus(ev){
+    //allows draging of receiver dot
+    var dot = ev.target;
+    var bounds = document.getElementById('room-visual');
+    var x0 = document.getElementById('x_e');
+    var y0 = document.getElementById('y_e');
+    var l = document.getElementById('room-length').value;
+    var w = document.getElementById('room-width').value;
+    
+    //pass new coordinates to input
+    var y_i = bounds.getBoundingClientRect().top;
+    var x_i = bounds.getBoundingClientRect().left;
+    
+    x_inf_temp = round((ev.clientX - x_i)/60, 2);
+    y_inf_temp = round((ev.clientY - y_i)/60, 2);
+
+    x0.value = x_inf_temp;
+    if(x0.value<0){x0.value=0;}
+    else if(x0.value>l){x0.value=l;}
+    x0.nextElementSibling.value = x0.value;
+    
+    y0.value = w - y_inf_temp;
+    if(y0.value<0){y0.value=0;}
+    else if(y0.value>w){y0.value=w;}
+    y0.nextElementSibling.value = y0.value;
+}
+function dragSusend(ev){
+    //function for drag-drop
+    //checks if receiver dot was dragged out of the box
+    //if it was, reset the coordinates
+    var dot = ev.target;
+    var bounds = document.getElementById('room-visual').getBoundingClientRect();
+    var dotDim = dot.getBoundingClientRect();
+    var x0 = document.getElementById('x_e');
+    var y0 = document.getElementById('y_e');
+    var l = document.getElementById('room-length').value;
+    var w = document.getElementById('room-width').value;
+
+    if(x_inf_temp<0 || y_inf_temp<0){
+        //reset source dot
+        x0.value = round(l/4, 2);
+        x0.nextElementSibling.value = round(l/4, 2);
+        dot.style.left = round(x0.value/l*100, 2) + "%";
+
+        y0.value = round(w/4, 2);
+        y0.nextElementSibling.value = round(w/4, 2);
+        dot.style.bottom = round(y0.value/w*100, 2) + "%";
+    }
+    else{
+        dot.style.left = (x0.value * 60) + 'px';
+        dot.style.bottom = (y0.value * 60) + 'px'; 
+    }
 }

@@ -44,9 +44,10 @@ D-i-m-i work done on mask icons
       <!-- Intro text -->
 
       <div class="description">
-        <p>This webapp helps you estimate the spatially varying infection risk from airborne transmission of the SARS-CoV-2 virus in a rectangular indoor space. The model assumes that the infectious particles carrying the virus are carried around the room by a recirculating airflow, diffused due to turbulence in the air and removed by the room’s ventilation system, the natural inactivation of the virus and gravitational settling. For simplicity’s sake, the model only considers a single stationary, asymptomatic, infectious person in the room. <br>
-            For a full write-up of the scientific basis of the model, please refer to <a href="https://doi.org/10.1098/rspa.2021.0383">our paper</a>.
-        </p>
+        <p>This webapp helps you estimate the spatially varying infection risk from airborne transmission of the SARS-CoV-2 virus in a rectangular indoor space. The model assumes that the infectious particles carrying the virus are carried around the room by a recirculating airflow, diffused due to turbulence in the air and removed by the room’s ventilation system, the natural inactivation of the virus and gravitational settling. For simplicity’s sake, the model only considers a single stationary, asymptomatic, infectious person in the room.</p>
+        <p>For a simple explanation of the model and the parameters chosen, please refer <a href="Simple_Explanation.pdf">here</a>.</p>
+        <p>For a full write-up of the scientific basis of the model, please refer to <a href="https://doi.org/10.1098/rspa.2021.0383">our paper</a>.</p>
+        
       </div>
 
       <div class="disclaimer">
@@ -63,7 +64,6 @@ D-i-m-i work done on mask icons
     <div class=controls-plots-area>
       <h2> Parameters</h2>
 
-      <h3> Location Parameters </h3>
       <!-- model inputs -->
 
       <div style="display: flex; justify-content: space-between;">
@@ -77,16 +77,16 @@ D-i-m-i work done on mask icons
           <div class="controls-alignment">
             <div class="control-padding">
               <label for="room-presets">Presets</label><br>
-              <input type="radio" name="room-presets" id="classroom" value="classroom">Classroom</input>
-              <input type="radio" name="room-presets" id="office" value="office">Office</input>
-              <input type="radio" name="room-presets" id="reception" value="reception">Reception</input>
-              <input type="radio" name="room-presets" id="custom" value="custom">Custom</input>
+              <input type="radio" name="room-presets" id="classroom-choice" onclick="room_presets(id)">Classroom / Living Room</input>
+              <input type="radio" name="room-presets" id="office-choice" onclick="room_presets(id)">Personal Office / Room </input>
+              <input type="radio" name="room-presets" id="reception-choice" onclick="room_presets(id)">Reception</input>
+              <input type="radio" name="room-presets" id="custom-room-preset" onclick="room_presets(id)" checked="checked">Custom</input>
             </div>
 
             <div class="control-padding">
               <label for="room-length"> Length (m) </label>
               <input type="range" id="room-length" name="room-length" min="2" max="10" value="5" step="0.1"
-              oninput="passRoomLength();">
+              oninput="passRoomLength(); room_preset_custom()">
               <!-- oninput, passRoomLength changes the length of the room visualisation-->
               <output> 5 </output>
             </div>
@@ -94,7 +94,7 @@ D-i-m-i work done on mask icons
             <div class="control-padding">
               <label for="room-length"> Width (m) </label>
               <input type="range" id="room-width" name="room-width" min="2" max="10" value="5" step="0.1"
-              oninput="passRoomWidth();">
+              oninput="passRoomWidth(); room_preset_custom()">
               <!-- oninput, passRoomWidth changes the length of the room visualisation-->
               <output> 5 </output>
             </div>
@@ -102,7 +102,7 @@ D-i-m-i work done on mask icons
             <div class="control-padding" style="padding-bottom: 10px;">
               <label for='roomd-height'> Height (m)</label>
               <input type="range" id="room-height" name="room-height" min="2" max="4" value="2.5" step="0.1"
-              oninput="this.nextElementSibling.value = this.value">
+              oninput="this.nextElementSibling.value = this.value; room_preset_custom()">
               <output>2.5</output>
             </div>
           </div>
@@ -159,6 +159,60 @@ D-i-m-i work done on mask icons
                   onblur="if(this.value==''){toggleField(this,this.previousSibling);}" oninput="this.nextElementSibling.value = this.value + '%'; this.nextElementSibling.style='display:inline';"> </input>
               <output style="display:none">0%</output>
               <!-- <span class="mask_pic" id="inf_mask_pic"> </span> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-card">
+          <div class="card-headings">
+            <p class="h2">Susceptible person</p>
+            <span class="hovertext" text-hover="This is the placholder text for the card description">
+              <img src="images/info_mark.png" alt="card information" class="question-mark">
+            </span>
+          </div>
+  
+          <div class="controls-alignment">
+            <div class="control-padding">
+              <label for="x_e">x</label>
+                <input type="range" id="x_e" name="x_e" min="0" max="5" value="1.25" step="0.01"
+                oninput="passXe();">
+                <output>1.25</output>
+            </div>
+  
+            <div class="control-padding">
+              <label for="y_e">y</label>
+                <input type="range" id="y_e" name="y_e" min="0" max="5" value="1.25" step="0.01"
+                oninput="passYe();">
+                <output>1.25</output>
+            </div>
+  
+            <div class="control-padding">
+              <label for="occ-act">Activity (breathing rate)</label>
+                <!--<select id="occ-act" name="occ-act" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                    this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
+                }"> -->
+                <select id="occ-act" name="occ-act" onchange="show_hide_custom(this)">
+                    <option value="8" selected> Sedentary (8l/min)</option>
+                    <option value="25"> Active (25l/min)</option>
+                    <option value="customOption">Choose your own breathing rate</option>
+                </select><input type="number" id="occ-act-custom" name="occ-act-custom" style="display:none;" min="0" step="0.5"> </input>
+            </div>
+  
+            <div class="control-padding" style="padding-bottom: 10px">
+              <label for="occ-mask">Mask worn</label>
+                <!--<select id="occ-mask" name="occ-mask" onchange="sus_mask_visual();if(this.options[this.selectedIndex].value=='customOption'){
+                    this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
+                }"> -->
+                <select id="occ-mask" name="occ-mask" onchange="sus_mask_visual(); show_hide_custom_percent(this)">
+                    <option value="0" selected> No mask</option>
+                    <option value="0.2"> 3-ply Cloth mask (20%)</option>
+                    <option value="0.5"> Surgical mask (50%)</option>
+                    <option value="0.9"> N95/FFP2 mask (90%) </option>
+                    <option value="customOption">Choose your own mask efficiency (%)</option>
+                </select><input type="range" id="occ-mask-custom" name="occ-mask-custom" style="display:none;" min="0" max="100" step="1" value="0"
+                oninput="this.nextElementSibling.value = this.value + '% efficency'; this.nextElementSibling.style='display:inline';"> </input>
+                <output style="display:none">0% efficiency</output>
+                <span class="mask_pic" id="occ_mask_pic"> </span>
             </div>
           </div>
         </div>
@@ -223,28 +277,17 @@ D-i-m-i work done on mask icons
               </div>
 
               <div id="break-inputs">
-                0 <input type="range" id="break-part1" name="break-part1" min="0" max="4" step="0.05" value="0"> 
-                <input type="range" id="break-part2" name="break-part2" min="0" max="4" step="0.05" value="4">  
-                4 <br><span id="break-output"></span>
+                <label for="break-inputs"> Set when the break starts and ends.<br></label>
+                <input type="range" id="break-part1" name="break-part1" 
+                min="0" max="0.5" step="0.05" value="0.2" oninput="show_break_numbers()"> 
+                <input type="range" id="break-part2" name="break-part2" 
+                min="0" max="0.5" step="0.05" value="0.3" oninput="show_break_numbers()">  
+                <br>
+                <div id="break-numbers">
+                  <span id="break-start">0.2</span> 
+                  <span id="break-end">0.3</span> 
+                </div>
               </div>
-              <!--
-              <div style="padding-top: 10px;">
-                <span id="break-time" style="display:none;">
-                  <label for="break-duration">Break Duration (hours)</label>
-                  <input type="range" id="break-duration" name="break-duration" min="0" value="0.25" step="0.05" max="1"
-                  oninput="this.nextElementSibling.value = this.value">
-                  <output>0.25</output>
-                </span>
-              </div>
-              <div style="padding-top: 10px;">
-                <span id="break-when" style="display:none">
-                  <label for="break-start">Time when break starts (hours)</label>
-                  <input type="range" id="break-start" name="break-start" min="0" value="0.25" max="0.5" step="0.05"
-                  oninput="this.nextElementSibling.value = this.value">
-                  <output>0.25</output>
-                </span>
-              </div>
-              -->
             </div>
           </div>
         </div>
@@ -372,6 +415,7 @@ D-i-m-i work done on mask icons
             <!-- <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div> -->
             <div style="display: flex;">
               <div class="infectious-avatar" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>
+              <div class="drag_dot" id="susceptible_dot" draggable="true" ondrag="dragSus(event);" ondragend="dragSusend(event);"></div>
               <div>
                 <span class="mask_pic" id="inf_mask_pic"> </span>
               </div>
@@ -419,13 +463,11 @@ D-i-m-i work done on mask icons
           </div>
           <div>
             <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
-            <!-- <button type="button" onclick="Run_moded()"> Run </button>  -->
-            <!-- <button type='button' onclick="stop_model()">Stop</button> -->
           </div>
 
           <!-- loading bar to show progress of model-->
-          <div id="progress-bar" style="margin-top: 10px;">
-            <div id="the-bar" style="display:none;"></div>
+          <div class="progress-bar" id="progress-bar" style="margin-top: 10px;">
+            <div class="the-bar" id="the-bar" style="display:none;"></div>
           </div>
         </div>
         <div id="output-msg" style="display: none">
@@ -453,9 +495,9 @@ D-i-m-i work done on mask icons
         </div>
       </div>
       <div style="margin-top: 10px;">
-        <button type="button" class="secondary-button">Explore more</button>
+        <button type="button" class="secondary-button" onclick="explore_more()">Explore more</button>
       </div>
-      <div id="Explore_more_container">
+      <div id="Explore_more_container" style="display: none;">
         <div>
           <h3>Calculate the concentration and risk at a specific position:</h3>
           <button type="button" onclick="Run_position()" class="primary-button">Run</button>
@@ -526,7 +568,6 @@ D-i-m-i work done on mask icons
       <script src='script/webapp_form.js'></script>
       <script src="script/webapp_room.js"></script>
       <script src="script/webapp_run.js"></script>
-      <script src="script/explore_more.js"></script>
       <br>
   </div>
 </body>
