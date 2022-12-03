@@ -33,12 +33,27 @@
   transform: translate(-50%, 50%);
 }
 
+#susceptible_dot {
+  bottom: 25%;
+  left: 25%;
+  transform: translate(-50%, 50%);
+}
+
 .infectious-avatar {
   width: 60px;
   aspect-ratio: 1/1;
   position: absolute;
   cursor: move;
   background-image: url("../images/infected_person.png");
+  background-size: 100%;
+}
+
+.susceptible-avatar {
+  width: 60px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  cursor: move;
+  background-image: url("../images/susceptible_person.png");
   background-size: 100%;
 }
 
@@ -121,7 +136,7 @@ body {
 
 .controls-card {
   width: 455px;
-  height: fit-content;
+  /* height: fit-content; */
   background-image: linear-gradient(#ffffff, #f1aead);
   border-radius: 12px;
   box-shadow: var(--box-shadow);
@@ -142,7 +157,7 @@ body {
   border-radius: 12px;
   box-shadow: var(--box-shadow);
   transition-duration: 0.2s;
-  background-image: linear-gradient(#ffffff, #f1aead);
+  background-image: linear-gradient(#ffffff, #0a97a7);
   border-radius: 12px;
   box-shadow: var(--box-shadow);
   border: 1px solid #087e8b;
@@ -189,7 +204,7 @@ body {
 }
 
 .control-padding {
-  padding: 15px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
 }
 
 .question-mark {
@@ -322,7 +337,7 @@ a:hover::before {
   z-index: 1;
 }
 
-#break-numbers{
+#break-numbers {
   width: 129px;
   display: flex;
   justify-content: space-around;
@@ -337,11 +352,4 @@ a:hover::before {
   flex-direction: row;
   flex-wrap: wrap;
   clear: both;
-}
-
-#susceptible_dot {
-  bottom: 25%;
-  left: 25%;
-  transform: translate(-50%, 50%);
-  background-color: blue;
 }
