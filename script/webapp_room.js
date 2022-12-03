@@ -158,16 +158,16 @@ function inf_mask_visual() {
     frame.innerHTML = " ";
   } else if (choice == 0.35) {
     frame.innerHTML =
-      '<img src="images/bara-buri-cloth.jpg" style="width: 80px;"></img>';
+      '<img src="images/bara-buri-cloth.jpg" style="width: 40px;"></img>';
   } else if (choice == 0.5) {
     frame.innerHTML =
-      '<img src="images/bara-buri-cloth.jpg" style="width: 80px;"></img>';
+      '<img src="images/bara-buri-cloth.jpg" style="width: 40px;"></img>';
   } else if (choice == 0.59) {
     frame.innerHTML =
-      '<img src="images/marek-studzinski.jpg" style="width: 80px;"></img>';
+      '<img src="images/marek-studzinski.jpg" style="width: 40px;"></img>';
   } else if (choice == 0.9) {
     frame.innerHTML =
-      '<img src="images/obi-N95.jpg" style="width: 80px;"></img>';
+      '<img src="images/obi-N95.jpg" style="width: 40px;"></img>';
   } else if (choice == "customOption") {
     frame.innerHTML = " ";
   }
