@@ -26,7 +26,7 @@ D-i-m-i work done on mask icons
     <link rel="stylesheet" href="sheet/webapp_style.css">
     <link rel="stylesheet" href="sheet/hovertext_style.css">
     <!-- <link rel="stylesheet" href="sheet/range_style.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
     <title>Airborne Virus Risk Calculator</title>
 </head>
 
@@ -270,7 +270,7 @@ D-i-m-i work done on mask icons
             <div class="control-padding">
               <label for="duration"> Event duration (hours)</label>
               <input type="range" id="duration" name="duration" min="0.25" max="3" value="0.5" step="0.05"
-              oninput="this.nextElementSibling.value = this.value;pass_break();">
+              oninput="this.nextElementSibling.value = this.value;" onmouseup="pass_break();">
               <output>0.5</output>
             </div>
 
@@ -291,6 +291,7 @@ D-i-m-i work done on mask icons
                   <span id="break-start">0.2</span>
                   <span id="break-end">0.3</span>
                 </div>
+                <div id="break-numbers"><span>start</span> <span>end</span></div>
               </div>
             </div>
           <!-- </div> -->
@@ -478,7 +479,9 @@ D-i-m-i work done on mask icons
           </div>
           <div>
             <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
+            <button type="button" onclick="reset_results();" class="primary-button">Stop</button>
           </div>
+          
 
           <!-- loading bar to show progress of model-->
           <div class="progress-bar" id="progress-bar" style="margin-top: 10px;">
@@ -516,7 +519,7 @@ D-i-m-i work done on mask icons
         <div>
           <h3>Calculate the concentration and risk at a specific position:</h3>
           <button type="button" onclick="Run_position()" class="primary-button">Run</button>
-
+          <button type="button" onclick="reset_results()" class="primary-button">Stop</button>
           </div>
 
           <!-- <div class="loader" id="loading" style="display:none"></div> -->
@@ -539,6 +542,7 @@ D-i-m-i work done on mask icons
           <div>
           <h3>Calculate the concentration throughout the room at the end of the event:</h3>
           <button type="button" onclick="Run_C_contour()" class="primary-button">Run</button>
+          <button type="button" onclick="reset_results()" class="primary-button">Stop</button>
         </div>
         <!-- <div class="loader" id="loading2" style="display:none"></div> -->
         <div class="progress-bar">
@@ -550,6 +554,7 @@ D-i-m-i work done on mask icons
         <div>
           <h3>Calculate the average concentration in the room:</h3>
           <button type="button" onclick="Run_avg_C()" class="primary-button">Run</button>
+          <button type="button" onclick="reset_results()" class="primary-button">Stop</button>
         </div><br>
 
           <!-- loading bar to show progress of model-->
@@ -566,6 +571,7 @@ D-i-m-i work done on mask icons
           <div>
             <h3>Calculate the average infection risk in the room:</h3>
             <button type="button" onclick="Run_avg_P()" class="primary-button">Run</button>
+            <button type="button" onclick="reset_results()" class="primary-button">Stop</button>
           </div><br>
           <!-- loading bar to show progress of model-->
           <div class="progress-bar">

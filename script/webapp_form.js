@@ -26,8 +26,6 @@ function pass_break(){
 
     break1.max = duration;
     break2.max = duration;
-    break1.value = round(duration/2, 1) - 0.05;
-    break2.value = round(duration/2, 1) + 0.05;
 
     show_break_numbers()
 }
@@ -65,12 +63,12 @@ function show_break_numbers(){
         break_start.textContent = break_slider2.value;
         break_end.textContent = break_slider1.value;
     }
-
+    /*
     if (break_slider1.value == break_slider2.value){
         break_end.style.display = "none";
     } else {
         break_end.style.display = "inline";
-    }
+    }*/
 }
 
 function advanced_options(){
