@@ -98,6 +98,7 @@
 .banner-top {
   display: flex;
   margin-top: 10px;
+  justify-content: space-between;
 }
 
 .title-logos {
@@ -106,28 +107,32 @@
 }
 
 .description {
-  width: 795px;
-  height: 127px;
   font-size: 16px;
   font-family: "Roboto", sans-serif;
-  margin-left: 15px;
-  margin-top: 25px;
 }
 
 .disclaimer {
-  width: 798px;
-  height: 86px;
   font-size: 13px;
   font-family: "Roboto", sans-serif;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
   margin-left: 15px;
-  margin-top: 45px;
+}
+
+.banner-text-and-video {
+  display: flex;
+  justify-content: space-between;
 }
 
 .virus-illustration {
-  float: right;
+  /* float: right;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 22;
+  right: 30; */
 }
 
 body {
@@ -352,4 +357,8 @@ a:hover::before {
   flex-direction: row;
   flex-wrap: wrap;
   clear: both;
+}
+
+* {
+  box-sizing: border-box;
 }

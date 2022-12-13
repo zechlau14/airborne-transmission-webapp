@@ -1,4 +1,4 @@
-Skip to content
+<!-- Skip to content
 zechlau14
 /
 airborne_transmission_webapp
@@ -15,7 +15,7 @@ airborne_transmission_webapp/webapp.html
 @D-i-m-i
 D-i-m-i work done on mask icons
  2 contributors
-571 lines (510 sloc)  29.8 KB
+571 lines (510 sloc)  29.8 KB -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +25,11 @@ D-i-m-i work done on mask icons
 
     <link rel="stylesheet" href="sheet/webapp_style.css">
     <link rel="stylesheet" href="sheet/hovertext_style.css">
+    <!-- CSS only -->
+
+    <!-- link to add Bootstrap -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+
     <!-- <link rel="stylesheet" href="sheet/range_style.css"> -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
     <title>Airborne Virus Risk Calculator</title>
@@ -34,29 +39,36 @@ D-i-m-i work done on mask icons
   <div class="container">
     <div class="banner">
       <div class="banner-top">
-        <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 177px; margin-left: 15px;">
-        <div class="title-logos">
-          <h1 style="margin: 0;">Airborne Virus Risk Calculator</h1>
+        <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 177px; margin-left: 15px; height: fit-content;">
+        <!-- <div class="title-logos"> -->
+        <h1 style="margin: 0;">Airborne Virus Risk Calculator</h1>
+        <div style="display: flex;">
           <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="margin-left: 20px; width: 139px; height: 41px; box-shadow: var(--box-shadow)">
           <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: 88px; height: 41px; margin-left: 10px; box-shadow: var(--box-shadow)">
         </div>
+        <!-- </div> -->
       </div>
       <!-- Intro text -->
 
-      <div class="description">
-        <p>This webapp helps you estimate the spatially varying infection risk from airborne transmission of the SARS-CoV-2 virus in a rectangular indoor space. The model assumes that the infectious particles carrying the virus are carried around the room by a recirculating airflow, diffused due to turbulence in the air and removed by the room’s ventilation system, the natural inactivation of the virus and gravitational settling. For simplicity’s sake, the model only considers a single stationary, asymptomatic, infectious person in the room.</p>
-        <p>For a simple explanation of the model and the parameters chosen, please refer <a href="Simple_Explanation.pdf">here</a>.</p>
-        <p>For a full write-up of the scientific basis of the model, please refer to <a href="https://doi.org/10.1098/rspa.2021.0383" target="_blank">our paper</a>.</p>
+      <div class="banner-text-and-video">
+        <div class="banner-text">
+          <div class="description">
+            <p>This webapp helps you estimate the spatially varying infection risk from airborne transmission of the SARS-CoV-2 virus in a rectangular indoor space. The model assumes that the infectious particles carrying the virus are carried around the room by a recirculating airflow, diffused due to turbulence in the air and removed by the room’s ventilation system, the natural inactivation of the virus and gravitational settling. For simplicity’s sake, the model only considers a single stationary, asymptomatic, infectious person in the room.</p>
+            <p>For a simple explanation of the model and the parameters chosen, please refer <a href="Simple_Explanation.pdf">here</a>.</p>
+            <p>For a full write-up of the scientific basis of the model, please refer to <a href="https://doi.org/10.1098/rspa.2021.0383" target="_blank">our paper</a>.</p>
 
-      </div>
+          </div>
 
-      <div class="disclaimer">
-        <p> <b>Disclaimer</b>:
-          The results from this model, including the estimated infection risk, should be used with caution. Many of the inputs are uncertain due to a lack of data and the evolving nature of the virus. Furthermore, this model only calculates the risk of airborne transmission; it does not include the risk of short-range droplet transmission which can be minimized by social distancing. By using this webapp, you acknowledge its limitations and use it at the user’s own risk. To the fullest extent permitted by law, the authors of the website and app shall have no liability for any loss or damage suffered as a result of users’ use of or reliance on it.
-        </p>
-      </div>
-      <div class="virus-illustration">
-        <img src="images/virus.jpg" alt="virus_illustration" style="height: 406px;">
+          <div class="disclaimer">
+            <p> <b>Disclaimer</b>:
+              The results from this model, including the estimated infection risk, should be used with caution. Many of the inputs are uncertain due to a lack of data and the evolving nature of the virus. Furthermore, this model only calculates the risk of airborne transmission; it does not include the risk of short-range droplet transmission which can be minimized by social distancing. By using this webapp, you acknowledge its limitations and use it at the user’s own risk. To the fullest extent permitted by law, the authors of the website and app shall have no liability for any loss or damage suffered as a result of users’ use of or reliance on it.
+            </p>
+          </div>
+        </div>
+        <div class="virus-illustration">
+          <!-- <img src="images/virus.jpg" alt="virus_illustration" style="height: 406px;"> -->
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
 
@@ -481,7 +493,7 @@ D-i-m-i work done on mask icons
             <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
             <button type="button" onclick="reset_results();" class="primary-button">Stop</button>
           </div>
-          
+
 
           <!-- loading bar to show progress of model-->
           <div class="progress-bar" id="progress-bar" style="margin-top: 10px;">
