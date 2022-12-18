@@ -93,7 +93,7 @@
   background-image: linear-gradient(#ffffff, #f1aead);
   position: relative;
   box-shadow: var(--box-shadow);
-  padding-bottom: 10px;
+  padding: 10px;
   margin-bottom: 10px;
 }
 
@@ -124,12 +124,14 @@
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin-left: 15px;
+  padding-right: 10px;
+  /* margin-left: 15px; */
 }
 
 .banner-text-and-video {
   display: flex;
   justify-content: space-between;
+  margin: 0 !important;
 }
 
 .embedded-video {
@@ -152,7 +154,7 @@ body {
 
 .controls-card {
   width: 540px;
-  /* height: fit-content; */
+  height: 335px;
   background-image: linear-gradient(#ffffff, #f1aead);
   border-radius: 12px;
   box-shadow: var(--box-shadow);
@@ -249,12 +251,14 @@ body {
 }
 
 .primary-button {
-  height: 47px;
-  width: 157px;
+  width: 10%;
+  min-width: 100px;
+  aspect-ratio: 3/1;
   border: solid 1px #087e8b;
   background-color: #087e8b;
   border-radius: 12px;
-  font: 16px Roboto;
+  /* font: 16px Roboto; */
+  font-size: calc(1em + 0.5vw);
   color: white;
   padding: 0px 10px 0 10px;
   transition: 0.2s;
@@ -313,7 +317,8 @@ a:hover::before {
     rgba(0, 0, 0, 0.23) 0px 6px 6px;
   --border-radius: 12px;
   --stop-button-color: #c81d25;
-  --stop-button-width: 80px;
+  --stop-button-width: 6%;
+  --font-size-results: calc(1em + 1vw);
 }
 
 .card-headings {
