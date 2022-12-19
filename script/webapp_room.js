@@ -3,8 +3,8 @@ var room_length = document.getElementById("room-length").value;
 const scale_factor = room_visual_length / room_length;
 
 const source_dot = document.getElementById("source_dot");
-const sus_dot = document.getElementById('susceptible_dot');
-const room_visual = document.getElementById("room-visual")
+const sus_dot = document.getElementById("susceptible_dot");
+const room_visual = document.getElementById("room-visual");
 
 function passRoomLength() {
   //resizes room picture for new length
@@ -26,7 +26,7 @@ function passRoomWidth() {
   resetDots();
 }
 
-function reset_source_dot(){
+function reset_source_dot() {
   var x0 = document.getElementById("x0");
   var l = document.getElementById("room-length").value;
   var w = document.getElementById("room-width").value;
@@ -46,21 +46,21 @@ function reset_source_dot(){
   source_dot.style.transform = "translate(-50%, 50%)";
 }
 
-function reset_sus_dot(){
+function reset_sus_dot() {
   var l = document.getElementById("room-length").value;
   var w = document.getElementById("room-width").value;
-  var xe = document.getElementById('x_e');
-  var ye = document.getElementById('y_e');
+  var xe = document.getElementById("x_e");
+  var ye = document.getElementById("y_e");
 
   xe.max = l;
-  xe.value = round(l/4, 2);
-  xe.nextElementSibling.value = round(l/4, 2);
-  sus_dot.style.left = round(xe.value/l*100, 2) + "%";
+  xe.value = round(l / 4, 2);
+  xe.nextElementSibling.value = round(l / 4, 2);
+  sus_dot.style.left = round((xe.value / l) * 100, 2) + "%";
 
   ye.max = w;
-  ye.value = round(w/4, 2);
-  ye.nextElementSibling.value = round(w/4, 2);
-  sus_dot.style.bottom = round(ye.value/w*100, 2) + "%";
+  ye.value = round(w / 4, 2);
+  ye.nextElementSibling.value = round(w / 4, 2);
+  sus_dot.style.bottom = round((ye.value / w) * 100, 2) + "%";
 
   sus_dot.style.transform = "translate(-50%, 50%)";
 }
@@ -70,18 +70,18 @@ function resetDots() {
   reset_sus_dot();
 }
 
-const roomResizeObserver = new ResizeObserver( (entries) =>{
+const roomResizeObserver = new ResizeObserver((entries) => {
   for (const entry of entries) {
     let new_length = round(entry.target.clientWidth / scale_factor, 1);
     let new_width = round(entry.target.clientHeight / scale_factor, 1);
     let l0 = document.getElementById("room-length");
     let w0 = document.getElementById("room-width");
-    if (new_length){
+    if (new_length) {
       l0.value = new_length;
       l0.nextElementSibling.value = new_length;
       resetDots();
     }
-    if (new_width){
+    if (new_width) {
       w0.value = new_width;
       w0.nextElementSibling.value = new_width;
       resetDots();
@@ -104,7 +104,7 @@ function pass_source_coord() {
   source_dot.style.transform = "translate(-50%, 50%)";
 }
 
-function pass_sus_coord(){
+function pass_sus_coord() {
   //takes sus person's new coordinates and repositions it
   var x0 = document.getElementById("x_e");
   var y0 = document.getElementById("y_e");
@@ -118,13 +118,12 @@ function pass_sus_coord(){
   sus_dot.style.transform = "translate(-50%, 50%)";
 }
 
-
 // Functions for source_dot mouse drags
 var dragImgMouseStart = {};
-var lastDiff = {x: 0, y: 0};
+var lastDiff = { x: 0, y: 0 };
 var initialPos = source_dot.getBoundingClientRect();
-var currentPos = {x:-initialPos.width/2, y:0};
-function mousedownDragImg(ev){
+var currentPos = { x: -initialPos.width / 2, y: 0 };
+function mousedownDragImg(ev) {
   ev.preventDefault();
   dragImgMouseStart.x = ev.clientX;
   dragImgMouseStart.y = ev.clientY;
@@ -133,17 +132,21 @@ function mousedownDragImg(ev){
   window.addEventListener("mousemove", mousemoveDragImg);
   window.addEventListener("mouseup", mouseupDragImg);
 }
-function mousemoveDragImg(ev){
+function mousemoveDragImg(ev) {
   ev.preventDefault();
   lastDiff.x = ev.clientX - dragImgMouseStart.x;
   lastDiff.y = ev.clientY - dragImgMouseStart.y;
-  requestAnimationFrame(function(){
-    source_dot.style.transform = "translate(" + (currentPos.x + lastDiff.x) + "px," 
-      + (currentPos.y + lastDiff.y) + "px)";
+  requestAnimationFrame(function () {
+    source_dot.style.transform =
+      "translate(" +
+      (currentPos.x + lastDiff.x) +
+      "px," +
+      (currentPos.y + lastDiff.y) +
+      "px)";
   });
   get_dragged_coords(source_dot);
 }
-function mouseupDragImg(ev){
+function mouseupDragImg(ev) {
   ev.preventDefault();
   isInRoom(source_dot);
   window.removeEventListener("mousemove", mousemoveDragImg);
@@ -151,13 +154,12 @@ function mouseupDragImg(ev){
 }
 source_dot.addEventListener("mousedown", mousedownDragImg);
 
-
 // Functions for sus_dot mouse drags
 var dragImgMouseStart_sus = {};
-var lastDiff_sus = {x: 0, y: 0};
+var lastDiff_sus = { x: 0, y: 0 };
 var initialPos_sus = sus_dot.getBoundingClientRect();
-var currentPos_sus = {x:-initialPos_sus.width/2, y:0};
-function mousedownDragImg_sus(ev){
+var currentPos_sus = { x: -initialPos_sus.width / 2, y: 0 };
+function mousedownDragImg_sus(ev) {
   ev.preventDefault();
   dragImgMouseStart_sus.x = ev.clientX;
   dragImgMouseStart_sus.y = ev.clientY;
@@ -166,17 +168,21 @@ function mousedownDragImg_sus(ev){
   window.addEventListener("mousemove", mousemoveDragImg_sus);
   window.addEventListener("mouseup", mouseupDragImg_sus);
 }
-function mousemoveDragImg_sus(ev){
+function mousemoveDragImg_sus(ev) {
   ev.preventDefault();
   lastDiff_sus.x = ev.clientX - dragImgMouseStart_sus.x;
   lastDiff_sus.y = ev.clientY - dragImgMouseStart_sus.y;
-  requestAnimationFrame(function(){
-    sus_dot.style.transform = "translate(" + (currentPos_sus.x + lastDiff_sus.x) + "px," 
-      + (currentPos_sus.y + lastDiff_sus.y) + "px)";
+  requestAnimationFrame(function () {
+    sus_dot.style.transform =
+      "translate(" +
+      (currentPos_sus.x + lastDiff_sus.x) +
+      "px," +
+      (currentPos_sus.y + lastDiff_sus.y) +
+      "px)";
   });
   get_dragged_coords(sus_dot);
 }
-function mouseupDragImg_sus(ev){
+function mouseupDragImg_sus(ev) {
   ev.preventDefault();
   isInRoom(sus_dot);
   window.removeEventListener("mousemove", mousemoveDragImg_sus);
@@ -184,51 +190,61 @@ function mouseupDragImg_sus(ev){
 }
 sus_dot.addEventListener("mousedown", mousedownDragImg_sus);
 
-
-function isInRoom(person){
+function isInRoom(person) {
   // gets the person's new dragged coordinates, and checks if they are still
   // in the room. If not, reset their position.
-  let dot_centre_x = person.getBoundingClientRect().left + 0.5*person.clientWidth;
-  let dot_centre_y = person.getBoundingClientRect().top + 0.5*person.clientHeight;
-  let room_left = room_visual.getBoundingClientRect().left ;
-  let room_right = room_visual.getBoundingClientRect().left + room_visual.clientWidth;
+  let dot_centre_x =
+    person.getBoundingClientRect().left + 0.5 * person.clientWidth;
+  let dot_centre_y =
+    person.getBoundingClientRect().top + 0.5 * person.clientHeight;
+  let room_left = room_visual.getBoundingClientRect().left;
+  let room_right =
+    room_visual.getBoundingClientRect().left + room_visual.clientWidth;
   let room_top = room_visual.getBoundingClientRect().top;
-  let room_bottom = room_visual.getBoundingClientRect().top + room_visual.clientHeight;
+  let room_bottom =
+    room_visual.getBoundingClientRect().top + room_visual.clientHeight;
 
-  if(dot_centre_x < room_left || dot_centre_x > room_right
-     || dot_centre_y < room_top || dot_centre_y > room_bottom){
-    if (person == source_dot){
-      lastDiff = {x: 0, y: 0};
+  if (
+    dot_centre_x < room_left ||
+    dot_centre_x > room_right ||
+    dot_centre_y < room_top ||
+    dot_centre_y > room_bottom
+  ) {
+    if (person == source_dot) {
+      lastDiff = { x: 0, y: 0 };
       initialPos = source_dot.getBoundingClientRect();
-      currentPos = {x:-initialPos.width/2, y:0};
-      reset_source_dot();}
-    else{
-      lastDiff_sus = {x: 0, y: 0};
+      currentPos = { x: -initialPos.width / 2, y: 0 };
+      reset_source_dot();
+    } else {
+      lastDiff_sus = { x: 0, y: 0 };
       initialPos_sus = sus_dot.getBoundingClientRect();
-      currentPos_sus = {x:-initialPos_sus.width/2, y:0};
+      currentPos_sus = { x: -initialPos_sus.width / 2, y: 0 };
       reset_sus_dot();
     }
   }
 }
 
-function get_dragged_coords(person){
-  let dot_centre_x = person.getBoundingClientRect().left + 0.5*person.clientWidth;
-  let dot_centre_y = person.getBoundingClientRect().top + 0.5*person.clientHeight;
-  let room_left = room_visual.getBoundingClientRect().left ;
-  let room_bottom = room_visual.getBoundingClientRect().top + room_visual.clientHeight;
+function get_dragged_coords(person) {
+  let dot_centre_x =
+    person.getBoundingClientRect().left + 0.5 * person.clientWidth;
+  let dot_centre_y =
+    person.getBoundingClientRect().top + 0.5 * person.clientHeight;
+  let room_left = room_visual.getBoundingClientRect().left;
+  let room_bottom =
+    room_visual.getBoundingClientRect().top + room_visual.clientHeight;
   let room_length = document.getElementById("room-length").value;
   let room_width = document.getElementById("room-width").value;
 
   let x_vis = dot_centre_x - room_left;
   let y_vis = room_bottom - dot_centre_y;
-  let x_person = round(x_vis / room_visual.clientWidth * room_length, 2);
-  let y_person = round(y_vis / room_visual.clientHeight * room_width, 2);
-  if (person == source_dot){
+  let x_person = round((x_vis / room_visual.clientWidth) * room_length, 2);
+  let y_person = round((y_vis / room_visual.clientHeight) * room_width, 2);
+  if (person == source_dot) {
     var x0 = document.getElementById("x0");
-    var y0 = document.getElementById('y0');
-  } else{
+    var y0 = document.getElementById("y0");
+  } else {
     var x0 = document.getElementById("x_e");
-    var y0 = document.getElementById('y_e');
+    var y0 = document.getElementById("y_e");
   }
   x0.value = x_person;
   y0.value = y_person;
@@ -236,7 +252,7 @@ function get_dragged_coords(person){
   y0.nextElementSibling.value = y_person;
 }
 
-/* to be removed later, thanks firefox 
+/* to be removed later, thanks firefox
 function allowDrop(ev) {
   // for Room-visual to allow source/receiver to be dropped back onto it.
   ev.preventDefault();
@@ -315,11 +331,11 @@ function dragSus(ev){
     var y0 = document.getElementById('y_e');
     var l = document.getElementById('room-length').value;
     var w = document.getElementById('room-width').value;
-    
+
     //pass new coordinates to input
     var y_i = bounds.getBoundingClientRect().top;
     var x_i = bounds.getBoundingClientRect().left;
-    
+
     x_inf_temp = round((ev.clientX - x_i)/scale_factor, 2);
     y_inf_temp = round((ev.clientY - y_i)/scale_factor, 2);
 
@@ -327,7 +343,7 @@ function dragSus(ev){
     if(x0.value<0){x0.value=0;}
     else if(x0.value>l){x0.value=l;}
     x0.nextElementSibling.value = x0.value;
-    
+
     y0.value = w - y_inf_temp;
     if(y0.value<0){y0.value=0;}
     else if(y0.value>w){y0.value=w;}
@@ -355,7 +371,7 @@ function dragSusend(ev){
     }
     else{
         dot.style.left = (x0.value * scale_factor) + 'px';
-        dot.style.bottom = (y0.value * scale_factor) + 'px'; 
+        dot.style.bottom = (y0.value * scale_factor) + 'px';
         dot.style.transform = "translate(-50%, 50%)";
     }
 }
@@ -370,16 +386,16 @@ function inf_mask_visual() {
     frame.innerHTML = " ";
   } else if (choice == 0.35) {
     frame.innerHTML =
-      '<img src="images/bara-buri-cloth.jpg" style="width: 80px;"></img>';
+      '<img src="images/bara-buri-cloth.jpg" style="width: 50px;"></img>';
   } else if (choice == 0.5) {
     frame.innerHTML =
-      '<img src="images/bara-buri-cloth.jpg" style="width: 80px;"></img>';
+      '<img src="images/bara-buri-cloth.jpg" style="width: 50px;"></img>';
   } else if (choice == 0.59) {
     frame.innerHTML =
-      '<img src="images/marek-studzinski.jpg" style="width: 80px;"></img>';
+      '<img src="images/marek-studzinski.jpg" style="width: 50px;"></img>';
   } else if (choice == 0.9) {
     frame.innerHTML =
-      '<img src="images/obi-N95.jpg" style="width: 80px;"></img>';
+      '<img src="images/obi-N95.jpg" style="width: 50px;"></img>';
   } else if (choice == "customOption") {
     frame.innerHTML = " ";
   }
@@ -394,13 +410,13 @@ function sus_mask_visual() {
     frame.innerHTML = " ";
   } else if (choice == 0.2) {
     frame.innerHTML =
-      '<img src="images/bara-buri-cloth.jpg" style="width: 200px;"></img>';
+      '<img src="images/bara-buri-cloth.jpg" style="width: 50px;"></img>';
   } else if (choice == 0.5) {
     frame.innerHTML =
-      '<img src="images/marek-studzinski.jpg" style="width: 200px;"></img>';
+      '<img src="images/marek-studzinski.jpg" style="width: 50px;"></img>';
   } else if (choice == 0.9) {
     frame.innerHTML =
-      '<img src="images/obi-N95.jpg" style="width: 200px;"></img>';
+      '<img src="images/obi-N95.jpg" style="width: 50px;"></img>';
   } else if (choice == "customOption") {
     frame.innerHTML = " ";
   }
