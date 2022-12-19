@@ -41,12 +41,18 @@ D-i-m-i work done on mask icons
       <!-- <div class="banner-top"> -->
         <!-- <div class="row"> -->
           <!-- <div class="col col-6"> -->
-      <div style="display: flex; margin-bottom: 10px; justify-content: space-between;">
+      <div style="display: flex; margin-bottom: 10px; justify-content: space-between; border-bottom: 1px solid black; padding-bottom: 10px">
         <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 10%; min-width: 100px; height: fit-content;">
-        <h1 style="margin: 0 0 0 15px; font-size: calc(1em + 1.5vw)">Airborne Virus Risk Calculator</h1>
+        <div style="display: flex; align-items: center;">
+          <h1 style="margin: 0 0 0 15px; font-size: calc(1em + 1.5vw); text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);">Airborne Virus Risk Calculator</h1>
+        </div>
         <!-- <div style="display: flex;"> -->
-        <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="margin-left: 15px; width: 10%; height: fit-content; min-width: 80px; box-shadow: var(--box-shadow)">
-        <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: 10%; height: fit-content; min-width: 80px; box-shadow: var(--box-shadow); margin-left: 10px;">
+        <!-- <div style="display: flex; align-items: center;"> -->
+          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="margin-left: 15px; width: 10%; height: fit-content; min-width: 80px; box-shadow: var(--box-shadow); margin-top: 10px">
+        <!-- </div> -->
+        <!-- <div style="display: flex; align-items: center;"> -->
+          <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: 8%; height: fit-content; min-width: 80px; box-shadow: var(--box-shadow); margin: 0 43px 0 10px; margin-top: 10px">
+        <!-- </div> -->
         <!-- </div> -->
       </div>
           <!-- </div> -->
@@ -245,7 +251,6 @@ D-i-m-i work done on mask icons
                 </select><input type="range" id="occ-mask-custom" name="occ-mask-custom" style="display:none;" min="0" max="100" step="1" value="0"
                 oninput="this.nextElementSibling.value = this.value + '% efficency'; this.nextElementSibling.style='display:inline';"> </input>
                 <output style="display:none">0% efficiency</output>
-                <span class="mask_pic" id="occ_mask_pic"> </span>
             </div>
           <!-- </div> -->
         </div>
@@ -442,7 +447,7 @@ D-i-m-i work done on mask icons
             <div>
               <p class="h2-local">Dynamic 2D-room representation</p>
             </div>
-            <div>
+            <div style="margin-top: 5px;">
               <span class="hovertext" text-hover="This is the placholder text for the card description">
                 <img src="images/info_mark.png" alt="card information" class="question-mark">
               </span>
@@ -450,19 +455,30 @@ D-i-m-i work done on mask icons
           </div>
           <!-- Room rectangle can be dragged to resize.
             and the Infectious person dot can be dragged to be repositioned.-->
-          <div style="display: flex;">
-              <div class="room-visual" id="room-visual" ondragover="allowDrop(event);">
-            <!-- <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div> -->
+          <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
             <div style="display: flex;">
-              <!--<div class="infectious-avatar" id="source_dot" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', this.id);" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>-->
-              <!--<div class="infectious-avatar" id="susceptible_dot" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', this.id);" ondrag="dragSus(event);" ondragend="dragSusend(event);"></div>-->
-              <div class="infectious-avatar" id="source_dot"></div>
-              <div class="susceptible-avatar" id="susceptible_dot"></div>
-              <div>
-                <span class="mask_pic" id="inf_mask_pic"> </span>
+              <p style="margin: 0px 5px 5px 5px;"><strong>Masks worn</strong></p>
+              <div style="display: flex;">
+                <div style="margin-bottom: 10px">
+                  <img src="images/infected_person.png" alt="infectious_person_illustration" style="aspect-ratio: 1/1; width: 40px;">
+                  <span class="mask_pic" id="inf_mask_pic"></span>
+                </div>
+                <div>
+                  <img src="images/susceptible_person.png" alt="susceptible_person_illustration" style="aspect-ratio: 1/1; width: 40px;">
+                  <span class="mask_pic" id="occ_mask_pic"> </span>
+                </div>
               </div>
             </div>
-          </div>
+            <div class="room-visual" id="room-visual" ondragover="allowDrop(event);">
+              <!-- <div class="drag_dot" id="source_dot" draggable="true" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div> -->
+                <div style="display: flex;">
+                <!--<div class="infectious-avatar" id="source_dot" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', this.id);" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>-->
+                <!--<div class="infectious-avatar" id="susceptible_dot" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', this.id);" ondrag="dragSus(event);" ondragend="dragSusend(event);"></div>-->
+                  <div class="infectious-avatar" id="source_dot"></div>
+                  <div class="susceptible-avatar" id="susceptible_dot"></div>
+                </div>
+              </div>
+
           <!--
           <div>
             <p style="margin: 0px 0px 5px 5px;"><strong>Mask worn:</strong></p>
@@ -481,23 +497,14 @@ D-i-m-i work done on mask icons
           <br>
         </div>
 
-        <div>
-          <p style="margin: 0px 0px 5px 5px;"><strong>Mask worn:</strong></p>
-          <div style="display: flex">
-          <div>
-            <img src="images/infected_person.png" alt="infectious_person_illustration" style="aspect-ratio: 1/1; width: 40px;">
-          </div>
-          <div>
-          </div>
-          </div>
-        </div>
+
 
         <div style="display: flex; flex-direction: column;">
           <div style="display: flex">
             <div>
               <p class="h2-local">3D-room and air circulation illustration</p>
             </div>
-            <div>
+            <div style="margin-top: 5px;">
               <span class="hovertext" text-hover="This is the placholder text for the card description">
                 <img src="images/info_mark.png" alt="card information" class="question-mark">
               </span>
@@ -512,11 +519,11 @@ D-i-m-i work done on mask icons
       <div style="display: flex; margin-top: 20px; justify-content: space-between;">
         <div style="display: flex; flex-direction: column;">
           <div>
-            <h2 style="font-size: var(--font-size-results)">Results</h2>
+            <h2>Results</h2>
           </div>
           <div>
-            <button type="button" onclick="Run_no_modes()" class="primary-button">Run</button>
-            <button type="button" onclick="reset_results();" class="primary-button" style="background-color: var(--stop-button-color); width: var(--stop-button-width)">Stop</button>
+            <button type="button" onclick="Run_no_modes()" class="results-button">Run</button>
+            <button type="button" onclick="reset_results();" class="results-stop-button">Stop</button>
           </div>
 
 
@@ -554,9 +561,9 @@ D-i-m-i work done on mask icons
       </div>
       <div id="Explore_more_container" style="display: none; margin-top: 15px;">
         <div>
-          <h3 style="font-size: var(--font-size-results)">Calculate the concentration and risk at a specific position:</h3>
+          <h3 style="font-size: var(--font-size-results)">Calculate the concentration and risk at a specific position</h3>
           <button type="button" onclick="Run_position()" class="primary-button">Run</button>
-          <button type="button" onclick="reset_results()" class="primary-button" style="background-color: var(--stop-button-color); width: var(--stop-button-width)">Stop</button>
+          <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
           </div>
 
           <!-- <div class="loader" id="loading" style="display:none"></div> -->
@@ -577,9 +584,9 @@ D-i-m-i work done on mask icons
           <br>
 
           <div>
-          <h3 style="font-size: var(--font-size-results)">Calculate the concentration throughout the room at the end of the event:</h3>
+          <h3 style="font-size: var(--font-size-results)">Calculate the concentration throughout the room at the end of the event</h3>
           <button type="button" onclick="Run_C_contour()" class="primary-button">Run</button>
-          <button type="button" onclick="reset_results()" class="primary-button" style="background-color: var(--stop-button-color); width: var(--stop-button-width)">Stop</button>
+          <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
         </div>
         <!-- <div class="loader" id="loading2" style="display:none"></div> -->
         <div class="progress-bar-local">
@@ -589,9 +596,9 @@ D-i-m-i work done on mask icons
         <div class="chart" id="conc_contour" style="display:none"> </div> <br>
 
         <div>
-          <h3 style="font-size: var(--font-size-results)">Calculate the average concentration in the room:</h3>
+          <h3 style="font-size: var(--font-size-results)">Calculate the average concentration in the room</h3>
           <button type="button" onclick="Run_avg_C()" class="primary-button">Run</button>
-          <button type="button" onclick="reset_results()" class="primary-button" style="background-color: var(--stop-button-color); width: var(--stop-button-width)">Stop</button>
+          <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
         </div><br>
 
           <!-- loading bar to show progress of model-->
@@ -606,9 +613,9 @@ D-i-m-i work done on mask icons
 
 
           <div>
-            <h3 style="font-size: var(--font-size-results)">Calculate the average infection risk in the room:</h3>
+            <h3 style="font-size: var(--font-size-results)">Calculate the average infection risk in the room</h3>
             <button type="button" onclick="Run_avg_P()" class="primary-button">Run</button>
-            <button type="button" onclick="reset_results()" class="primary-button" style="background-color: var(--stop-button-color); width: var(--stop-button-width)">Stop</button>
+            <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
           </div><br>
           <!-- loading bar to show progress of model-->
           <div class="progress-bar-local">
@@ -620,7 +627,7 @@ D-i-m-i work done on mask icons
             <span id="purifier" style="display:none"> </span>
           </div>
       </div>
-      <footer>Credits</footer>
+      <footer style="margin-top: 10px">Credits</footer>
     </div>
       <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
       <script src='script/webapp_form.js'></script>
