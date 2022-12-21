@@ -41,17 +41,19 @@ D-i-m-i work done on mask icons
       <!-- <div class="banner-top"> -->
         <!-- <div class="row"> -->
           <!-- <div class="col col-6"> -->
-      <div style="display: flex; margin-bottom: 10px; justify-content: space-between; border-bottom: 1px solid black; padding-bottom: 10px">
-        <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 10%; min-width: 100px; height: fit-content;">
+      <div style="display: flex; margin-bottom: 10px; justify-content: space-between; border-bottom: 1px solid black;">
+        <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 13%; min-width: 120px; max-width: 210px; height: fit-content; margin: 10px">
         <div style="display: flex; align-items: center;">
-          <h1 style="margin: 0 0 0 15px; font-size: calc(1em + 1.5vw); text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);">Airborne Virus Risk Calculator</h1>
+          <h1 style="margin: 0 0 0 15px; font-size: calc(0.8em + 1.5vw); text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);">Airborne Virus Risk Calculator</h1>
         </div>
         <!-- <div style="display: flex;"> -->
         <!-- <div style="display: flex; align-items: center;"> -->
-          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="margin-left: 15px; width: 10%; height: fit-content; min-width: 80px; box-shadow: var(--box-shadow); margin-top: 10px">
-        <!-- </div> -->
+        <div style="text-align: right; width: 220px; display: flex; align-items: center;">
+          <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: var(--logo-width); height: var(--logo-height); min-width: var(--logo-min-width); margin: var(--logo-margin)">
+          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="width: var(--logo-width); height: fit-content; min-width: var(--logo-min-width); margin: var(--logo-margin)">
+        </div>
+          <!-- </div> -->
         <!-- <div style="display: flex; align-items: center;"> -->
-          <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: 8%; height: fit-content; min-width: 80px; box-shadow: var(--box-shadow); margin: 0 43px 0 10px; margin-top: 10px">
         <!-- </div> -->
         <!-- </div> -->
       </div>
@@ -87,7 +89,7 @@ D-i-m-i work done on mask icons
             </p>
           </div>
         </div>
-        <div class="embedded-video col">
+        <div class="embedded-video col" style="min-height: 285px;">
           <!-- <img src="images/virus.jpg" alt="virus_illustration" style="height: 406px;"> -->
           <iframe width="90%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
@@ -457,7 +459,7 @@ D-i-m-i work done on mask icons
             and the Infectious person dot can be dragged to be repositioned.-->
           <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
             <div style="display: flex;">
-              <p style="margin: 0px 5px 5px 5px;"><strong>Masks worn</strong></p>
+              <p style="margin: 0px 5px 5px 0;"><strong>Masks worn</strong></p>
               <div style="display: flex;">
                 <div style="margin-bottom: 10px">
                   <img src="images/infected_person.png" alt="infectious_person_illustration" style="aspect-ratio: 1/1; width: 40px;">
@@ -516,8 +518,8 @@ D-i-m-i work done on mask icons
         </div>
       </div>
 
-      <div style="display: flex; margin-top: 20px; justify-content: space-between;">
-        <div style="display: flex; flex-direction: column;">
+      <hr style="border: 1px solid black;">
+      <div style="display: flex; flex-direction: column;">
           <div>
             <h2>Results</h2>
           </div>
@@ -532,30 +534,31 @@ D-i-m-i work done on mask icons
             <div class="the-bar" id="the-bar" style="display:none;"></div>
           </div>
         </div>
-        <div id="output-msg" style="display: none">
-          <div style="display: flex; flex-direction: column;">
-            <div>
-              <h2>Output Message</h2>
-            </div>
-            <div style="box-shadow:  var(--box-shadow); border-radius: var(--border-radius); ">
-              <p class="output-message"><span id="risk_avg" style="display:none"></span><span id="infected" style="display:none"></span></p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div id="chart_area" style="display: none">
+        <div style="display: flex; margin-top: 10px; justify-content: space-between; flex-wrap: wrap">
+          <div id="output-msg" style="display: none">
             <div style="display: flex; flex-direction: column;">
-              <div>
-                <h2>Infection risk at the end of the event</h2>
+              <div style="margin-top: 15px;">
+                <h3>% infection</h3>
               </div>
-                <div class="chart">
-                  <!-- <p id="chart_time"></p> -->
-                  <div id='inf-contour' style="display:none"> </div>
+              <!-- <div style="box-shadow:  var(--box-shadow); border-radius: var(--border-radius); margin-bottom: 15px"> -->
+                <p class="output-message"><span id="risk_avg" style="display:none"></span><span id="infected" style="display:none"></span></p>
+              <!-- </div> -->
+            </div>
+          </div>
+          <div>
+            <div id="chart_area" style="display: none">
+              <div style="display: flex; flex-direction: column;">
+                <div>
+                  <h3>Infection risk at the end of the event</h3>
                 </div>
+                  <div class="chart">
+                    <!-- <p id="chart_time"></p> -->
+                    <div id='inf-contour' style="display:none"> </div>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       <div style="margin-top: 10px;">
         <button type="button" class="secondary-button" onclick="explore_more()">Explore more</button>
       </div>
@@ -581,25 +584,27 @@ D-i-m-i work done on mask icons
           </div>
 
           </div>
-          <br>
+          <!-- <br> -->
 
-          <div>
-          <h3 style="font-size: var(--font-size-results)">Calculate the concentration throughout the room at the end of the event</h3>
-          <button type="button" onclick="Run_C_contour()" class="primary-button">Run</button>
-          <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
-        </div>
+          <div style="margin-top: 20px;">
+            <h3 style="font-size: var(--font-size-results)">Calculate the concentration throughout the room at the end of the event</h3>
+            <button type="button" onclick="Run_C_contour()" class="primary-button">Run</button>
+            <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
+          </div>
         <!-- <div class="loader" id="loading2" style="display:none"></div> -->
         <div class="progress-bar-local">
           <div class="the-bar" id="C-contour-loading" style="display:none;">   </div>
         </div>
 
-        <div class="chart" id="conc_contour" style="display:none"> </div> <br>
+        <div class="chart" id="conc_contour" style="display:none"> </div>
+        <!-- <br> -->
 
-        <div>
+        <div style="margin-top: 30px;">
           <h3 style="font-size: var(--font-size-results)">Calculate the average concentration in the room</h3>
           <button type="button" onclick="Run_avg_C()" class="primary-button">Run</button>
           <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
-        </div><br>
+        </div>
+        <!-- <br> -->
 
           <!-- loading bar to show progress of model-->
           <div class="progress-bar-local">
@@ -612,11 +617,12 @@ D-i-m-i work done on mask icons
           </div>
 
 
-          <div>
+          <div style="margin-top: 30px;">
             <h3 style="font-size: var(--font-size-results)">Calculate the average infection risk in the room</h3>
             <button type="button" onclick="Run_avg_P()" class="primary-button">Run</button>
             <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
-          </div><br>
+          </div>
+          <!-- <br> -->
           <!-- loading bar to show progress of model-->
           <div class="progress-bar-local">
             <div class="the-bar" id="P-avg-loading" style="display:none;">   </div>
