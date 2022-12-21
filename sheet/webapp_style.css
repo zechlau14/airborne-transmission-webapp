@@ -69,6 +69,7 @@
   background-color: grey;
   color: white;
   text-align: center;
+  margin-top: 10px;
 }
 
 .the-bar {
@@ -78,8 +79,8 @@
 }
 
 .chart {
-  width: 40%;
-  margin: 0 10px 0 10px;
+  /* width: 40%; */
+  /* margin: 0 10px 0 10px; */
   /* border: 1px solid black; */
 }
 
@@ -93,9 +94,10 @@
   background-image: linear-gradient(#ffffff, #f1aead);
   position: relative;
   box-shadow: var(--box-shadow);
-  padding: 10px;
+  /* padding: 10px; */
   margin-bottom: 20px;
   border-bottom: 1px solid black;
+  padding-bottom: 10px;
 }
 
 .banner-top {
@@ -366,13 +368,15 @@ a:hover::before {
 
 .output-message {
   border: 7px solid #087e8b;
-  width: 700px;
-  height: 100px;
+  width: 100%;
+  /* height: 100px; */
   padding: 10px;
   font-size: 23px;
   font-weight: bold;
-  margin: 0 0 0 0;
+  margin: 0 0 30px 0;
   border-radius: 12px;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
 }
 
 .room-air-illustration {
@@ -380,6 +384,7 @@ a:hover::before {
   border-radius: 12px;
   box-shadow: var(--box-shadow);
   width: 80%;
+  margin-bottom: 15px;
 }
 
 :root {
@@ -389,6 +394,10 @@ a:hover::before {
   --stop-button-color: #c81d25;
   --stop-button-width: 6%;
   --font-size-results: calc(1em + 0.5vw);
+  --logo-min-width: 45px;
+  --logo-width: 50%;
+  --logo-height: fit-content;
+  --logo-margin: 6%;
 }
 
 .card-headings {
@@ -445,6 +454,10 @@ a:hover::before {
   flex-direction: row;
   flex-wrap: wrap;
   clear: both;
+}
+
+iframe {
+  margin-right: -13px;
 }
 
 * {
