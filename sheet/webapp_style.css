@@ -398,6 +398,7 @@ a:hover::before {
   --logo-width: 50%;
   --logo-height: fit-content;
   --logo-margin: 6%;
+  --room-cards-width: 500px;
 }
 
 .card-headings {
