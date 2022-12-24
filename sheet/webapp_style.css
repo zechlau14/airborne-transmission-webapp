@@ -85,8 +85,9 @@
 }
 
 .container-local {
-  margin: 0px auto;
-  background-color: #f7f6f7;
+  margin: 0px 30px;
+  /* background-color: #f7f6f7; */
+  background-color: white;
 }
 
 .banner {
@@ -157,7 +158,7 @@ body {
 
 .controls-card {
   width: 540px;
-  height: 335px;
+  height: 370px;
   background-image: linear-gradient(#ffffff, #f1aead);
   border-radius: 12px;
   box-shadow: var(--box-shadow);
@@ -234,7 +235,7 @@ body {
 }
 
 .controls-plots-area {
-  margin: 0px 15px 0px 15px;
+  /* margin: 0px 15px 0px 15px; */
 }
 
 .secondary-button {
@@ -398,7 +399,8 @@ a:hover::before {
   --logo-width: 50%;
   --logo-height: fit-content;
   --logo-margin: 6%;
-  --room-cards-width: 500px;
+  --room-cards-width: 85vw;
+  --room-cards-max-width: 500px;
 }
 
 .card-headings {
