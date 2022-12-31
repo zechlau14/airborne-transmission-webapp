@@ -218,16 +218,17 @@ function Run_no_modes() {
           type: "contour",
         },
       ];
-      Plotly.newPlot(P_contour_chart, datapt, { margin: { t: 0 } });
 
-      risk_avg_print.innerHTML =
+      Plotly.newPlot(P_contour_chart, datapt, { margin: { t: 0 } }, {responsive: true});
+
+      risk_avg_print.textContent =
         "Average infection risk from airborne transmission in the room is " +
         round(P_avg * 100, 1) +
         "%. ";
       inf_print.innerHTML =
         "ie. <output>" +
         round(P_avg * 100, 0) +
-        "</output> out of <input type='number' value='100' min='0' step='1' style='width:85px' oninput='this.previousElementSibling.value = round(this.value*" +
+        "</output> out of <input type='number' value='100' min='0' max='10000' step='1' style='width:85px' oninput='this.previousElementSibling.value = round(this.value*" +
         P_avg +
         ",0)'> </input> people in the room will likely be infected.";
 
@@ -344,7 +345,7 @@ function Run_position() {
           yaxis: {
             title: { text: "Concentration (infectious particles / m^3)" },
           },
-        });
+        }, {responsive: true});
         C_sus_chart.style.display = "block";
       } else {
         //plot Risk graph
@@ -359,7 +360,7 @@ function Run_position() {
           margin: { t: 0 },
           xaxis: { title: { text: "Time (minutes)" } },
           yaxis: { title: { text: "Infection Risk" } },
-        });
+        }, {responsive: true});
         P_sus_chart.style.display = "block";
       }
 
@@ -411,7 +412,10 @@ function Run_C_contour() {
           type: "contour",
         },
       ];
-      Plotly.newPlot(C_contour_chart, datapt, { margin: { t: 0 } });
+      var config = {responsive: true};
+      Plotly.newPlot(C_contour_chart, datapt, { margin: { t: 0 } }, config);
+
+      var chart_height = round(w/l * 60, 0);
       C_contour_chart.style.display = "block";
     } else {
       for (let j = 0; j < yy.length; j++) {
@@ -499,7 +503,7 @@ function Run_avg_C() {
         yaxis: {
           title: { text: "Average Concentration (infectious particles / m^3)" },
         },
-      });
+      }, {responsive: true});
 
       C_avg_loader.style.display = "none";
       C_avg_chart.style.display = "block";
@@ -588,7 +592,7 @@ function Run_avg_P() {
         margin: { t: 0 },
         xaxis: { title: { text: "Time (minutes)" } },
         yaxis: { title: { text: "Infection Risk" } },
-      });
+      }, {responsive: true});
 
       P_avg_loader.style.display = "none";
       P_avg_chart.style.display = "block";

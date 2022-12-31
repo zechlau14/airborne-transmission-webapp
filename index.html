@@ -33,6 +33,7 @@ D-i-m-i work done on mask icons
     <!-- <link rel="stylesheet" href="sheet/range_style.css"> -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
     <title>Airborne Virus Risk Calculator</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body class="body">
@@ -360,10 +361,10 @@ D-i-m-i work done on mask icons
                   <div class="control-padding">
                     <label for="room-presets">Presets</label><br>
                     <div style="display: flex; flex-direction: column;">
-                      <div><input type="radio" name="room-presets" id="classroom-choice" onclick="room_presets(id)">Classroom / Living Room</input></div>
+                      <div><input type="radio" name="room-presets" id="classroom-choice" onclick="room_presets(id)" checked="checked">Classroom / Living Room</input></div>
                       <div><input type="radio" name="room-presets" id="office-choice" onclick="room_presets(id)">Personal Office / Room </input></div>
                       <div><input type="radio" name="room-presets" id="reception-choice" onclick="room_presets(id)">Reception</input></div>
-                      <div><input type="radio" name="room-presets" id="custom-room-preset" onclick="room_presets(id)" checked="checked">Custom</input></div>
+                      <div><input type="radio" name="room-presets" id="custom-room-preset" onclick="room_presets(id)">Custom</input></div>
                     </div>
                   </div>
 
@@ -418,8 +419,8 @@ D-i-m-i work done on mask icons
                 <div class="control-padding">
                   <label for="talk">Activity</label>
                   <select id="talk" name="talk" onchange="show_hide_custom_percent(this)">
-                    <option value="0" selected> Just breathing</option>
-                    <option value="100"> Just talking </option>
+                    <option value="0"> Just breathing</option>
+                    <option value="100" selected> Just talking </option>
                     <option value="customOption">Choose the % of time talking</option>
                   </select>
                   <input type="range" id="talk-custom" name="talk-custom" style="display:none;" min="0" max="100" step="1" value="50"
@@ -555,15 +556,16 @@ D-i-m-i work done on mask icons
             </div>
           </div>
           <div>
-            <div id="chart_area" style="display: none">
+            <div id="chart_area" style="display: none; width: 100vw">
               <div style="display: flex; flex-direction: column;">
                 <div>
                   <h3>Infection risk at the end of the event</h3>
                 </div>
-                  <div class="chart">
-                    <!-- <p id="chart_time"></p> -->
-                    <div id='inf-contour' style="display:none"> </div>
-                  </div>
+                <div id='inf-contour' class="chart" style="display:none; max-width: 55vw"> </div>
+                  <!-- <div class="chart">
+                     <p id="chart_time"></p> 
+                     <div id='inf-contour' style="display:none"> </div>
+                  </div> -->
               </div>
             </div>
           </div>
@@ -585,11 +587,11 @@ D-i-m-i work done on mask icons
 
           <div class="chart_container">
           <div class="chart">
-          <div id="conc-output" style="display:none"> </div>
+          <div id="conc-output" style="display:none; max-width:45vw;"> </div>
           </div>
 
           <div class="chart">
-          <div id="risk-output" style="display:none"> </div>
+          <div id="risk-output" style="display:none; max-width:45vw;"> </div>
           </div>
 
           </div>
@@ -605,7 +607,8 @@ D-i-m-i work done on mask icons
           <div class="the-bar" id="C-contour-loading" style="display:none;">   </div>
         </div>
 
-        <div class="chart" id="conc_contour" style="display:none"> </div>
+        <div class="chart" id="conc_contour" style="display:none; max-width: 60vw;"> </div>
+        
         <!-- <br> -->
 
         <div style="margin-top: 30px;">
@@ -621,8 +624,8 @@ D-i-m-i work done on mask icons
           </div>
 
           <div class="chart">
-          <div id='C_avg-time'> </div>
-          <span id="avg" style="display:none"> </span>
+          <div id='C_avg-time' style="max-width: 60vw;"> </div>
+          <span id="avg" style="display:none;"> </span>
           </div>
 
 
@@ -638,13 +641,12 @@ D-i-m-i work done on mask icons
           </div>
 
           <div class="chart">
-            <div id='P_avg-time'> </div>
+            <div id='P_avg-time' style="max-width: 60vw;"> </div>
             <span id="purifier" style="display:none"> </span>
           </div>
       </div>
       <footer style="margin-top: 10px">Credits</footer>
     </div>
-      <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
       <script src='script/webapp_form.js'></script>
       <script src="script/webapp_room.js"></script>
       <script src="script/webapp_run.js"></script>
