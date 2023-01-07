@@ -219,7 +219,12 @@ function Run_no_modes() {
         },
       ];
 
-      Plotly.newPlot(P_contour_chart, datapt, { margin: { t: 0 } }, {responsive: true});
+      Plotly.newPlot(
+        P_contour_chart,
+        datapt,
+        { margin: { t: 0 } },
+        { responsive: true }
+      );
 
       risk_avg_print.textContent =
         "Average infection risk from airborne transmission in the room is " +
@@ -339,13 +344,18 @@ function Run_position() {
             y: zC,
           },
         ];
-        Plotly.newPlot(C_sus_chart, dataptC, {
-          margin: { t: 0 },
-          xaxis: { title: { text: "Time (minutes)" } },
-          yaxis: {
-            title: { text: "Concentration (infectious particles / m^3)" },
+        Plotly.newPlot(
+          C_sus_chart,
+          dataptC,
+          {
+            margin: { t: 0 },
+            xaxis: { title: { text: "Time (minutes)" } },
+            yaxis: {
+              title: { text: "Concentration (infectious particles / m^3)" },
+            },
           },
-        }, {responsive: true});
+          { responsive: true }
+        );
         C_sus_chart.style.display = "block";
       } else {
         //plot Risk graph
@@ -356,11 +366,16 @@ function Run_position() {
             y: zP,
           },
         ];
-        Plotly.newPlot(P_sus_chart, dataptP, {
-          margin: { t: 0 },
-          xaxis: { title: { text: "Time (minutes)" } },
-          yaxis: { title: { text: "Infection Risk" } },
-        }, {responsive: true});
+        Plotly.newPlot(
+          P_sus_chart,
+          dataptP,
+          {
+            margin: { t: 0 },
+            xaxis: { title: { text: "Time (minutes)" } },
+            yaxis: { title: { text: "Infection Risk" } },
+          },
+          { responsive: true }
+        );
         P_sus_chart.style.display = "block";
       }
 
@@ -412,10 +427,10 @@ function Run_C_contour() {
           type: "contour",
         },
       ];
-      var config = {responsive: true};
+      var config = { responsive: true };
       Plotly.newPlot(C_contour_chart, datapt, { margin: { t: 0 } }, config);
 
-      var chart_height = round(w/l * 60, 0);
+      var chart_height = round((w / l) * 60, 0);
       C_contour_chart.style.display = "block";
     } else {
       for (let j = 0; j < yy.length; j++) {
@@ -497,13 +512,20 @@ function Run_avg_C() {
           y: C_avg,
         },
       ];
-      Plotly.newPlot(C_avg_chart, dataptC, {
-        margin: { t: 0 },
-        xaxis: { title: { text: "Time (minutes)" } },
-        yaxis: {
-          title: { text: "Average Concentration (infectious particles / m^3)" },
+      Plotly.newPlot(
+        C_avg_chart,
+        dataptC,
+        {
+          margin: { t: 0 },
+          xaxis: { title: { text: "Time (minutes)" } },
+          yaxis: {
+            title: {
+              text: "Average Concentration (infectious particles / m^3)",
+            },
+          },
         },
-      }, {responsive: true});
+        { responsive: true }
+      );
 
       C_avg_loader.style.display = "none";
       C_avg_chart.style.display = "block";
@@ -588,11 +610,16 @@ function Run_avg_P() {
           y: P_avg,
         },
       ];
-      Plotly.newPlot(P_avg_chart, datapt, {
-        margin: { t: 0 },
-        xaxis: { title: { text: "Time (minutes)" } },
-        yaxis: { title: { text: "Infection Risk" } },
-      }, {responsive: true});
+      Plotly.newPlot(
+        P_avg_chart,
+        datapt,
+        {
+          margin: { t: 0 },
+          xaxis: { title: { text: "Time (minutes)" } },
+          yaxis: { title: { text: "Infection Risk" } },
+        },
+        { responsive: true }
+      );
 
       P_avg_loader.style.display = "none";
       P_avg_chart.style.display = "block";
