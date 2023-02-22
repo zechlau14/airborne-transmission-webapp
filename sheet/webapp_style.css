@@ -462,6 +462,15 @@ iframe {
   margin-right: -13px;
 }
 
+span[hover-title]:hover::after {
+  content: attr(hover-title);
+  color: green
+  font-size: 10px;
+  position: absolute;
+  top: -100%;
+  left: 0;
+}
+
 * {
   box-sizing: border-box;
   font-family: Roboto !important;

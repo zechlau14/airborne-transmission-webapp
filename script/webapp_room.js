@@ -397,7 +397,7 @@ function inf_mask_visual() {
     frame.innerHTML =
       '<img src="images/obi-N95.jpg" style="width: 50px;"></img>';
   } else if (choice == "customOption") {
-    frame.innerHTML = " ";
+    frame.innerHTML = "Custom";
   }
 }
 
@@ -418,6 +418,6 @@ function sus_mask_visual() {
     frame.innerHTML =
       '<img src="images/obi-N95.jpg" style="width: 50px;"></img>';
   } else if (choice == "customOption") {
-    frame.innerHTML = " ";
+    frame.innerHTML = "Custom";
   }
 }
