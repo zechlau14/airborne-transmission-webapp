@@ -23,7 +23,7 @@ D-i-m-i work done on mask icons
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="sheet/webapp_style_sans_serif.css">
+    <link rel="stylesheet" href="sheet/webapp_style.css">
     <link rel="stylesheet" href="sheet/hovertext_style.css">
     <!-- CSS only -->
 
@@ -42,8 +42,8 @@ D-i-m-i work done on mask icons
       <!-- <div class="banner-top"> -->
         <!-- <div class="row"> -->
           <!-- <div class="col col-6"> -->
-      <div style="display: flex; margin-bottom: 10px; justify-content: space-between; border-bottom: 1px solid black;">
-        <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 13%; min-width: 80px; max-width: 210px; height: fit-content; margin: 10px">
+      <div style="display: flex; margin-bottom: 10px; padding: 10px 0 10px 0; justify-content: space-between; border-bottom: 1px solid black;">
+        <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 13%; min-width: 80px; max-width: 210px; height: fit-content; margin: 20px 10px 10px 10px;">
         <div style="display: flex; align-items: center;">
           <h1 style="margin: 0 0 0 15px; font-size: calc(0.8em + 1.5vw); text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);">Airborne Virus Risk Calculator</h1>
         </div>
@@ -76,7 +76,7 @@ D-i-m-i work done on mask icons
 
       <!-- <div class="container"> -->
       <div class="banner-text-and-video row">
-        <div class="banner-text col-sm-12 col-lg-8">
+        <div class="banner-text col-sm-12 col-lg-7">
           <div class="description">
             <p>This webapp helps you estimate the spatially varying infection risk from airborne transmission of the SARS-CoV-2 virus in a rectangular indoor space. The model assumes that the infectious particles carrying the virus are carried around the room by a recirculating airflow, diffused due to turbulence in the air and removed by the room’s ventilation system, the natural inactivation of the virus and gravitational settling. For simplicity’s sake, the model only considers a single stationary, asymptomatic, infectious person in the room.</p>
             <p>For a simple explanation of the model and the parameters chosen, please refer <a href="Simple_Explanation.pdf">here</a>.</p>
@@ -92,8 +92,15 @@ D-i-m-i work done on mask icons
         </div>
         <div class="embedded-video col" style="min-height: 285px;">
           <!-- <img src="images/virus.jpg" alt="virus_illustration" style="height: 406px;"> -->
-          <iframe width="90%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <!-- <iframe width="90%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
           <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <img src="images/air_circulation.png" alt="air_circulation_schematic" style="width: 100%; border-radius: 12px;">
+          <div>
+            <span class="hovertext" text-hover="An illustration of the assumption of the recirculating loop formed in the room by the mechanical ventilation.
+            In the blue part of the loop, the air is travelling left to right, while in the green part of the loop, the air is travelling right to left.">
+              <img src="images/info_mark.png" alt="card information" class="question-mark" style="margin-left: 15px">
+            </span>
+          </div>
         </div>
       </div>
     <!-- </div> -->
@@ -101,13 +108,14 @@ D-i-m-i work done on mask icons
 
 
     <div class=controls-plots-area style="margin-top: 30px;">
-      <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-        <div style="display: flex; flex-direction: column;">
-        <h2 class="h2-local">Parameters</h2>
+      <h2 class="h2-local">Parameters</h2>
+      <div style="display: flex; flex-wrap: wrap;">
+        <!-- <div style="display: flex; flex-direction: column;"> -->
         <!-- model inputs -->
-        <div style="display: flex; justify-content: start; flex-direction: column;">
+        <!-- <div style="display: flex; justify-content: start; flex-direction: column;"> -->
 
-          <div class="controls-card" style="width:88vw; max-width: 400px; height:fit-content; min-height: 226px; margin-top: 0px">
+          <div class="controls-card" style="height:fit-content; min-height: 226px; margin-top: 0px width: var(--room-cards-width);
+          max-width: var(--room-cards-max-width); margin-bottom: 10px;">
             <div class="card-headings">
               <p class="h2-local">Ventilation</p>
               <span class="hovertext" text-hover="Ventilation, ie. the injection of air into the room, is assumed to be from mechanical sources.
@@ -146,7 +154,8 @@ D-i-m-i work done on mask icons
             </div>
           </div>
 
-          <div class="controls-card" style="width:88vw; max-width: 400px; height:fit-content; min-height: 226px; margin-bottom: 20px;">
+          <div class="controls-card" style="height:fit-content; min-height: 226px; margin-top: 0px; margin-bottom: 20px; width: var(--room-cards-width);
+          max-width: var(--room-cards-max-width);">
             <div class="card-headings">
               <p class="h2-local">Event</p>
               <span class="hovertext" text-hover="We assume that the room is free of the virus at the beginning of the event.
@@ -191,10 +200,11 @@ D-i-m-i work done on mask icons
               </div>
             <!-- </div> -->
           </div>
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
+    </div>
 
-        <div style="display: flex; flex-direction: column;">
+        <!-- <div style="display: flex; flex-direction: column;">
           <div style="display: flex; justify-content: flex-start;">
             <div>
               <h2 class="h2-local">3D room and air circulation illustration</h2>
@@ -209,8 +219,7 @@ D-i-m-i work done on mask icons
           <div class="room-air-illustration">
             <img src="images/air_circulation.png" alt="air_circulation_schematic" style="width: 100%; border-radius: 12px;">
           </div>
-        </div>
-      </div>
+        </div> -->
 
       <br>
       <!-- <br> -->
@@ -427,7 +436,7 @@ D-i-m-i work done on mask icons
 
               <div class="control-padding">
                 <label for="talk">Activity</label>
-                <select id="talk" name="talk" onchange="show_hide_custom_percent(this)">
+                <select id="talk" name="talk" class="dropdown-width" onchange="show_hide_custom_percent(this)">
                   <option value="0"> Just breathing</option>
                   <option value="100" selected> Just talking </option>
                   <option value="customOption">Choose the % of time talking</option>
@@ -439,7 +448,7 @@ D-i-m-i work done on mask icons
 
               <div class="control-padding" style="padding-bottom: 10px">
                 <label for="inf-mask">Mask worn</label>
-                <select id="inf-mask" name="inf-mask" onchange="inf_mask_visual(); show_hide_custom_percent(this)">
+                <select id="inf-mask" name="inf-mask" class="dropdown-width" onchange="inf_mask_visual(); show_hide_custom_percent(this)">
                   <option value="0" selected> No mask</option>
                   <option value="0.35"> 1-ply Cloth mask (35%)</option>
                   <option value="0.5"> 3-ply Cloth mask (50%)</option>
@@ -482,7 +491,7 @@ D-i-m-i work done on mask icons
                     <!--<select id="occ-act" name="occ-act" onchange="if(this.options[this.selectedIndex].value=='customOption'){
                         this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
                     }"> -->
-                    <select id="occ-act" name="occ-act" onchange="show_hide_custom(this)">
+                    <select id="occ-act" name="occ-act" style="width: 49%;" onchange="show_hide_custom(this)">
                       <option value="6" selected> Sedentary (6 l/min)</option>
                       <option value="18"> Active (18 l/min)</option>
                       <option value="54"> Moderate exercise (54 l/min)</option>
@@ -497,7 +506,7 @@ D-i-m-i work done on mask icons
                     <!--<select id="occ-mask" name="occ-mask" onchange="sus_mask_visual();if(this.options[this.selectedIndex].value=='customOption'){
                         this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
                     }"> -->
-                    <select id="occ-mask" name="occ-mask" onchange="sus_mask_visual(); show_hide_custom_percent(this)">
+                    <select id="occ-mask" class="dropdown-width" name="occ-mask" onchange="sus_mask_visual(); show_hide_custom_percent(this)">
                         <option value="0" selected> No mask</option>
                         <option value="0.2"> 3-ply Cloth mask (20%)</option>
                         <option value="0.5"> Surgical mask (50%)</option>
@@ -654,7 +663,6 @@ D-i-m-i work done on mask icons
           </div>
       </div>
       <footer style="margin-top: 10px">Credits</footer>
-      <a href="index_schematic_banner.html" target="_blank">'Schematic in banner' version</a>
     </div>
       <script src='script/webapp_form.js'></script>
       <script src="script/webapp_room.js"></script>
