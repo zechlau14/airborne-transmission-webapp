@@ -115,12 +115,12 @@
 
 .description {
   font-size: 16px;
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .disclaimer {
   font-size: 13px;
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .banner-text {
@@ -205,7 +205,7 @@ body {
 } */
 
 .h2-local {
-  font-family: sans-serif;
+  font-family: "Roboto";
   font-size: 24px;
   /* font-weight: bold; */
   padding: 0px 0px 0px 0px;
@@ -243,7 +243,7 @@ body {
   border: solid 2px #087e8b;
   background-color: white;
   border-radius: 12px;
-  font: 16px sans-serif;
+  font: 16px Roboto;
   color: #087e8b;
   padding: 0px 10px 0 10px;
   transition: 0.2s;
@@ -462,8 +462,17 @@ iframe {
   margin-right: -13px;
 }
 
+span[hover-title]:hover::after {
+  content: attr(hover-title);
+  color: green
+  font-size: 10px;
+  position: absolute;
+  top: -100%;
+  left: 0;
+}
+
 * {
   box-sizing: border-box;
-  font-family: sans-serif !important;
+  font-family: Roboto !important;
   /* border: 1px solid red !important; */
 }
