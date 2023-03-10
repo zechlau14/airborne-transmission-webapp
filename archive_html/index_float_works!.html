@@ -23,7 +23,7 @@ D-i-m-i work done on mask icons
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="sheet/webapp_style.css">
+    <link rel="stylesheet" href="sheet/webapp_style copy.css">
     <link rel="stylesheet" href="sheet/hovertext_style.css">
     <!-- CSS only -->
 
@@ -77,25 +77,29 @@ D-i-m-i work done on mask icons
       <!-- <div class="container"> -->
       <div class="banner-text-and-video">
         <!-- <div class="banner-text col-sm-8 col-lg-8" style="width: 50%"> -->
-          <div class="embedded-video" style="width: 40%; float:right; max-width: 23vw; min-width: 200px; margin-left: 10px">
-            <!-- <img src="images/virus.jpg" alt="virus_illustration" style="height: 406px;"> -->
-            <!-- <iframe width="90%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-              <img src="images/air_circulation.jpg" alt="air_circulation_schematic" style="border-radius: 12px; width: 100%">
-              <div>
-                <span class="hovertext" text-hover="An illustration of the assumption of the recirculating loop formed in the room by the mechanical ventilation.
-                In the blue part of the loop, the air is travelling left to right, while in the green part of the loop, the air is travelling right to left.">
-                <img src="images/info_mark.png" alt="card information" class="question-mark" style="margin-left: 15px">
-                </span>
-              </div>
-            </div>
           <div class="description">
             <For>This webapp helps you estimate the spatially varying infection risk from airborne transmission of the SARS-CoV-2 virus in a rectangular indoor space. The model assumes that the infectious particles carrying the virus are carried around the room by a recirculating airflow, diffused due to turbulence in the air and removed by the room’s ventilation system, the natural inactivation of the virus and gravitational settling. For simplicity’s sake, the model only considers a single stationary, asymptomatic, infectious person in the room. For a simple explanation of the model and the parameters chosen, please refer <a href="Simple_Explanation.pdf">here</a>. For a full write-up of the scientific basis of the model, please refer to <a href="https://doi.org/10.1098/rspa.2021.0383" target="_blank">our paper</a>.</p>
           </div>
           <!-- <div class="banner-text" style="width: 70%"> -->
           <!-- <div class="embedded-video col" style="min-height: 285px;"> -->
-
+          <div class="embedded-video" style="width: 40%;">
+          <!-- <img src="images/virus.jpg" alt="virus_illustration" style="height: 406px;"> -->
+          <!-- <iframe width="90%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <img src="images/air_circulation.png" alt="air_circulation_schematic" style="border-radius: 12px; aspect-ratio: 2/1; width: 100%">
+            <div>
+              <span class="hovertext" text-hover="An illustration of the assumption of the recirculating loop formed in the room by the mechanical ventilation.
+              In the blue part of the loop, the air is travelling left to right, while in the green part of the loop, the air is travelling right to left.">
+              <img src="images/info_mark.png" alt="card information" class="question-mark" style="margin-left: 15px">
+              </span>
+            </div>
+          </div>
     <!-- </div> -->
+          <div class="disclaimer">
+            <p> <b>Disclaimer</b>:
+              The results from this model, including the estimated infection risk, should be used with caution. Many of the inputs are uncertain due to a lack of data and the evolving nature of the virus. Furthermore, this model only calculates the risk of airborne transmission; it does not include the risk of short-range droplet transmission which can be minimized by social distancing. By using this webapp, you acknowledge its limitations and use it at the user’s own risk. To the fullest extent permitted by law, the authors of the website and app shall have no liability for any loss or damage suffered as a result of users’ use of or reliance on it.
+            </p>
+          </div>
       </div>
     <!-- </div> -->
     </div>
@@ -656,25 +660,8 @@ D-i-m-i work done on mask icons
             <span id="purifier" style="display:none"> </span>
           </div>
       </div>
-      <!-- <div class="disclaimer">
-        <p> <b>Disclaimer</b>:
-          The results from this model, including the estimated infection risk, should be used with caution. Many of the inputs are uncertain due to a lack of data and the evolving nature of the virus. Furthermore, this model only calculates the risk of airborne transmission; it does not include the risk of short-range droplet transmission which can be minimized by social distancing. By using this webapp, you acknowledge its limitations and use it at the user’s own risk. To the fullest extent permitted by law, the authors of the website and app shall have no liability for any loss or damage suffered as a result of users’ use of or reliance on it.
-        </p>
-      </div> -->
+      <footer style="margin-top: 10px">Credits</footer>
     </div>
-    <div style="display:flex; justify-content:center;">
-      <div class="disclaimer" style="margin-top: 5px;">
-        <span class="hovertext" text-hover="The results from this model, including the estimated infection risk, should be used with caution. Many of the inputs are uncertain due to a lack of data and the evolving nature of the virus. Furthermore, this model only calculates the risk of airborne transmission; it does not include the risk of short-range droplet transmission which can be minimized by social distancing. By using this webapp, you acknowledge its limitations and use it at the user’s own risk. To the fullest extent permitted by law, the authors of the website and app shall have no liability for any loss or damage suffered as a result of users’ use of or reliance on it.">
-          Disclaimer (hover over it to read)
-        </span>
-      </div>
-    </div>
-      <div style="display:flex; justify-content:center;">
-        <div>
-          <footer style="margin-top: 10px">Credits</footer>
-        </div>
-      </div>
-
       <script src='script/webapp_form.js'></script>
       <script src="script/webapp_room.js"></script>
       <script src="script/webapp_run.js"></script>
