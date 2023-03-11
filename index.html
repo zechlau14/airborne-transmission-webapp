@@ -44,14 +44,14 @@ D-i-m-i work done on mask icons
           <!-- <div class="col col-6"> -->
       <div style="display: flex; margin-bottom: 10px; padding: 10px 0 10px 0; justify-content: space-between; border-bottom: 1px solid black;">
         <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 13%; min-width: 80px; max-width: 210px; height: fit-content; margin: 20px 10px 10px 10px;">
-        <div style="display: flex; align-items: center;">
+        <div style="display: flex; align-items: center; text-align: center;">
           <h1 style="margin: 0 0 0 15px; font-size: calc(0.8em + 1.5vw); text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);">Airborne Virus Risk Calculator</h1>
         </div>
         <!-- <div style="display: flex;"> -->
         <!-- <div style="display: flex; align-items: center;"> -->
         <div style="text-align: right; width: 220px; display: flex; align-items: center; margin-right: 10px">
           <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: var(--logo-width); height: var(--logo-height); min-width: var(--logo-min-width); margin: var(--logo-margin)">
-          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="width: var(--logo-width); height: fit-content; min-width: var(--logo-min-width); margin: var(--logo-margin)">
+          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="width: 48%; height: fit-content; min-width: var(--logo-min-width); margin: var(--logo-margin); margin-left: 0px;">
         </div>
           <!-- </div> -->
         <!-- <div style="display: flex; align-items: center;"> -->
@@ -335,19 +335,7 @@ D-i-m-i work done on mask icons
           <!-- Room rectangle can be dragged to resize.
             and the Infectious person dot can be dragged to be repositioned.-->
           <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
-            <div style="display: flex;">
-              <p style="margin: 0px 5px 5px 0;"><strong>Masks worn</strong></p>
-              <div style="display: flex;">
-                <div style="margin-bottom: 10px">
-                  <img src="images/infected_person.png" alt="infectious_person_illustration" style="aspect-ratio: 1/1; width: 40px;">
-                  <span class="mask_pic" id="inf_mask_pic">No</span>
-                </div>
-                <div>
-                  <img src="images/susceptible_person.png" alt="susceptible_person_illustration" style="aspect-ratio: 1/1; width: 40px;">
-                  <span class="mask_pic" id="occ_mask_pic"> No </span>
-                </div>
-              </div>
-            </div>
+
             <div style="display: flex; flex-wrap: wrap">
               <div class="controls-card" style="margin-top: 0; margin-bottom: 10px; width: var(--room-cards-width); max-width: var(--room-cards-max-width);">
                 <div class="card-headings">
@@ -396,8 +384,12 @@ D-i-m-i work done on mask icons
                   <div style="display: flex;">
                   <!--<div class="infectious-avatar" id="source_dot" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', this.id);" ondrag='dragInf(event);' ondragend="dragInfend(event);"></div>-->
                   <!--<div class="infectious-avatar" id="susceptible_dot" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', this.id);" ondrag="dragSus(event);" ondragend="dragSusend(event);"></div>-->
-                    <div class="infectious-avatar" id="source_dot"></div>
-                    <div class="susceptible-avatar" id="susceptible_dot"></div>
+                    <div class="infectious-avatar" id="source_dot">
+                      <span class="mask_pic avatar-and-mask" id="inf_mask_pic">No mask</span>
+                    </div>
+                    <div class="susceptible-avatar" id="susceptible_dot">
+                      <span class="mask_pic avatar-and-mask" style="margin-left: 50px;" id="occ_mask_pic">No mask</span>
+                    </div>
                   </div>
               </div>
 
@@ -431,8 +423,8 @@ D-i-m-i work done on mask icons
               <div class="control-padding">
                 <label for="talk">Activity</label>
                 <select id="talk" name="talk" class="dropdown-width" onchange="show_hide_custom_percent(this)">
-                  <option value="0"> Just breathing</option>
-                  <option value="100" selected> Just talking </option>
+                  <option value="0">Breathing</option>
+                  <option value="100" selected>Talking</option>
                   <option value="customOption">Choose the % of time talking</option>
                 </select>
                 <input type="range" id="talk-custom" name="talk-custom" style="display:none;" min="0" max="100" step="1" value="50"
@@ -662,9 +654,9 @@ D-i-m-i work done on mask icons
         </p>
       </div> -->
     </div>
-    <div style="display:flex; justify-content:center;">
-      <div class="disclaimer" style="margin-top: 5px;">
-        <span class="hovertext" text-hover="The results from this model, including the estimated infection risk, should be used with caution. Many of the inputs are uncertain due to a lack of data and the evolving nature of the virus. Furthermore, this model only calculates the risk of airborne transmission; it does not include the risk of short-range droplet transmission which can be minimized by social distancing. By using this webapp, you acknowledge its limitations and use it at the user’s own risk. To the fullest extent permitted by law, the authors of the website and app shall have no liability for any loss or damage suffered as a result of users’ use of or reliance on it.">
+    <div style="display:flex; justify-content:center; margin-top: 20px">
+      <div class="disclaimer" style="margin-top: 5px; font-weight: bold;">
+        <span class="hovertext-disclaimer" style="font-weight: normal" text-hover="The results from this model, including the estimated infection risk, should be used with caution. Many of the inputs are uncertain due to a lack of data and the evolving nature of the virus. Furthermore, this model only calculates the risk of airborne transmission; it does not include the risk of short-range droplet transmission which can be minimized by social distancing. By using this webapp, you acknowledge its limitations and use it at the user’s own risk. To the fullest extent permitted by law, the authors of the website and app shall have no liability for any loss or damage suffered as a result of users’ use of or reliance on it.">
           Disclaimer (hover over it to read)
         </span>
       </div>
@@ -683,3 +675,23 @@ D-i-m-i work done on mask icons
 </body>
 
 </html>
+
+
+
+
+
+<!-- FOR REFERENCE MASKS WORN-->
+
+<!-- <div style="display: flex;">
+  <p style="margin: 0px 5px 5px 0;"><strong>Masks worn</strong></p>
+  <div style="display: flex;">
+    <div style="margin-bottom: 10px">
+      <img src="images/infected_person.png" alt="infectious_person_illustration" style="aspect-ratio: 1/1; width: 40px;">
+      <span class="mask_pic" id="inf_mask_pic">No</span> -->
+    <!-- </div> -->
+    <!-- <div> -->
+      <!-- <img src="images/susceptible_person.png" alt="susceptible_person_illustration" style="aspect-ratio: 1/1; width: 40px;"> -->
+      <!-- <span class="mask_pic" id="occ_mask_pic"> No </span> -->
+    <!-- </div> -->
+  <!-- </div> -->
+<!-- </div> -->
