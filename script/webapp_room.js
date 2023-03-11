@@ -383,7 +383,7 @@ function inf_mask_visual() {
   var choice = document.getElementById("inf-mask").value;
 
   if (choice == 0) {
-    frame.innerHTML = "No";
+    frame.innerHTML = "No mask";
   } else if (choice == 0.35) {
     frame.innerHTML =
       '<img src="images/bara-buri-cloth.jpg" style="width: 50px;"></img>';
@@ -407,7 +407,7 @@ function sus_mask_visual() {
   var choice = document.getElementById("occ-mask").value;
 
   if (choice == 0) {
-    frame.innerHTML = "No";
+    frame.innerHTML = "No mask";
   } else if (choice == 0.2) {
     frame.innerHTML =
       '<img src="images/bara-buri-cloth.jpg" style="width: 50px;"></img>';

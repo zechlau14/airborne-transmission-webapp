@@ -389,7 +389,7 @@ a:hover::before {
   --logo-min-width: 45px;
   --logo-width: 50%;
   --logo-height: fit-content;
-  --logo-margin: 6%;
+  --logo-margin: 4px;
   --room-cards-width: 85vw;
   --room-cards-max-width: 500px;
 }
@@ -473,6 +473,12 @@ iframe {
   font-size: 13px;
   font-family: sans-serif;
   text-align: justify;
-  padding: 6px;
-  font-style: italic;
+  padding: 7px;
+  /* font-style: italic; */
+}
+
+.avatar-and-mask {
+  margin-left: 60px;
+  display: block;
+  width: max-content;
 }

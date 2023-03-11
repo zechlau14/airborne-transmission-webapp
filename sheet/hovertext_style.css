@@ -34,3 +34,33 @@
   opacity: 1;
   visibility: visible;
 }
+
+.hovertext-disclaimer {
+  position: relative;
+  display: block;
+  /* border-bottom: 1px dotted black; */
+}
+
+.hovertext-disclaimer:before {
+  content: attr(text-hover);
+  visibility: hidden;
+  opacity: 0;
+  background-color: black;
+  color: #fff;
+  transition: opacity 1s ease-in-out;
+  white-space: normal;
+  width: 53vw;
+  font-size: 14px;
+  padding: 15px;
+  z-index: 100000;
+  position: absolute;
+  z-index: 1;
+  bottom: 35px;
+  right: -40px;
+  border-radius: 5px;
+}
+
+.hovertext-disclaimer:hover:before {
+  opacity: 1;
+  visibility: visible;
+}
