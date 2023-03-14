@@ -108,7 +108,7 @@ D-i-m-i work done on mask icons
         <!-- model inputs -->
         <!-- <div style="display: flex; justify-content: start; flex-direction: column;"> -->
 
-          <div class="controls-card" style="height:fit-content; min-height: 226px; margin-top: 0px width: var(--room-cards-width);
+          <div class="controls-card" style="height:fit-content; min-height: 226px; margin-top: 0px; width: var(--room-cards-width);
           max-width: var(--room-cards-max-width); margin-bottom: 10px;">
             <div class="card-headings">
               <p class="h2-local">Ventilation</p>
@@ -348,9 +348,11 @@ D-i-m-i work done on mask icons
                   <div class="control-padding">
                     <label for="room-presets">Presets</label><br>
                     <div style="display: flex; flex-direction: column;">
-                      <div><input type="radio" name="room-presets" id="classroom-choice" onclick="room_presets(id)" checked="checked"> Classroom / Living Room</input></div>
-                      <div><input type="radio" name="room-presets" id="office-choice" onclick="room_presets(id)"> Personal Office / Room </input></div>
-                      <div><input type="radio" name="room-presets" id="reception-choice" onclick="room_presets(id)"> Reception</input></div>
+                      <div><input type="radio" name="room-presets" id="classroom-choice" onclick="room_presets(id)"> Classroom </input></div>
+                      <div><input type="radio" name="room-presets" id="office-choice" onclick="room_presets(id)"> Personal Office </input></div>
+                      <div><input type="radio" name="room-presets" id="living-room-choice" onclick="room_presets(id)"> Living Room </input></div>
+                      <div><input type="radio" name="room-presets" id="bedroom-choice" onclick="room_presets(id)" checked="checked"> Bedroom </input></div>
+                      <div><input type="radio" name="room-presets" id="hall-choice" onclick="room_presets(id)"> Hall </input></div>
                       <div><input type="radio" name="room-presets" id="custom-room-preset" onclick="room_presets(id)"> Custom</input></div>
                     </div>
                   </div>
@@ -421,6 +423,21 @@ D-i-m-i work done on mask icons
               </div>
 
               <div class="control-padding">
+                <label for="inf-p"> Breathing rate</label>
+                  <!--<select id="occ-act" name="occ-act" onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                      this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
+                  }"> -->
+                  <select id="inf-p" name="inf-p" style="width: 49%;" onchange="show_hide_custom(this)">
+                    <option value="6" selected> Sedentary (6 l/min)</option>
+                    <option value="18"> Active (18 l/min)</option>
+                    <option value="54"> Moderate exercise (54 l/min)</option>
+                      <option value="customOption">Choose your own breathing rate</option>
+                    </select><input type="range" id="inf-p-custom" name="inf-p-custom" style="display:none;" min="3" step="0.1"
+                    value="6" max="120" oninput="this.nextElementSibling.value = this.value+' l/min';"> </input>
+                    <output style="display:none;">6 l/min</output>
+              </div>
+
+              <div class="control-padding">
                 <label for="talk">Activity</label>
                 <select id="talk" name="talk" class="dropdown-width" onchange="show_hide_custom_percent(this)">
                   <option value="0">Breathing</option>
@@ -473,7 +490,7 @@ D-i-m-i work done on mask icons
                 </div>
 
                 <div class="control-padding">
-                  <label for="occ-act">Activity (breathing rate)</label>
+                  <label for="occ-act"> Breathing rate</label>
                     <!--<select id="occ-act" name="occ-act" onchange="if(this.options[this.selectedIndex].value=='customOption'){
                         this.style.display='none'; this.nextElementSibling.style.display='inline'; this.nextElementSibling.nextElementSibling.style.display='inline';
                     }"> -->

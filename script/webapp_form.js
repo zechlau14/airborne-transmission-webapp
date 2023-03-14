@@ -117,9 +117,14 @@ function room_presets(id){
     var width = document.getElementById("room-width");
     var height = document.getElementById("room-height");
 
-    if (id == "classroom-choice"){
+    if (id == "living-room-choice"){
         length.value = 7.6;
         width.value = 6.1;
+        height.value = 2.8;
+    }
+    if (id == "classroom-choice"){
+        length.value = 8;
+        width.value = 8;
         height.value = 3;
     }
     if (id == "office-choice"){
@@ -127,7 +132,12 @@ function room_presets(id){
         length.value = 4;
         width.value = 4;
     }
-    if (id == "reception-choice"){
+    if (id == "bedroom-choice"){
+        height.value = 2.5;
+        length.value = 5;
+        width.value = 5;
+    }
+    if (id == "hall-choice"){
         height.value = 4;
         width.value = 10;
         length.value = 10;

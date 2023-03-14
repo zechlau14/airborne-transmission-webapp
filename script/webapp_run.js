@@ -5,7 +5,7 @@ let x_o, y_o;
 let time;
 let time_break, break_start;
 let p, mask_in;
-let mask_ex, frac_speak;
+let mask_ex, frac_speak, p_inf;
 let R_b, R;
 let d, s, I_o;
 const r = 1;
@@ -87,6 +87,13 @@ function update_parameters() {
   } else {
     mask_ex = parseFloat(mask_ex);
   }
+  p_inf = document.getElementById("inf-p").value;
+  if (p_inf == "customOption") {
+    p_inf = parseFloat(document.getElementById("inf-p-custom").value);
+  } else {
+    p_inf = parseFloat(p_inf);
+  }
+
 
   // susceptible person parameters: p, mask_in
   mask_in = document.getElementById("occ-mask").value;
@@ -137,11 +144,12 @@ function update_parameters() {
 
   q = (Math.PI / 6) * 125 * 10 ** (R - 12);
   if (q < 1) {
-    q = (q * R_b * p) / 8;
+    q = (q * R_b * p_inf) / 8;
   } else {
-    q = (R_b * p) / 8;
+    q = (R_b * p_inf) / 8;
   }
   p = (p * 0.001) / 60;
+  p_inf = (p_inf * 0.001) / 60;
 }
 
 function reset_results() {
