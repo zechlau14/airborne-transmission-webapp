@@ -461,6 +461,7 @@ iframe {
 * {
   box-sizing: border-box;
   font-family: sans-serif !important;
+  font-smoothing: subpixel-antialiased;
   /* border: 1px solid red !important; */
 }
 
