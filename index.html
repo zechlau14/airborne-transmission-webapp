@@ -329,7 +329,7 @@ D-i-m-i work done on mask icons
               <span class="hovertext" text-hover="This shows a 2D image of the floor area of the room, and the positions of the infected and susceptible person in the room.
               To manipulate the dimensions of the room or the position of people, you may either use the controls on the corresponding cards
               or click and drag the bottom right corner of the room or the person icons.">
-                <img src="images/info_mark.png" alt="card information" class="question-mark">
+                <img src="images/info_mark.png" alt="card information" class="question-mark" style="margin-right: 15px;">
               </span>
             </div>
           </div>
@@ -360,7 +360,7 @@ D-i-m-i work done on mask icons
 
                   <div class="control-padding">
                     <label for="room-length"> Length (m) </label>
-                    <input type="range" id="room-length" name="room-length" min="2" max="10" value="5" step="0.1"
+                    <input type="range" id="room-length" class="scroll" name="room-length" min="2" max="10" value="5" step="0.1"
                     oninput="passRoomLength(); room_preset_custom()">
                     <!-- oninput, passRoomLength changes the length of the room visualisation-->
                     <output> 5 </output>
@@ -368,7 +368,7 @@ D-i-m-i work done on mask icons
 
                   <div class="control-padding">
                     <label for="room-length"> Width (m) </label>
-                    <input type="range" id="room-width" name="room-width" min="2" max="10" value="5" step="0.1"
+                    <input type="range" id="room-width" class="scroll" name="room-width" min="2" max="10" value="5" step="0.1"
                     oninput="passRoomWidth(); room_preset_custom()">
                     <!-- oninput, passRoomWidth changes the length of the room visualisation-->
                     <output> 5 </output>
@@ -376,7 +376,7 @@ D-i-m-i work done on mask icons
 
                   <div class="control-padding" style="padding-bottom: 10px;">
                     <label for='roomd-height'> Height (m)</label>
-                    <input type="range" id="room-height" name="room-height" min="2" max="4" value="2.5" step="0.1"
+                    <input type="range" id="room-height" class="scroll" name="room-height" min="2" max="4" value="2.5" step="0.1"
                     oninput="this.nextElementSibling.value = this.value; room_preset_custom()">
                     <output>2.5</output>
                   </div>
@@ -679,11 +679,11 @@ D-i-m-i work done on mask icons
         </span>
       </div>
     </div>
-      <div style="display:flex; justify-content:center;">
+      <!-- <div style="display:flex; justify-content:center;">
         <div>
           <footer style="margin-top: 10px">Credits</footer>
         </div>
-      </div>
+      </div> -->
 
       <script src='script/webapp_form.js'></script>
       <script src="script/webapp_room.js"></script>

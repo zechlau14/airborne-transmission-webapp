@@ -149,7 +149,8 @@ body {
 
 .controls-card {
   width: 540px;
-  height: 370px;
+  min-height: 370px;
+  height: fit-content;
   background-image: linear-gradient(#ffffff, #f1aead);
   border-radius: 12px;
   box-shadow: var(--box-shadow);
@@ -482,4 +483,8 @@ iframe {
   margin-left: 60px;
   display: block;
   width: max-content;
+}
+
+.scroll {
+  width: 58%;
 }
