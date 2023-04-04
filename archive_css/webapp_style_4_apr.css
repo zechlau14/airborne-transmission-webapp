@@ -41,8 +41,7 @@
 
 .infectious-avatar {
   width: 60px;
-  height: 60px;
-  /* aspect-ratio: 1/1; */
+  aspect-ratio: 1/1;
   position: absolute;
   cursor: move;
   background-image: url("../images/infected_person.png");
@@ -51,8 +50,7 @@
 
 .susceptible-avatar {
   width: 60px;
-  height: 60px;
-  /* aspect-ratio: 1/1; */
+  aspect-ratio: 1/1;
   position: absolute;
   cursor: move;
   background-image: url("../images/susceptible_person.png");
@@ -162,9 +160,9 @@ body {
   padding: 25px;
 }
 
-/* .controls-card:hover {
+.controls-card:hover {
   transform: scale(1.01);
-} */
+}
 
 .advanced-card {
   /* width: 344px; */

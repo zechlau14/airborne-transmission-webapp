@@ -23,7 +23,8 @@ D-i-m-i work done on mask icons
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="sheet/webapp_style.css">
+    <!-- <link rel="stylesheet" href="sheet/webapp_style.css"> -->
+    <link rel="stylesheet" href="sheet/webapp_style_no_vars.css">
     <link rel="stylesheet" href="sheet/hovertext_style.css">
     <!-- CSS only -->
 
@@ -43,15 +44,15 @@ D-i-m-i work done on mask icons
         <!-- <div class="row"> -->
           <!-- <div class="col col-6"> -->
       <div style="display: flex; margin-bottom: 10px; padding: 10px 0 10px 0; justify-content: space-between; border-bottom: 1px solid black;">
-        <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 13%; min-width: 80px; max-width: 210px; height: 10%; margin: 20px 10px 10px 10px;">
+        <img src="images/airvica_logo_c.png" alt="airvica_logo" style="width: 13%; min-width: 80px; max-width: 210px; height: fit-content; margin: 20px 10px 10px 10px;">
         <div style="display: flex; align-items: center; text-align: center;">
           <h1 style="margin: 0 0 0 15px; font-size: calc(0.8em + 1.5vw); text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);">Airborne Virus Risk Calculator</h1>
         </div>
         <!-- <div style="display: flex;"> -->
         <!-- <div style="display: flex; align-items: center;"> -->
         <div style="text-align: right; width: 220px; display: flex; align-items: center; margin-right: 10px">
-          <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: var(--logo-width); min-width: var(--logo-min-width); margin: var(--logo-margin)">
-          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="width: 48%; min-width: var(--logo-min-width); margin: var(--logo-margin); margin-left: 0px;">
+          <img src="images/cardiff_logo_c.jpeg" alt="cardiff_uni_logo" style="width: 50%; height: fit-content; min-width: 45px; margin: 4px">
+          <img src="images/oxford_logo_c.png" alt="oxford_uni_logo" style="width: 48%; height: fit-content; min-width: 45px; margin: 4px; margin-left: 0px;">
         </div>
           <!-- </div> -->
         <!-- <div style="display: flex; align-items: center;"> -->
@@ -82,7 +83,7 @@ D-i-m-i work done on mask icons
             <!-- <img src="images/virus.jpg" alt="virus_illustration" style="height: 406px;"> -->
             <!-- <iframe width="90%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
             <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-              <img src="images/air_circulation.jpg" alt="air_circulation_schematic" style="border-radius: 12px; width: 100%; height: 100%">
+              <img src="images/air_circulation.jpg" alt="air_circulation_schematic" style="border-radius: 12px; width: 100%">
               <div>
                 <span class="hovertext" text-hover="An illustration of the assumption of the recirculating loop formed in the room by the mechanical ventilation.
                 In the blue part of the loop, the air is travelling left to right, while in the green part of the loop, the air is travelling right to left.">
@@ -109,8 +110,8 @@ D-i-m-i work done on mask icons
         <!-- model inputs -->
         <!-- <div style="display: flex; justify-content: start; flex-direction: column;"> -->
 
-          <div class="controls-card" style="height:fit-content; min-height: 226px; margin-top: 0px; width: var(--room-cards-width);
-          max-width: var(--room-cards-max-width); margin-bottom: 10px;">
+          <div class="controls-card" style="height:fit-content; min-height: 226px; margin-top: 0px; width: 85vw;
+          max-width: 500px; margin-bottom: 10px;">
             <div class="card-headings">
               <p class="h2-local">Ventilation</p>
               <span class="hovertext" text-hover="Ventilation, ie. the injection of air into the room, is assumed to be from mechanical sources.
@@ -149,8 +150,8 @@ D-i-m-i work done on mask icons
             </div>
           </div>
 
-          <div class="controls-card" style="height:fit-content; min-height: 226px; margin-top: 0px; margin-bottom: 20px; width: var(--room-cards-width);
-          max-width: var(--room-cards-max-width);">
+          <div class="controls-card" style="height:fit-content; min-height: 226px; margin-top: 0px; margin-bottom: 20px; width: 85vw;
+          max-width: 500px;">
             <div class="card-headings">
               <p class="h2-local">Event</p>
               <span class="hovertext" text-hover="We assume that the room is free of the virus at the beginning of the event.
@@ -338,7 +339,7 @@ D-i-m-i work done on mask icons
           <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
 
             <div style="display: flex; flex-wrap: wrap">
-              <div class="controls-card" style="margin-top: 0; margin-bottom: 10px; width: var(--room-cards-width); max-width: var(--room-cards-max-width);">
+              <div class="controls-card" style="margin-top: 0; margin-bottom: 10px; width: 85vw; max-width: 500px;">
                 <div class="card-headings">
                   <p class="h2-local">Room dimensions</p>
                   <span class="hovertext" text-hover="The dimensions of the rectangular room.">
@@ -399,7 +400,7 @@ D-i-m-i work done on mask icons
 
           </div>
           <div style="display: flex; flex-wrap: wrap;">
-            <div class="controls-card" style="display: flex; flex-direction: column; justify-content: space-between; margin-top: 0px; margin-bottom: 10px; width: var(--room-cards-width); max-width: var(--room-cards-max-width);">
+            <div class="controls-card" style="display: flex; flex-direction: column; justify-content: space-between; margin-top: 0px; margin-bottom: 10px; width: 85vw; max-width: 500px;">
             <div class="card-headings">
               <p class="h2-local">Infectious person</p>
               <span class="hovertext" text-hover="Control the position of the infectious person, what they are doing and the type of mask they are wearing.">
@@ -467,7 +468,7 @@ D-i-m-i work done on mask icons
               </div>
             <!-- </div> -->
             </div>
-            <div class="controls-card" style="display: flex; flex-direction: column; justify-content: space-between; margin-top: 0px; width: var(--room-cards-width); max-width: var(--room-cards-max-width);">
+            <div class="controls-card" style="display: flex; flex-direction: column; justify-content: space-between; margin-top: 0px; width: 85vw; max-width: 500px;">
               <div class="card-headings">
                 <p class="h2-local">Susceptible person</p>
                 <span class="hovertext" text-hover="Control the position of the susceptible person, what they are doing and the type of mask they are wearing.">
@@ -596,7 +597,7 @@ D-i-m-i work done on mask icons
       </div>
       <div id="Explore_more_container" style="display: none; margin-top: 15px;">
         <div>
-          <h3 style="font-size: var(--font-size-results)">Calculate the concentration and risk at a specific position</h3>
+          <h3 style="font-size: calc(1em + 0.5vw)">Calculate the concentration and risk at a specific position</h3>
           <button type="button" onclick="Run_position()" class="primary-button">Run</button>
           <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
           </div>
@@ -619,7 +620,7 @@ D-i-m-i work done on mask icons
           <!-- <br> -->
 
           <div style="margin-top: 20px;">
-            <h3 style="font-size: var(--font-size-results)">Calculate the concentration throughout the room at the end of the event</h3>
+            <h3 style="font-size: calc(1em + 0.5vw)">Calculate the concentration throughout the room at the end of the event</h3>
             <button type="button" onclick="Run_C_contour()" class="primary-button">Run</button>
             <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
           </div>
@@ -633,7 +634,7 @@ D-i-m-i work done on mask icons
         <!-- <br> -->
 
         <div style="margin-top: 30px;">
-          <h3 style="font-size: var(--font-size-results)">Calculate the average concentration in the room</h3>
+          <h3 style="font-size: calc(1em + 0.5vw)">Calculate the average concentration in the room</h3>
           <button type="button" onclick="Run_avg_C()" class="primary-button">Run</button>
           <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
         </div>
@@ -651,7 +652,7 @@ D-i-m-i work done on mask icons
 
 
           <div style="margin-top: 30px;">
-            <h3 style="font-size: var(--font-size-results)">Calculate the average infection risk in the room</h3>
+            <h3 style="font-size: calc(1em + 0.5vw)">Calculate the average infection risk in the room</h3>
             <button type="button" onclick="Run_avg_P()" class="primary-button">Run</button>
             <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
           </div>
