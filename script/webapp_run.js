@@ -180,7 +180,7 @@ function Run_no_modes() {
   /*output_msg.style.display = "block";
   infection_risk_contour.style.display = "block"; */
 
-  let t = t_array(time + time_break, delta_t);
+  let t = t_array(time, delta_t);
   for (let i = 0; i < t.length; i++) {
     t[i] = t[i] / 60;
   }
@@ -298,7 +298,7 @@ function Run_position() {
   var y_e = parseFloat(document.getElementById("y_e").value);
 
   // time axis
-  let t = t_array(time + time_break, delta_t);
+  let t = t_array(time, delta_t);
   let t_chart = new Array(t.length);
   for (i = 0; i < t.length; i++) {
     t_chart[i] = t[i] / 60;
@@ -416,7 +416,7 @@ function Run_C_contour() {
     time_break
   );
 
-  let t = t_array(time + time_break, delta_t);
+  let t = t_array(time, delta_t);
 
   let n_total = xx.length;
   n_points = 0;
@@ -475,7 +475,7 @@ function Run_avg_C() {
   update_parameters();
   loading_fn("C-avg-loading", 0);
 
-  let t = t_array(time + time_break, delta_t);
+  let t = t_array(time, delta_t);
   for (let i = 0; i < t.length; i++) {
     t[i] = t[i] / 60;
   }
@@ -573,7 +573,7 @@ function Run_avg_P() {
   update_parameters();
   loading_fn("P-avg-loading", 0);
 
-  let t = t_array(time + time_break, delta_t);
+  let t = t_array(time, delta_t);
   for (let i = 0; i < t.length; i++) {
     t[i] = t[i] / 60;
   }
@@ -732,7 +732,7 @@ function Source(
   break_start,
   time_break
 ) {
-  let t = t_array(time + time_break, delta_t);
+  let t = t_array(time, delta_t);
   let result = new Array(t.length);
   for (let i = 0; i < t.length; i++) {
     result[i] =
@@ -762,7 +762,7 @@ function Impulse(
   s,
   d
 ) {
-  let t = t_array(time + time_break, delta_t);
+  let t = t_array(time, delta_t);
 
   let I_y = new Array(t.length);
   for (let i = 0; i < t.length; i++) {
@@ -832,7 +832,7 @@ function Concentration(S, I, h) {
 }
 
 function Risk(S, C, time, time_break, delta_t, p, mask_in, I_o) {
-  let t = t_array(time + time_break, delta_t);
+  let t = t_array(time, delta_t);
   let Part_in = new Array(t.length);
   let risk = new Array(t.length);
 
