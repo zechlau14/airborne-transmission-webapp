@@ -94,7 +94,6 @@ function update_parameters() {
     p_inf = parseFloat(p_inf);
   }
 
-
   // susceptible person parameters: p, mask_in
   mask_in = document.getElementById("occ-mask").value;
   if (mask_in == "customOption") {
@@ -235,7 +234,7 @@ function Run_no_modes() {
       );
 
       risk_avg_print.textContent =
-        "Average infection risk from airborne transmission in the room is " +
+        "The average infection risk from airborne transmission in the room is " +
         round(P_avg * 100, 1) +
         "%. ";
       inf_print.innerHTML =

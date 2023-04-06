@@ -84,14 +84,14 @@ D-i-m-i work done on mask icons
             <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/udfSJ1wj1YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
               <img src="images/air_circulation.jpg" alt="air_circulation_schematic" style="border-radius: 12px; width: 100%; height: 100%">
               <div>
-                <span class="hovertext" text-hover="The recirculating loop formed in the room by the mechanical ventilation.
+                <span class="hovertext" text-hover="An illustration of the assumption of the recirculating loop formed in the room by the mechanical ventilation.
                 In the blue part of the loop, the air is travelling left to right, while in the green part of the loop, the air is travelling right to left.">
                 <img src="images/info_mark.png" alt="card information" class="question-mark" style="margin-left: 15px">
                 </span>
               </div>
             </div>
           <div class="description">
-            <For>This webapp estimates the spatially varying infection risk from airborne transmission of the SARS-CoV-2 virus in a rectangular indoor space. The mathematical model assumes that the infectious particles carrying the virus are carried around the room by a recirculating airflow, diffused in the air and removed by the ventilation system, the natural inactivation of the virus and gravitational settling. We have only one stationary, asymptomatic, infectious person in the room. For a simple explanation of the model, please go <a href="Simple_Explanation.pdf">here</a>. For full details, please refer to <a href="https://doi.org/10.1098/rspa.2021.0383" target="_blank">our paper</a>.</p>
+            <For>This webapp helps you estimate the spatially varying infection risk from airborne transmission of the SARS-CoV-2 virus in a rectangular indoor space. The model assumes that the infectious particles carrying the virus are carried around the room by a recirculating airflow, diffused due to turbulence in the air and removed by the room’s ventilation system, the natural inactivation of the virus and gravitational settling. For simplicity’s sake, the model only considers a single stationary, asymptomatic, infectious person in the room. For a simple explanation of the model and the parameters chosen, please refer <a href="Simple_Explanation.pdf">here</a>. For a full write-up of the scientific basis of the model, please refer to <a href="https://doi.org/10.1098/rspa.2021.0383" target="_blank">our paper</a>.</p>
           </div>
           <!-- <div class="banner-text" style="width: 70%"> -->
           <!-- <div class="embedded-video col" style="min-height: 285px;"> -->
@@ -113,7 +113,8 @@ D-i-m-i work done on mask icons
           max-width: var(--room-cards-max-width); margin-bottom: 10px;">
             <div class="card-headings">
               <p class="h2-local">Ventilation</p>
-              <span class="hovertext" text-hover="Ventilation, the process of “event” or replacing air in the room, is assumed to be from an AC unit. The ventilation rate is given in terms of Air Changes per Hour (ACH), the number of times that the total air volume in the room is completely removed and replaced in an hour. You can choose the ACH value below. You can also set the airflow speed of the AC unit.">
+              <span class="hovertext" text-hover="Ventilation, ie. the injection of air into the room, is assumed to be from mechanical sources.
+              The ventilation rate is given in terms of Air Exchanges per Hour (ACH), which measures the amount of fresh air injected into the room in an hour as a fraction of the room's volumes.">
                 <img src="images/info_mark.png" alt="card information" class="question-mark">
               </span>
             </div>
@@ -125,7 +126,7 @@ D-i-m-i work done on mask icons
                   <option value="0.7" selected> Poor (0.7 ACH)</option>
                   <option value="3"> Good (3.0 ACH)</option>
                   <option value="6"> Very good (6.0 ACH)</option>
-                  <option value="customOption">Choose the ACH value</option>
+                  <option value="customOption">Choose your own ACH value</option>
                 </select><input type="range" id="vent-custom" name="vent-custom" style="display:none;" min="0.1" step="0.01"
                 value="3" max="40" oninput="this.nextElementSibling.value = this.value;"> </input>
                 <output style="display:none;">3</output>
@@ -140,7 +141,7 @@ D-i-m-i work done on mask icons
                   <option value="0"> Off (0  m/s)</option>
                   <option value="0.15" selected> Medium (0.15 m/s)</option>
                   <option value="0.8"> High (0.8 m/s)</option>
-                  <option value="customOption">Choose the airflow speed</option>
+                  <option value="customOption">Choose your own airflow speed</option>
                 </select><input type="range" id="airflow-custom" name="airflow-custom" style="display:none;" min="0" step="0.01"
                 value="0.5" max="3" oninput="this.nextElementSibling.value = this.value;"> </input>
                 <output style="display:none;">0.5</output>
@@ -152,7 +153,8 @@ D-i-m-i work done on mask icons
           max-width: var(--room-cards-max-width);">
             <div class="card-headings">
               <p class="h2-local">Event</p>
-              <span class="hovertext" text-hover="The “event” can be a lesson, time spent in the office, a living room, etc. We assume that the room is free of the virus at the beginning of the event. If a break takes place, we assume that everyone leaves the room and that the ventilation settings are unchanged.">
+              <span class="hovertext" text-hover="We assume that the room is free of the virus at the beginning of the event.
+              If a break is added during the event, we assume that everyone leaves the room during the break and the mechanical ventilation settings are unchanged.">
                 <img src="images/info_mark.png" alt="card information" class="question-mark">
               </span>
             </div>
@@ -321,10 +323,12 @@ D-i-m-i work done on mask icons
         <div style="display: flex; flex-direction: column;">
           <div style="display: flex; justify-content: flex-start;">
             <div>
-              <p class="h2-local">Dynamic room representation</p>
+              <p class="h2-local">Dynamic 2D room representation</p>
             </div>
             <div style="margin-top: 5px;">
-              <span class="hovertext" text-hover="Choose the room dimensions. The image shows the floor area of the room and the positions of the infectious and susceptible persons. To change the dimensions of the room from here, click and drag the bottom right corner of the room or use the presets/controls on the card. To change the position of the people, move the person icons or use the controls in the card below.">
+              <span class="hovertext" text-hover="This shows a 2D image of the floor area of the room, and the positions of the infected and susceptible person in the room.
+              To manipulate the dimensions of the room or the position of people, you may either use the controls on the corresponding cards
+              or click and drag the bottom right corner of the room or the person icons.">
                 <img src="images/info_mark.png" alt="card information" class="question-mark" style="margin-right: 15px;">
               </span>
             </div>
@@ -337,7 +341,7 @@ D-i-m-i work done on mask icons
               <div class="controls-card" style="margin-top: 0; margin-bottom: 10px; width: var(--room-cards-width); max-width: var(--room-cards-max-width);">
                 <div class="card-headings">
                   <p class="h2-local">Room dimensions</p>
-                  <span class="hovertext" text-hover="Dimensions of the room">
+                  <span class="hovertext" text-hover="The dimensions of the rectangular room.">
                     <img src="images/info_mark.png" alt="card information" class="question-mark">
                   </span>
                 </div>
@@ -398,7 +402,7 @@ D-i-m-i work done on mask icons
             <div class="controls-card" style="display: flex; flex-direction: column; justify-content: space-between; margin-top: 0px; margin-bottom: 10px; width: var(--room-cards-width); max-width: var(--room-cards-max-width);">
             <div class="card-headings">
               <p class="h2-local">Infectious person</p>
-              <span class="hovertext" text-hover="Choose the position of the infectious person, the breathing rate, what they are doing (activity type) and the type of mask they are wearing (mask efficiency).">
+              <span class="hovertext" text-hover="Control the position of the infectious person, what they are doing and the type of mask they are wearing.">
                 <img src="images/info_mark.png" alt="card information" class="question-mark">
               </span>
             </div>
@@ -466,7 +470,7 @@ D-i-m-i work done on mask icons
             <div class="controls-card" style="display: flex; flex-direction: column; justify-content: space-between; margin-top: 0px; width: var(--room-cards-width); max-width: var(--room-cards-max-width);">
               <div class="card-headings">
                 <p class="h2-local">Susceptible person</p>
-                <span class="hovertext" text-hover="Choose the position of the susceptible person, what they are doing (activity type) and the type of mask they are wearing (mask efficiency).">
+                <span class="hovertext" text-hover="Control the position of the susceptible person, what they are doing and the type of mask they are wearing.">
                   <img src="images/info_mark.png" alt="card information" class="question-mark">
                 </span>
               </div>
@@ -564,9 +568,9 @@ D-i-m-i work done on mask icons
         <div style="display: flex; margin-top: 10px; justify-content: space-between; flex-wrap: wrap">
           <div id="output-msg" style="display: none">
             <div style="display: flex; flex-direction: column;">
-              <!-- <div style="margin-top: 15px;">
+              <div style="margin-top: 15px;">
                 <h3>% infection</h3>
-              </div> -->
+              </div>
               <!-- <div style="box-shadow:  var(--box-shadow); border-radius: var(--border-radius); margin-bottom: 15px"> -->
                 <p class="output-message"><span id="risk_avg" style="display:none"></span><span id="infected" style="display:none"></span></p>
               <!-- </div> -->
@@ -591,56 +595,8 @@ D-i-m-i work done on mask icons
         <button type="button" class="secondary-button" onclick="explore_more()">Explore more</button>
       </div>
       <div id="Explore_more_container" style="display: none; margin-top: 15px;">
-
-
-        <div style="margin-top: 20px;">
-          <h3 style="font-size: var(--font-size-results)">Calculate and plot the concentration in the room at the end of the event</h3>
-          <button type="button" onclick="Run_C_contour()" class="primary-button">Run</button>
-          <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
-        </div>
-      <!-- <div class="loader" id="loading2" style="display:none"></div> -->
-      <div class="progress-bar-local">
-        <div class="the-bar" id="C-contour-loading" style="display:none;">   </div>
-      </div>
-
-      <div class="chart" id="conc_contour" style="display:none; max-width: 90vw; margin-left: -45px; margin-top: 30px;"> </div>
-
-      <div style="margin-top: 30px;">
-        <h3 style="font-size: var(--font-size-results)">Calculate and plot the average concentration in the room</h3>
-        <button type="button" onclick="Run_avg_C()" class="primary-button">Run</button>
-        <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
-      </div>
-      <!-- <br> -->
-
-        <!-- loading bar to show progress of model-->
-        <div class="progress-bar-local">
-            <div class="the-bar" id="C-avg-loading" style="display:none;">   </div>
-        </div>
-
-        <div class="chart">
-        <div id='C_avg-time' style="width: 90vw; margin-left: -30px"> </div>
-        <span id="avg" style="display:none;"> </span>
-        </div>
-
-
-        <div style="margin-top: 30px;">
-          <h3 style="font-size: var(--font-size-results)">Calculate and plot the average infection risk in the room</h3>
-          <button type="button" onclick="Run_avg_P()" class="primary-button">Run</button>
-          <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
-        </div>
-        <!-- <br> -->
-        <!-- loading bar to show progress of model-->
-        <div class="progress-bar-local">
-          <div class="the-bar" id="P-avg-loading" style="display:none;">   </div>
-        </div>
-
-        <div class="chart">
-          <div id='P_avg-time' style="width: 90vw; margin-left: -30px;"> </div>
-          <span id="purifier" style="display:none"> </span>
-        </div>
-
-      <div style="margin-top: 30px;">
-          <h3 style="font-size: var(--font-size-results)">Calculate and plot the concentration of the virus and the infection risk at a selected position in the room</h3>
+        <div>
+          <h3 style="font-size: var(--font-size-results)">Calculate the concentration and risk at a specific position</h3>
           <button type="button" onclick="Run_position()" class="primary-button">Run</button>
           <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
           </div>
@@ -662,10 +618,53 @@ D-i-m-i work done on mask icons
           </div>
           <!-- <br> -->
 
+          <div style="margin-top: 20px;">
+            <h3 style="font-size: var(--font-size-results)">Calculate the concentration throughout the room at the end of the event</h3>
+            <button type="button" onclick="Run_C_contour()" class="primary-button">Run</button>
+            <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
+          </div>
+        <!-- <div class="loader" id="loading2" style="display:none"></div> -->
+        <div class="progress-bar-local">
+          <div class="the-bar" id="C-contour-loading" style="display:none;">   </div>
+        </div>
+
+        <div class="chart" id="conc_contour" style="display:none; max-width: 90vw; margin-left: -45px; margin-top: 30px;"> </div>
 
         <!-- <br> -->
 
+        <div style="margin-top: 30px;">
+          <h3 style="font-size: var(--font-size-results)">Calculate the average concentration in the room</h3>
+          <button type="button" onclick="Run_avg_C()" class="primary-button">Run</button>
+          <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
+        </div>
+        <!-- <br> -->
 
+          <!-- loading bar to show progress of model-->
+          <div class="progress-bar-local">
+              <div class="the-bar" id="C-avg-loading" style="display:none;">   </div>
+          </div>
+
+          <div class="chart">
+          <div id='C_avg-time' style="width: 90vw; margin-left: -30px"> </div>
+          <span id="avg" style="display:none;"> </span>
+          </div>
+
+
+          <div style="margin-top: 30px;">
+            <h3 style="font-size: var(--font-size-results)">Calculate the average infection risk in the room</h3>
+            <button type="button" onclick="Run_avg_P()" class="primary-button">Run</button>
+            <button type="button" onclick="reset_results()" class="stop-button">Stop</button>
+          </div>
+          <!-- <br> -->
+          <!-- loading bar to show progress of model-->
+          <div class="progress-bar-local">
+            <div class="the-bar" id="P-avg-loading" style="display:none;">   </div>
+          </div>
+
+          <div class="chart">
+            <div id='P_avg-time' style="width: 90vw; margin-left: -30px;"> </div>
+            <span id="purifier" style="display:none"> </span>
+          </div>
       </div>
       <!-- <div class="disclaimer">
         <p> <b>Disclaimer</b>:
